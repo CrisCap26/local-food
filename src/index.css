@@ -1,13 +1,271 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap');
+
+:root{
+    --color-principal: #FF441F;
+    --color-secundario:  #231942;
+    --color-terciario: #f59275;
+    --color-fondo: #F7F5FB;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    width: 100%;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-family: cursive;
+}
+
+h2 {
+    text-align: center;
+    font-family: cursive;
+}
+
+p{
+    text-align: center;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+a{
+    text-align: center;
+    font-family: cursive;
+}
+
+
+/*HEADER*/
+
+.header{
+    position: relative;
+    background: white;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__logo{
+    height: 50px;
+}
+.header__logo > img {
+    object-fit: cover;
+}
+.header__login {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.nav{
+    width: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    margin: 1% 30%;
+}
+
+.link:hover{
+    color: rgb(21, 85, 196);
+}
+
+/*SECTION HERO*/
+
+.hero {
+    height: 44vh;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-principal);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero__title {
+    font-size: 3rem;
+}
+
+.hero__barra-busqueda {
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    padding: 0 20px;
+}
+
+/*SECTION INFO*/
+.info{
+    background-color: wheat;
+}
+.info__title {
+    padding: 14px 10px;
+    font-size: 1.7rem;
+}
+
+.info__image {
+    height: 112px;
+    width: 112px;
+    margin-bottom: 14px;
+}
+
+.info__button {
+    border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color: #2e518b; /*color botón*/
+    color: #ffffff; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: uppercase; /*capitalización texto*/
+    font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+    border-radius: 50px; /*bordes redondos*/
+    height: 50px;
+}
+
+/*SECTION NEGO*/
+
+.nego{
+    height: 60vh;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-principal);
+}
+
+.res__info{
+    width: 189px;
+    height: 184px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 5px solid whitesmoke;
+    margin-bottom: 25px;
+    border-radius: 20%;
+}
+
+.res__button{
+border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+padding: 10px; /*espacio alrededor texto*/
+background-color: #2e518b; /*color botón*/
+color: #ffffff; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 50px; /*bordes redondos*/
+height: 50px;
+}
+
+
+/*SECTION conocernos*/
+
+.regis{
+    height: 60vh;
+    width: 100%;
+    padding: 13px;
+    background-color: wheat;
+}
+
+.regis__title {
+    margin-top: 8px;
+}
+
+.info__reg{
+    width: 236px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10%;
+    margin: 5px;
+}
+
+
+
+.reg__button{
+border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+padding: 10px; /*espacio alrededor texto*/
+background-color: #2e518b; /*color botón*/
+color: #ffffff; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 50px; /*bordes redondos*/
+height: 50px;
+}
+
+
+/*SECTION registro restaurante*/
+
+.restaurant{
+    height: 60vh;
+    width: 100%;
+    padding: 0px 13px;
+    background-color: var(--color-principal);
+}
+
+.texto{
+    font-size: 16px; 
+    padding: 0px;
+    text-align: center;
+    color: #3c3636;
+    font-weight: bold;
+}
+
+.reg__res{
+    width: 226px;
+    height: 187px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10%;
+    border: 5px solid whitesmoke;
+}
+
+.resta__button{
+border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+padding: 10px; /*espacio alrededor texto*/
+background-color: #2e518b; /*color botón*/
+color: #ffffff; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 50px; /*bordes redondos*/
+height: 50px;
+}
+
+
+footer .titulo-seccion{
+    color: #e3272f;
+}
+
+footer .copy{
+    color: #000000;
+    font-size: 15px;
+}
+
+footer{
+    background: #fc9c72;
+}
+
+.lugar{
+    display: flex;
+    justify-content: center;
+}
+
+.numero{
+    display: flex;
+    justify-content: center;
+}
+
+.correo{
+    display: flex;
+    justify-content: center;
+}
+
