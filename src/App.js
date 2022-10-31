@@ -3,6 +3,7 @@ import './App.css';
 import AcercaDeNostros from './pages/AcercaDeNostros';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import PerfilRestaurante from './pages/PerfilRestaurante';
 import RegistrarPlatillo from './pages/RegistrarPlatillo';
 import RegistrarRestaurante from './pages/RegistrarRestaurante';
 import RegistrarUsuario from './pages/RegistrarUsuario';
@@ -18,6 +19,7 @@ function App() {
       <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
       <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
       <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
+      <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
     </Routes>
   </BrowserRouter>
   );

@@ -25,13 +25,12 @@ h1 {
 
 h2 {
     text-align: center;
-    font-family: cursive;
 }
 
 p{
     text-align: center;
-    font-family: inherit;
-    font-size: 20px;
+    /*font-family: inherit;*/
+    font-size: 18px;
 }
 
 a{
@@ -42,23 +41,23 @@ a{
 
 /*HEADER*/
 
-.header{
+.nav_header{
     position: relative;
     background: white;
     width: 100%;
-    height: 60px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header__logo{
+.nav_header__logo{
     height: 50px;
 }
-.header__logo > img {
+.nav_header__logo > img {
     object-fit: cover;
 }
-.header__login {
+.nav_header__login {
     position: absolute;
     top: 15px;
     right: 10px;
@@ -83,7 +82,7 @@ a{
 
 /*SECTION HERO*/
 
-.hero {
+.inicio_hero {
     height: 44vh;
     width: 100%;
     padding: 10px;
@@ -94,33 +93,36 @@ a{
     justify-content: space-between;
 }
 
-.hero__title {
+.inicio_hero__title {
     font-size: 3rem;
 }
 
-.hero__barra-busqueda {
+.inicio_hero__barra-busqueda {
     height: 40px;
     border-radius: 30px;
     border: none;
     padding: 0 20px;
 }
+.inicio_hero_subtitle {
+    font-family: "Roboto";
+}
 
 /*SECTION INFO*/
-.info{
+.inicio_info{
     background-color: wheat;
 }
-.info__title {
+.inicio_info__title {
     padding: 14px 10px;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
 }
 
-.info__image {
+.inicio_info__image {
     height: 112px;
     width: 112px;
     margin-bottom: 14px;
 }
 
-.info__button {
+.inicio_info__button {
     border: 1px solid #2e518b; /*anchura, estilo y color borde*/
     padding: 10px; /*espacio alrededor texto*/
     background-color: #2e518b; /*color botón*/
@@ -134,14 +136,18 @@ a{
 
 /*SECTION NEGO*/
 
-.nego{
+.inicio_nego{
     height: 60vh;
     width: 100%;
     padding: 10px;
     background-color: var(--color-principal);
 }
+.inicio_text {
+    font-family: "Roboto", sans-serif;
+    padding-top: 7px;
+}
 
-.res__info{
+.inicio_res__info{
     width: 189px;
     height: 184px;
     display: flex;
@@ -152,7 +158,7 @@ a{
     border-radius: 20%;
 }
 
-.res__button{
+.inicio_res__button{
 border: 1px solid #2e518b; /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
 background-color: #2e518b; /*color botón*/
@@ -167,18 +173,18 @@ height: 50px;
 
 /*SECTION conocernos*/
 
-.regis{
+.inicio_regis{
     height: 60vh;
     width: 100%;
     padding: 13px;
     background-color: wheat;
 }
 
-.regis__title {
+.inicio_regis__title {
     margin-top: 8px;
 }
 
-.info__reg{
+.inicio_info__reg{
     width: 236px;
     height: 190px;
     display: flex;
@@ -189,7 +195,7 @@ height: 50px;
 
 
 
-.reg__button{
+.inicio_reg__boton {
 border: 1px solid #2e518b; /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
 background-color: #2e518b; /*color botón*/
@@ -204,14 +210,14 @@ height: 50px;
 
 /*SECTION registro restaurante*/
 
-.restaurant{
+.inicio_restaurant{
     height: 60vh;
     width: 100%;
     padding: 0px 13px;
     background-color: var(--color-principal);
 }
 
-.texto{
+.inicio_texto{
     font-size: 16px; 
     padding: 0px;
     text-align: center;
@@ -219,7 +225,7 @@ height: 50px;
     font-weight: bold;
 }
 
-.reg__res{
+.inicio_reg__res{
     width: 226px;
     height: 187px;
     display: flex;
@@ -228,7 +234,7 @@ height: 50px;
     border: 5px solid whitesmoke;
 }
 
-.resta__button{
+.inicio_resta__button{
 border: 1px solid #2e518b; /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
 background-color: #2e518b; /*color botón*/

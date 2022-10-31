@@ -1,13 +1,13 @@
 import React from "react";
-import '../index.css'
+import '../pages/index.css'
 import logo from '../imgs/logo.png'
 import iconUser from '../imgs/icon-user.png'
 
 
 function NavBar() {
   return (
-    <header className="header">
-      <div className="header__logo">
+    <header className="nav_header">
+      <div className="nav_header__logo">
         <a href="/">
           <img
             src={logo}
@@ -16,7 +16,7 @@ function NavBar() {
           />
         </a>
       </div>
-      <a className="header__login" href={"/Login"}>
+      <a className="nav_header__login" href={"/Login"}>
         <img
           src={iconUser}
           alt="Iniciar sesión"
