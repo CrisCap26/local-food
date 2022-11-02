@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './restaurante.css'
+import {expresiones} from './utils'
+import axios from 'axios';
 
 function RegistrarRestaurante() {
 
@@ -12,9 +14,9 @@ function RegistrarRestaurante() {
   const [logoRest, setLogoRest] = useState("");
   const [fotoLocal, setFotoLocal] = useState("");
   const [socialMedia, setSocialMedia] = useState("");
-  const [owner, setOwner] = useState("");
+  const [owner, setOwner] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(nombre, descripcion, telefono, domicilio, horario, hasDelivery, logoRest, fotoLocal, socialMedia, owner)
     document.getElementById("nombre").value = setNombre("");
@@ -26,11 +28,38 @@ function RegistrarRestaurante() {
     document.getElementById("logoRes").value = setLogoRest("");
     document.getElementById("foto").value = setFotoLocal("");
     document.getElementById("social").value = setSocialMedia("");
-    document.getElementById("owner").value = setOwner("");
+    document.getElementById("owner").value = setOwner(null);
+
+    const usuario = {
+      "name": nombre,
+      "description": descripcion,
+      "address": domicilio,
+      "phone_number": telefono,
+      "schedule": horario,
+      "has_delivery": hasDelivery,
+      "social_media": null,
+      "owner": owner
+    }
+    console.log(usuario)
+    const baseURL = '127.0.0.1:8000/api/v1/user/'
+    await axios.post('http://127.0.0.1:8000/api/v1/admin/localfood/', {
+      "name": nombre,
+      "description": descripcion,
+      "address": domicilio,
+      "phone_number": telefono,
+      "schedule": horario,
+      "has_delivery": hasDelivery,
+      "social_media": socialMedia,
+      "owner": owner
+    }).then(response => {
+      console.log(response.data)
+    }).catch(error => {
+      console.log(error)
+    })
   }; 
 
   return (
-    <form className='datos' onSubmit={handleSubmit}>
+    <form className='datos' onSubmit={handleSubmit} method='post'>
       <font color="black">
         <h4>Registro de Restaurante</h4>
       </font>
@@ -58,14 +87,16 @@ function RegistrarRestaurante() {
       <h3>Propietario:</h3>
       <input
         className="controls"
-        type="text"
+        type="number"
         name="Owner"
         id="owner"
-        placeholder="Escriba el nombre del propietario"
+        min={0}
+        placeholder=""
         onChange={(e) => setOwner(e.target.value)}
         value={owner}
         required
       />
+      <h3>Domicilio: </h3>
       <input
         className="controls"
         type="text"
@@ -76,6 +107,7 @@ function RegistrarRestaurante() {
         value={domicilio}
         required
       />
+      <h3>Telefono:</h3>
       <input
         className="controls"
         type="tel"

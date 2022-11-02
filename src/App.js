@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css';
 import AcercaDeNostros from './pages/AcercaDeNostros';
+import ChangePassword from './pages/ChangePassword';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import PerfilRestaurante from './pages/PerfilRestaurante';
@@ -20,6 +21,7 @@ function App() {
       <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
       <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
       <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
+      <Route path='/ChangePassword' element={<ChangePassword/>} />
     </Routes>
   </BrowserRouter>
   );

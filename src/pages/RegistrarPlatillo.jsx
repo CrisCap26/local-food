@@ -23,6 +23,7 @@ function RegistrarPlatillo() {
       <font color="black">
         <h4>Registro de Platillos</h4>
       </font>
+      <h3>Nombre del Platillo:</h3>
       <input
         className="controls"
         type="text"
@@ -33,6 +34,7 @@ function RegistrarPlatillo() {
         value={nombre}
         required
       />
+      <h3>Descripción: </h3>
       <textarea
         id='descripcionPlat'
         className="controls"

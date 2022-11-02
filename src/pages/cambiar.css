@@ -1,0 +1,90 @@
+:root{
+    --color-principal: #FF441F;
+    --color-secundario:  #231942;
+    --color-terciario: #f59275;
+    --color-fondo: #F7F5FB;
+    --color-cuarto: #80bd6f;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/*SECTION DATOS__PLA*/
+
+.pass_datos__pla{
+    width: 280px;
+    background: #e3272f;
+    padding: 34px;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 4px;
+    font-family: 'Calibry';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+    padding-bottom: 13px;
+}
+
+.pass_datos__pla h4{
+    font-size: 27px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.pass_datos__pla h3{
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.pass_noCoinciden {
+    color: black;
+    font-size: 12px;
+    display: none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 7px;
+}
+
+.pass_coinciden {
+    color: black;
+    font-size: 12px;
+    display: none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.icon {
+    width: 15px;
+    padding-left: 2px;
+    margin-left: 2px;
+}
+
+.controls{
+    width: 100%;
+    background: #ffd4af;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #1f531f;
+    font-family: 'Cursive';
+    font-size: 18px;
+}
+
+.pass_datos__pla .botons{
+    width: 100%;
+    background: #1f53c5;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+}

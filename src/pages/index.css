@@ -94,7 +94,9 @@ a{
 }
 
 .inicio_hero__title {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-family: "Roboto";
+    padding: 7px;
 }
 
 .inicio_hero__barra-busqueda {

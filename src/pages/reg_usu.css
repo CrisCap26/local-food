@@ -72,6 +72,20 @@
     margin-bottom: 6px;
 }
 
+.noCoinciden {
+    color: red;
+    font-size: 15px;
+    display: none;
+    font-weight: bold;
+}
+
+.coinciden {
+    color: green;
+    font-size: 15px;
+    display: none;
+    font-weight: bold;
+}
+
 .privacidad{
     justify-content: center;
     width: 100%;
