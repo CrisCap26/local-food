@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './restaurante.css'
-import {expresiones} from './utils'
-import axios from 'axios';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { create } from '../services/localfoodService';
 
 function RegistrarRestaurante() {
 
@@ -23,7 +22,6 @@ function RegistrarRestaurante() {
 
   useEffect(() => {
     if(!getItem()) {
-      console.log(getItem());
       navigate('/login');
     }
   }, []);
@@ -31,45 +29,19 @@ function RegistrarRestaurante() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(nombre, descripcion, telefono, domicilio, horario, hasDelivery, logoRest, fotoLocal, socialMedia, owner)
-    document.getElementById("nombre").value = setNombre("");
-    document.getElementById("descripcion").value = setDescripcion("");
-    document.getElementById("domicilio").value = setDomicilio("");
-    document.getElementById("tel").value = setTelefono("");
-    document.getElementById("horario").value = setHorario("");
-    document.getElementById("select").value = setHasDelivery(false);
-    document.getElementById("logoRes").value = setLogoRest("");
-    document.getElementById("foto").value = setFotoLocal("");
-    document.getElementById("social").value = setSocialMedia("");
-    document.getElementById("owner").value = setOwner(null);
 
-    const usuario = {
+    const localfood = {
       "name": nombre,
       "description": descripcion,
       "address": domicilio,
       "phone_number": telefono,
       "schedule": horario,
       "has_delivery": hasDelivery,
-      "social_media": null,
-      "owner": owner
     }
-    console.log(usuario)
-    const baseURL = '127.0.0.1:8000/api/v1/user/'
-    await axios.post('http://127.0.0.1:8000/api/v1/admin/localfood/', {
-      "name": nombre,
-      "description": descripcion,
-      "address": domicilio,
-      "phone_number": telefono,
-      "schedule": horario,
-      "has_delivery": hasDelivery,
-      "social_media": socialMedia,
-      "owner": owner
-    }).then(response => {
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }; 
+    create(localfood, getItem()).then(data => {
+      console.log('Localfood created succesfully', data);
+    });
+  };
 
   return (
     <form className='datos' onSubmit={handleSubmit} method='post'>
@@ -97,7 +69,7 @@ function RegistrarRestaurante() {
         value={descripcion}
         required
       />
-      <h3>Propietario:</h3>
+      {/* <h3>Propietario:</h3>
       <input
         className="controls"
         type="number"
@@ -108,7 +80,7 @@ function RegistrarRestaurante() {
         onChange={(e) => setOwner(e.target.value)}
         value={owner}
         required
-      />
+      /> */}
       <h3>Domicilio: </h3>
       <input
         className="controls"
@@ -154,7 +126,7 @@ function RegistrarRestaurante() {
         <option value={true}>Sí</option>
         <option value={false}>No</option>
       </select>
-      {
+      {/* {
         hasDelivery == true && <textarea
         id='social'
         className="controls"
@@ -164,7 +136,7 @@ function RegistrarRestaurante() {
         onChange={(e) => setSocialMedia(e.target.value)}
         value={socialMedia}
         />
-      }
+      } */}
     
 
      {/*} <input

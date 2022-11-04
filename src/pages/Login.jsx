@@ -20,6 +20,7 @@ function Login() {
     e.preventDefault();
 
     login(username, password).then(data => {
+      console.log('Login succesfully', data);
       saveItem(data.token);
     });
   };
