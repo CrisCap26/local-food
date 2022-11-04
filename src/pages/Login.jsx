@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { login } from '../services/authService';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import "./login.css";
 
 function Login() {
@@ -13,11 +14,13 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { saveItem } = useLocalStorage('token');
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     login(username, password).then(data => {
-      console.log(data);
+      saveItem(data.token);
     });
   };
 
