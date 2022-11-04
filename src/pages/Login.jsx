@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login } from '../services/authService';
 import "./login.css";
 
 function Login() {
@@ -10,24 +11,25 @@ function Login() {
     telefono: /^\d{7,14}$/ // 7 a 14 numeros.
   }
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password)
-    document.getElementById("email").value = setEmail("");
-    document.getElementById("password").value = setPassword("");
+
+    login(username, password).then(data => {
+      console.log(data);
+    });
   };
 
   function validate () {
-    return email.length > 0 && password.length > 0
+    return username.length > 0 && password.length > 0
   }
 /*
   function validarEmail(e) {
-    if(!expresiones.correo.test(email)) {
-      document.getElementById("avisoEmail").style.display = "block";
-      setEmail(e.target.value)
-      console.log("algun campo email esta incorrecto")
+    if(!expresiones.correo.test(username)) {
+      document.getElementById("avisoUsername").style.display = "block";
+      setUsername(e.target.value)
+      console.log("algun campo username esta incorrecto")
     }
   }
 
@@ -55,18 +57,18 @@ function Login() {
         <div className="form__container">
           <div className="form__group">
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="username"
               className="form__input"
               placeholder=" "
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
               required
             />
-            <label htmlFor="email" className="form__label">
+            <label htmlFor="username" className="form__label">
               Correo:
             </label>
-            <p id="avisoEmail" className="aviso">Escriba un email valido</p>
+            <p id="avisoUsername" className="aviso">Escriba un username valido</p>
             <span className="form__line"></span>
           </div>
 
