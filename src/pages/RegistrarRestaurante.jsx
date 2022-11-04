@@ -153,7 +153,7 @@ function RegistrarRestaurante() {
         placeholder="Ingrese sus Redes Sociales"
         defaultValue={""}
   /> */ }
-      <h3>Logotipo:</h3>
+      {/* <h3>Logotipo:</h3>
       <input
         id='logoRes'
         className="controls"
@@ -170,7 +170,7 @@ function RegistrarRestaurante() {
         name="Imagen Portada"
         accept=".pdf,.jpg,.png"
         multiple=""
-      />
+      /> */}
       
       <input className="botons" type="submit" value="Registrar" />
     </form>
