@@ -4,7 +4,7 @@ const useLocalStorage = (key) => {
   const [item, setItem] = React.useState();
 
   const getItem = () => {
-    return item;
+    return localStorage.getItem(key);
   }
 
   const saveItem = (value) => {

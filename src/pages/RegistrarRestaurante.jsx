@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './restaurante.css'
 import {expresiones} from './utils'
 import axios from 'axios';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 function RegistrarRestaurante() {
 
@@ -15,6 +17,17 @@ function RegistrarRestaurante() {
   const [fotoLocal, setFotoLocal] = useState("");
   const [socialMedia, setSocialMedia] = useState("");
   const [owner, setOwner] = useState(null);
+
+  const { getItem } = useLocalStorage('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!getItem()) {
+      console.log(getItem());
+      navigate('/login');
+    }
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
