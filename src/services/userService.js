@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { config } from '../config';
+import { logout } from './authService';
 
 const create = async (user) => {
   try {
@@ -9,4 +10,20 @@ const create = async (user) => {
   }
 }
 
-export { create };
+const destroy = async (token, userId) => {
+  try {
+    const response = await axios.delete(`${config.backendUrl}/user/${userId}`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    });
+
+    await logout(token);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { create, destroy };
