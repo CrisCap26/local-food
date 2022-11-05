@@ -32,6 +32,7 @@ function Login() {
       console.log('Login succesfully', data);
       saveToken(data.token);
       saveUserId(data.user.id);
+      navigate('/');
     });
   };
 
