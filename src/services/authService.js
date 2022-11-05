@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { config } from '../config';
 
 const login = async (username, password) => {
@@ -19,8 +20,25 @@ const login = async (username, password) => {
   } catch {
     console.error('Error trying to login');
   }
-
-
 }
 
-export { login };
+const logout = async (token) => {
+  const formData = new FormData();
+
+  formData.append('token', token);
+
+  try {
+    const response = await axios.post(`${config.backendUrl}/logout/`, formData);
+
+    if (response.status !== 200) {
+      throw new Error();
+    }
+
+    return response.data;
+  } catch {
+    console.error('Error trying to logout');
+    throw new Error();
+  }
+}
+
+export { login, logout };

@@ -12,9 +12,14 @@ const useLocalStorage = (key) => {
     setItem(value);
   }
 
+  const deleteItem = () => {
+    localStorage.removeItem(key);
+  }
+
   return {
     getItem,
     saveItem,
+    deleteItem,
   };
 }
 
