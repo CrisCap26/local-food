@@ -8,10 +8,14 @@ const MyLocalfood = () => {
   const navigate = useNavigate();
   const { getItem, deleteItem } = useLocalStorage('token');
 
+  const handleOnClickSee = () => {
+    navigate('/PerfilRestaurante');
+  }
+
   return (
     <main className="my-localfood">
       <h1>Mi negocio</h1>
-      <button>Ver mi negocio</button>
+      <button onClick={handleOnClickSee}>Ver mi negocio</button>
       <button>Editar mi negocio</button>
       <button>Eliminar mi negocio</button>
     </main>
