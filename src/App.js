@@ -11,6 +11,7 @@ import RegistrarRestaurante from './pages/RegistrarRestaurante';
 import RegistrarUsuario from './pages/RegistrarUsuario';
 import { MyAccount } from './pages/Account/MyAccout';
 import { MyUser } from './pages/User/MyUser';
+import { MyLocalfood } from './pages/Localfood/MyLocallfood';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
         <Route path='/mi-cuenta' element={<MyAccount/>} />
         <Route path='/mi-usuario' element={<MyUser/>} />
+        <Route path='/mi-negocio' element={<MyLocalfood/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />

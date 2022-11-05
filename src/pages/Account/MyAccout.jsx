@@ -20,11 +20,15 @@ const MyAccount = () => {
     navigate('/mi-usuario');
   }
 
+  const handleOnClickLocalfood = () => {
+    navigate('/mi-negocio');
+  }
+
   return (
     <main className="my-account">
       <button onClick={handleLogout}>Cerrar sesión</button>
       <button onClick={handleOnClickProfile}>Ir a mi perfil</button>
-      <button>Ir a mi negocio</button>
+      <button onClick={handleOnClickLocalfood}>Ir a mi negocio</button>
     </main>
   );
 }
