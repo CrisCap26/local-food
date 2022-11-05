@@ -16,10 +16,14 @@ const MyAccount = () => {
     });
   }
 
+  const handleOnClickProfile = () => {
+    navigate('/mi-usuario');
+  }
+
   return (
     <main className="my-account">
       <button onClick={handleLogout}>Cerrar sesión</button>
-      <button>Ir a mi perfil</button>
+      <button onClick={handleOnClickProfile}>Ir a mi perfil</button>
       <button>Ir a mi negocio</button>
     </main>
   );

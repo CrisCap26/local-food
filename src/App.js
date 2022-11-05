@@ -10,6 +10,7 @@ import RegistrarPlatillo from './pages/RegistrarPlatillo';
 import RegistrarRestaurante from './pages/RegistrarRestaurante';
 import RegistrarUsuario from './pages/RegistrarUsuario';
 import { MyAccount } from './pages/Account/MyAccout';
+import { MyUser } from './pages/User/MyUser';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
         <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
         <Route path='/mi-cuenta' element={<MyAccount/>} />
+        <Route path='/mi-usuario' element={<MyUser/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
