@@ -7,7 +7,6 @@ import NavBar from '../components/NavBar'
 function PerfilRestaurante({ logo, nombre, descripcion }) {
   return (
     <>
-      <NavBar></NavBar>
       <section className="cover">
         <div className="cover-wrapper">
           <div className="cover-photo-container">

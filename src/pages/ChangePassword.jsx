@@ -48,7 +48,6 @@ function ChangePassword() {
 
   return (
     <>
-      <NavBar />
       <form className="pass_datos__pla">
         <font color="black">
           <h4>Cambiar Contraseña</h4>
