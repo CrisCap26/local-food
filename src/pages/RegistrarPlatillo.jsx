@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { create } from '../services/productService';
 import './reg_platillo.css'
 
 function RegistrarPlatillo() {
@@ -8,17 +11,30 @@ function RegistrarPlatillo() {
   const [foto, setFoto] = useState("");
   const [precio, setPrecio] = useState(0);
 
+  const { getItem } = useLocalStorage('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!getItem()) {
+      navigate('/login');
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(nombre, descrPlatillo, foto, precio)
-    document.getElementById("nombrePlat").value = setNombre("");
-    document.getElementById("descripcionPlat").value = setDescrPlatillo("");
-    document.getElementById("fotoPlat").value = setFoto("");
-    document.getElementById("precio").value = setPrecio(0);
-  }; 
+
+    const product = {
+      "name": nombre,
+      "description": descrPlatillo,
+      "price": precio,
+      "category": 1,
+    }
+    create(product, getItem()).then(data => {
+      console.log('Platillo created succesfully', data);
+    });
+  };
 
   return (
-    
     <form className="datos__pla" onSubmit={handleSubmit}>
       <font color="black">
         <h4>Registro de Platillos</h4>
@@ -60,10 +76,10 @@ function RegistrarPlatillo() {
       <h3>Elegir categoria: </h3>
       <select className='controls' name="select" id="select" >
         <option value={1}>categoria 1</option>
-        <option value={2}>categoria 2</option>
-        <option value={3}>categoria 3</option>
+        {/* <option value={2}>categoria 2</option>
+        <option value={3}>categoria 3</option> */}
       </select>
-      <h3>Foto del Platillo:</h3>
+      {/* <h3>Foto del Platillo:</h3>
       <input
         id='fotoPlat'
         className="controls"
@@ -71,7 +87,7 @@ function RegistrarPlatillo() {
         name="Imagen Platillo"
         accept=".pdf,.jpg,.png"
         multiple=""
-      />
+      /> */}
       <input className="botons" type="submit" value="Registrar" />
     </form>
   );

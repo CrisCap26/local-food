@@ -17,6 +17,7 @@
 
 .datos__pla{
     width: 100%;
+    height: calc(100vh - 50px);
     background: #e3272f;
     padding: 34px;
     margin: auto;
