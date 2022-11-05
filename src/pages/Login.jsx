@@ -15,11 +15,12 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { getItem, saveItem } = useLocalStorage('token');
+  const { getItem: getToken, saveItem: saveToken } = useLocalStorage('token');
+  const { saveItem: saveUserId } = useLocalStorage('userId');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(getItem()) {
+    if(getToken()) {
       navigate('/mi-cuenta');
     }
   }, []);
@@ -29,7 +30,8 @@ function Login() {
 
     login(username, password).then(data => {
       console.log('Login succesfully', data);
-      saveItem(data.token);
+      saveToken(data.token);
+      saveUserId(data.user.id);
     });
   };
 

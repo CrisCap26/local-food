@@ -6,12 +6,14 @@ import { logout } from '../../services/authService';
 
 const MyAccount = () => {
   const navigate = useNavigate();
-  const { getItem, deleteItem } = useLocalStorage('token');
+  const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
+  const { deleteItem: deleteUserId } = useLocalStorage('userId');
 
   const handleLogout = () => {
-    logout(getItem()).then(data => {
+    logout(getToken()).then(data => {
       console.log('Logout successfully', data);
-      deleteItem();
+      deleteToken();
+      deleteUserId();
       navigate('/');
     });
   }
