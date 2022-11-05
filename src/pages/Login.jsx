@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import "./login.css";
@@ -14,7 +15,14 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { saveItem } = useLocalStorage('token');
+  const { getItem, saveItem } = useLocalStorage('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getItem()) {
+      navigate('/mi-usuario');
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

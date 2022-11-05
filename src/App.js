@@ -8,6 +8,7 @@ import PerfilRestaurante from './pages/PerfilRestaurante';
 import RegistrarPlatillo from './pages/RegistrarPlatillo';
 import RegistrarRestaurante from './pages/RegistrarRestaurante';
 import RegistrarUsuario from './pages/RegistrarUsuario';
+import { MyUser } from './pages/User/MyUser';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path='/RegistrarPlatillo' element={<RegistrarPlatillo/>}/>
       <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
       <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
+      <Route path='/mi-usuario' element={<MyUser/>} />
       <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
       <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
       <Route path='/ChangePassword' element={<ChangePassword/>} />
