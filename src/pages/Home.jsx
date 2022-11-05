@@ -30,9 +30,9 @@ function Home() {
           </center>
 
           <center>
-            <a href="#" className="inicio_info__button">
+            {/* <a href="#" className="inicio_info__button">
               Mirar los platillos
-            </a>
+            </a> */}
           </center>
         </section>
 
@@ -50,9 +50,9 @@ function Home() {
               width="190"
               height="90"
             />
-            <a href="#" className="inicio_res__button">
+            {/* <a href="#" className="inicio_res__button">
               Ver restaurantes
-            </a>
+            </a> */}
           </center>
         </section>
 

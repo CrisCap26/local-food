@@ -8,7 +8,6 @@ import NavBar from "../components/NavBar";
 function AcercaDeNostros() {
   return (
     <>
-      <NavBar />  
       <section className="about_info">
         <center>
           <img
