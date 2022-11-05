@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css';
+import NavBar from "./components/NavBar";
 import AcercaDeNostros from './pages/AcercaDeNostros';
 import ChangePassword from './pages/ChangePassword';
 import Home from './pages/Home';
@@ -14,17 +15,18 @@ import { MyUser } from './pages/User/MyUser';
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/Login' element={<Login/>}/>
-      <Route path='/RegistrarPlatillo' element={<RegistrarPlatillo/>}/>
-      <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
-      <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
-      <Route path='/mi-usuario' element={<MyUser/>} />
-      <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
-      <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
-      <Route path='/ChangePassword' element={<ChangePassword/>} />
-    </Routes>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/RegistrarPlatillo' element={<RegistrarPlatillo/>}/>
+        <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
+        <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
+        <Route path='/mi-usuario' element={<MyUser/>} />
+        <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
+        <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
+        <Route path='/ChangePassword' element={<ChangePassword/>} />
+      </Routes>
   </BrowserRouter>
   );
 }

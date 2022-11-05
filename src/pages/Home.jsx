@@ -1,13 +1,11 @@
 import React from "react";
 import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
 import bandeja from "../imgs/bandeja.png";
 import './index.css'
 
 function Home() {
   return (
     <>
-      <NavBar></NavBar>
       <main>
         <section className="inicio_hero">
           <h1 className="inicio_hero__title">LocalFood</h1>
