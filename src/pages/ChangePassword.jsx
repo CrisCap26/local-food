@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
 import "./cambiar.css";
 import { expresiones } from "./utils";
 import cheque from '../imgs/cheque.png'

@@ -1,8 +1,7 @@
 import React from "react";
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
-import SlideShow from '../components/SlideShow'
-import NavBar from '../components/NavBar'
+import SlideShow from '../components/SlideShow';
 
 function PerfilRestaurante({ logo, nombre, descripcion }) {
   return (

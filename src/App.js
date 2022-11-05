@@ -29,7 +29,7 @@ function App() {
         <Route path='/mi-negocio' element={<MyLocalfood/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
-        <Route path='/ChangePassword' element={<ChangePassword/>} />
+        {/* <Route path='/ChangePassword' element={<ChangePassword/>} /> */}
       </Routes>
   </BrowserRouter>
   );
