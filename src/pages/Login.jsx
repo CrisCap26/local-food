@@ -20,7 +20,7 @@ function Login() {
 
   useEffect(() => {
     if(getItem()) {
-      navigate('/mi-usuario');
+      navigate('/mi-cuenta');
     }
   }, []);
 
