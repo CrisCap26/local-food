@@ -12,6 +12,7 @@ import RegistrarUsuario from './pages/RegistrarUsuario';
 import { MyAccount } from './pages/Account/MyAccout';
 import { MyUser } from './pages/User/MyUser';
 import { MyLocalfood } from './pages/Localfood/MyLocallfood';
+import EditarRestaurante from './pages/EditarRestaurante';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
+        <Route path='/editar-negocio' element={<EditarRestaurante/>} />
       </Routes>
   </BrowserRouter>
   );
