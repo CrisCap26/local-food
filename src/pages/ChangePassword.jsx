@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
 import "./cambiar.css";
 import { expresiones } from "./utils";
 import cheque from '../imgs/cheque.png'
@@ -48,7 +47,6 @@ function ChangePassword() {
 
   return (
     <>
-      <NavBar />
       <form className="pass_datos__pla">
         <font color="black">
           <h4>Cambiar Contraseña</h4>

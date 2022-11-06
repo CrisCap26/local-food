@@ -1,22 +1,34 @@
 import axios from 'axios';
 import { config } from '../config';
 
+const get = async (token, localfoodId) => {
+  return axios.get(`${config.backendUrl}/localfood/${localfoodId}`, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
+}
+
 const create = async (localfood, token) => {
-  try {
-    const formData = new FormData();
+  const formData = new FormData();
 
-    Object.keys(localfood).forEach(key => {
-      formData.append(key, localfood[key]);
-    });
+  Object.keys(localfood).forEach(key => {
+    formData.append(key, localfood[key]);
+  });
 
-    return axios.post(`${config.backendUrl}/localfood/`, formData, {
-      headers: {
-        'Authorization': `Token ${token}`,
-      }
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  return axios.post(`${config.backendUrl}/localfood/`, formData, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
+}
+
+const destroy = (token, localfoodId) => {
+  return axios.delete(`${config.backendUrl}/localfood/${localfoodId}`, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
 }
 
 const update = async (localfood, id, token) => {
@@ -38,4 +50,4 @@ const update = async (localfood, id, token) => {
   }
 }
 
-export { create, update };
+export { get, create, destroy , update};
