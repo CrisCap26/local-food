@@ -9,6 +9,10 @@ const MyUser = () => {
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { getItem: getUserId, deleteItem: deleteUserId } = useLocalStorage('userId');
 
+  const handleOnSee = () => {
+    navigate(`/usuario/${getUserId()}`);
+  }
+
   const handleOnDelete = () => {
     destroy(getToken(), getUserId()).then(data => {
       console.log('User deleted successfully', data);
@@ -21,7 +25,7 @@ const MyUser = () => {
   return (
     <main className="my-user">
       <h1>Mi usuario</h1>
-      <button>Ver mi usuario</button>
+      <button onClick={handleOnSee}>Ver mi usuario</button>
       <button>Editar mi usuario</button>
       <button onClick={handleOnDelete}>Eliminar mi usuario</button>
     </main>
