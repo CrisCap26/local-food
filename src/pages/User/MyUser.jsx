@@ -14,12 +14,14 @@ const MyUser = () => {
   }
 
   const handleOnDelete = () => {
-    destroy(getToken(), getUserId()).then(data => {
-      console.log('User deleted successfully', data);
-      deleteToken();
-      deleteUserId();
-      navigate('/');
-    });
+    if(window.confirm('¿Estás seguro?')) {
+      destroy(getToken(), getUserId()).then(data => {
+        console.log('User deleted successfully', data);
+        deleteToken();
+        deleteUserId();
+        navigate('/');
+      });
+    }
   }
 
   return (
