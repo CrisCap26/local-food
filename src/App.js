@@ -33,7 +33,7 @@ function App() {
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante/>} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
-        <Route path='/editar-negocio/:id' element={<EditarRestaurante/>} />
+        <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
       </Routes>
   </BrowserRouter>
   );

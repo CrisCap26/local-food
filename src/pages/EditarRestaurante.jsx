@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { update } from "../services/localfoodService";
@@ -18,18 +18,16 @@ function EditarRestaurante() {
   const [id, setId] = useState(null);
   const { getItem } = useLocalStorage("token");
   const navigate = useNavigate();
-
-  {
+  const params = useParams();
     useEffect(() => {
     if (!getItem()) {
       navigate("/login");
     }
   }, []);
-  }
 
   //Traer y mostrar datos actuales
   useEffect(() => {
-    axios.get("http://localhost:8000/api/v1/localfood/2").then((response) => {
+    axios.get(`http://localhost:8000/api/v1/localfood/${params.idLocalfood}`).then((response) => {
       setNombre(response.data.name);
       setDescripcion(response.data.description);
       setTelefono(response.data.phone_number);
