@@ -1,9 +1,22 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from '../components/SlideShow';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { get } from '../services/localfoodService';
 
 function PerfilRestaurante({ logo, nombre, descripcion }) {
+  const [localfood, setLocalfood] = React.useState(null);
+  const { getItem: getToken } = useLocalStorage('token');
+  const params = useParams();
+
+  React.useEffect(() => {
+    get(getToken(), params.localfoodId).then(response => {
+      setLocalfood(response.data);
+    });
+  }, []);
+
   return (
     <>
       <section className="cover">
@@ -17,7 +30,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
             />
           </div>
           <div className="cover-text">
-            <h2 className="cover-title">MexicanFood</h2>
+            <h2 className="cover-title">{localfood?.name}</h2>
           </div>
         </div>
       </section>

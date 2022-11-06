@@ -2,14 +2,23 @@ import './MyLocalfood.css';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { logout } from '../../services/authService';
+import { getInfoFromToken } from '../../services/authService';
 
 const MyLocalfood = () => {
   const navigate = useNavigate();
-  const { getItem, deleteItem } = useLocalStorage('token');
+  const { getItem: getToken} = useLocalStorage('token');
+  const [localfoodId, setLocalfoodId] = React.useState(null);
+
+  React.useEffect(() => {
+    getInfoFromToken(getToken()).then(response => {
+      setLocalfoodId(response.data.localfood.id);
+    });
+  }, []);
 
   const handleOnClickSee = () => {
-    navigate('/PerfilRestaurante');
+    if (localfoodId) {
+      navigate(`/restaurante/${localfoodId}`);
+    }
   }
 
   return (

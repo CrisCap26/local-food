@@ -30,7 +30,7 @@ function App() {
         <Route path='/usuario/:userId' element={<User/>} />
         <Route path='/mi-negocio' element={<MyLocalfood/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
-        <Route path='/PerfilRestaurante' element={<PerfilRestaurante/>} />
+        <Route path='/restaurante/:localfoodId' element={<PerfilRestaurante/>} />
         {/* <Route path='/ChangePassword' element={<ChangePassword/>} /> */}
       </Routes>
   </BrowserRouter>
