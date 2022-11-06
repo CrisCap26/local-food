@@ -41,4 +41,12 @@ const logout = async (token) => {
   }
 }
 
-export { login, logout };
+const getInfoFromToken = (token) => {
+  return axios.get(`${config.backendUrl}/token/about/`, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
+}
+
+export { login, logout, getInfoFromToken };
