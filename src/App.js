@@ -14,6 +14,7 @@ import { MyUser } from './pages/User/MyUser';
 import { User } from './pages/User/User';
 import { MyLocalfood } from './pages/Localfood/MyLocallfood';
 import EditarRestaurante from './pages/EditarRestaurante';
+import EditarUsuario from './pages/EditarUsuario';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante/>} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
         <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
+        <Route path='/editar-usuario/:userId' element={<EditarUsuario/>} />
       </Routes>
   </BrowserRouter>
   );

@@ -30,4 +30,23 @@ const destroy = async (token, userId) => {
   }
 }
 
-export { get, create, destroy };
+const update = async (user, id, token) => {
+  try {
+    const formData = new FormData();
+
+    Object.keys(user).forEach(key => {
+      formData.append(key, user[key]);
+    });
+
+    return axios.put(`${config.backendUrl}/user/${id}/`,
+    formData, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { get, create, destroy, update };

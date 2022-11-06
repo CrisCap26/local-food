@@ -24,11 +24,15 @@ const MyUser = () => {
     }
   }
 
+  const handleUpdate = () => {
+    navigate(`/editar-usuario/${getUserId()}`);
+  }
+
   return (
     <main className="my-user">
       <h1>Mi usuario</h1>
       <button onClick={handleOnSee}>Ver mi usuario</button>
-      <button>Editar mi usuario</button>
+      <button onClick={handleUpdate}>Editar mi usuario</button>
       <button onClick={handleOnDelete}>Eliminar mi usuario</button>
     </main>
   );
