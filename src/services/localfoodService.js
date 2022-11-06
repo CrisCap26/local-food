@@ -23,4 +23,12 @@ const create = async (localfood, token) => {
   });
 }
 
-export { get, create };
+const destroy = (token, localfoodId) => {
+  return axios.delete(`${config.backendUrl}/localfood/${localfoodId}`, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
+}
+
+export { get, create, destroy };
