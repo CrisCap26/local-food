@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { update } from "../services/localfoodService";
+import { get, update } from "../services/localfoodService";
 
 function EditarRestaurante() {
   const [nombre, setNombre] = useState("");
@@ -27,7 +27,7 @@ function EditarRestaurante() {
 
   //Traer y mostrar datos actuales
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/v1/localfood/${params.idLocalfood}`).then((response) => {
+    get(getItem(), params.idLocalfood).then((response) => {
       setNombre(response.data.name);
       setDescripcion(response.data.description);
       setTelefono(response.data.phone_number);
@@ -35,8 +35,8 @@ function EditarRestaurante() {
       setHorario(response.data.schedule);
       setHasDelivery(response.data.has_delivery);
       setId(response.data.id);
-    });
-  }, []);
+    })
+  },[])
   console.log(nombre, descripcion, telefono, domicilio, horario, hasDelivery);
 
   const handleSubmit = async (e) => {
