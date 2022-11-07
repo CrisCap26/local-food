@@ -6,7 +6,7 @@ import { expresiones } from "./utils";
 
 function EditarUsuario() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(undefined);
   const [user, setUser] = useState("");
   const [nombre, setNombre] = useState("");
   const [apellidos, setApellidos] = useState("");
@@ -82,9 +82,6 @@ function EditarUsuario() {
     <form className="user_form" onSubmit={handleSubmit} method="post">
       <center>
         <h1 className="user_form_titulo">Editar Mi Perfil</h1>
-      </center>
-      <center>
-        <img /*src={logo}*/ alt="Logotipo" width={100} height={80} />
       </center>
       <br />
       <div className="formulario">

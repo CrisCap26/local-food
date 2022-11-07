@@ -7,10 +7,24 @@
   background-color: #FF441F;
   width: 100%;
   min-height: calc(100vh - 50px);
+  font-family: "Roboto", sans-serif;
 }
 
 .my-account > button {
   width: 50%;
   height: 100px;
   border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-image: linear-gradient(50deg, #2D65DD 50%, transparent 50%);
+  border: 3px solid #2D65DD;
+  background-position: 100%;
+  background-size: 250%;
+  transition: background 0.4s ease-in-out;
+}
+
+.my-account > button:hover {
+  background-position: 0;
 }

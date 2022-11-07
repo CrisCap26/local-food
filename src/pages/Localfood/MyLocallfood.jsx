@@ -17,9 +17,10 @@ const MyLocalfood = () => {
   }, []);
 
   const handleOnClickSee = () => {
-    if (localfoodId) {
+    /*if (localfoodId) {
       navigate(`/restaurante/${localfoodId}`);
-    }
+    }*/
+    navigate(`/PerfilRestaurante/${localfoodId}`)
   }
 
   const handleOnDelete = () => {

@@ -1,21 +1,31 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
-import SlideShow from '../components/SlideShow';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { get } from '../services/localfoodService';
+import SlideShow from "../components/SlideShow";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { get } from "../services/localfoodService";
 
 function PerfilRestaurante({ logo, nombre, descripcion }) {
   const [localfood, setLocalfood] = React.useState(null);
-  const { getItem: getToken } = useLocalStorage('token');
+  const { getItem: getToken } = useLocalStorage("token");
   const params = useParams();
 
   React.useEffect(() => {
-    get(getToken(), params.localfoodId).then(response => {
+    get(getToken(), params.localfoodId).then((response) => {
       setLocalfood(response.data);
     });
   }, []);
+
+  function hasDelivery() {
+    if(localfood) {
+      if(localfood.has_delivery) {
+        return "Sí"
+      } else {
+        return "No"
+      }
+    }
+  }
 
   return (
     <>
@@ -43,7 +53,8 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         </header>
 
         <div className="cover-drescrption">
-          <p>
+          <p>{localfood?.description}</p>
+          {/*<p>
             Chapulín es un lugar en donde la palabra México cobra sentido, es un
             restaurante en donde podrás conocer la riqueza y tradición de la
             cocina mexicana a través de los diferentes olores, texturas y
@@ -53,7 +64,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
           <p>
             Su diseño arquitectónico y oferta gastronómica se conjugan para
             tener una experiencia muy agradable.
-          </p>
+  </p>*/}
         </div>
       </section>
 
@@ -67,6 +78,20 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         <div className="block">
           <ul className="list">
             <li>
+              <b>Domicilio: </b> {localfood?.address}
+            </li>
+            <li>
+              {" "}
+              <b>Telefono:</b> {localfood?.phone_number}
+            </li>
+            <li>
+              {" "}
+              <b>Horario: </b> {localfood?.schedule}
+            </li>
+            <li>
+              <b>¿Entrega a domicilio?: </b> {hasDelivery()}
+            </li>
+            {/*<li>
               <b>Correo: </b>MexicanFood@gmail.com
             </li>
             <li>
@@ -79,7 +104,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
             <li>
               {" "}
               <b>Horario: </b> 09:00 a.m. - 10:00 p.m.
-            </li>
+</li>*/}
           </ul>
         </div>
         <br />
