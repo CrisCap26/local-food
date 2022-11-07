@@ -2,12 +2,19 @@ import './MyAccount.css';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { logout } from '../../services/authService';
+import { logout, getInfoFromToken } from '../../services/authService';
 
 const MyAccount = () => {
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { deleteItem: deleteUserId } = useLocalStorage('userId');
+  const [localfoodId, setLocalfoodId] = React.useState(null);
+
+  React.useEffect(() => {
+    getInfoFromToken(getToken()).then(response => {
+      setLocalfoodId(response.data.localfood.id);
+    });
+  }, []);
 
   const handleLogout = () => {
     logout(getToken()).then(data => {
@@ -30,7 +37,7 @@ const MyAccount = () => {
     <main className="my-account">
       <button onClick={handleLogout}>Cerrar sesión</button>
       <button onClick={handleOnClickProfile}>Ir a mi perfil</button>
-      <button onClick={handleOnClickLocalfood}>Ir a mi negocio</button>
+      <button onClick={handleOnClickLocalfood} disabled={!localfoodId ? true : false}>Ir a mi negocio</button>
     </main>
   );
 }

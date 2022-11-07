@@ -31,11 +31,15 @@ const MyLocalfood = () => {
     }
   }
 
+  const handleUpdate = () => {
+    navigate(`/editar-negocio/${localfoodId}`)
+  }
+
   return (
     <main className="my-localfood">
       <h1>Mi negocio</h1>
       <button onClick={handleOnClickSee}>Ver mi negocio</button>
-      <button>Editar mi negocio</button>
+      <button onClick={handleUpdate}>Editar mi negocio</button>
       <button onClick={handleOnDelete}>Eliminar mi negocio</button>
     </main>
   );
