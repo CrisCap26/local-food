@@ -33,7 +33,7 @@ function SlideShow({platillos, token, localfoodId}) {
             <p>{platillo.description}</p>
             <p>{platillo.price}</p>
             <p>{platillo.category}</p>
-            <button onClick={() => onDeletePlatillo(platillo.id)}>Eliminar</button>
+            <button className='platillo__button--delete' onClick={() => onDeletePlatillo(platillo.id)}>Eliminar</button>
           </div>
         ))
       }

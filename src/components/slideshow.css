@@ -1,4 +1,6 @@
 .item {
+	display: flex;
+	flex-direction: column;
 	min-height: 20rem;
 	/*max-width: 30rem;*/
 	padding: 2rem;
@@ -21,3 +23,10 @@
 	background-color: wheat;
 }
 
+.platillo__button--delete {
+	background-color: red;
+	color: white;
+	margin: 10px auto;
+	padding: 10px;
+	border-radius: 10px;
+}
