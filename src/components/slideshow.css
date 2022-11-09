@@ -10,13 +10,14 @@
 	border-radius: 16%;
 	border: 6px solid #201e1d;
 }
-.slider {
-	display: flex;
+/* .slider {
 	cursor: grab;
-}
+} */
 .slider-container {
+	display: flex;
+	flex-direction: column;
 	margin: 0 auto;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 	background-color: wheat;
 }
 
