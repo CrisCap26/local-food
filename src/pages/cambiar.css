@@ -45,7 +45,7 @@
 .pass_noCoinciden {
     color: black;
     font-size: 12px;
-    display: none;
+    /* display: none; */
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     margin-bottom: 7px;

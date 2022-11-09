@@ -49,6 +49,7 @@ function EditarUsuario() {
 
     update(userToUpdate, id, getItem()).then((data) => {
       console.log("User updated succesfully", data);
+      navigate('/mi-usuario');
     });
   };
 
@@ -141,7 +142,7 @@ function EditarUsuario() {
         <p id="invalidEmail" className="noCoinciden">
           El email es invalido
         </p>
-        <div className="field">
+        {/* <div className="field">
           <label>Contraseña</label>
           <input
             type="password"
@@ -152,7 +153,7 @@ function EditarUsuario() {
             value={password}
             required
           />
-  </div>
+  </div> */}
         {/*<div className="submit">
           <center>
             <button id="btn-enviar" >Cambiar contraseña</button>

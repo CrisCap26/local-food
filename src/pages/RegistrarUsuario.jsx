@@ -1,7 +1,7 @@
 import "./reg_usu.css";
 import { useNavigate } from 'react-router-dom';
 import logo from "../imgs/logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {expresiones} from './utils'
 import cheque from '../imgs/cheque.png'
 import mal from '../imgs/cerrar.png'
@@ -17,7 +17,12 @@ function RegistrarUsuario() {
   const [apellidos, setApellidos] = useState("");
   const [telefono, setTelefono] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [validPasswords, setValidPasswords] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    validarPass2();
+  }, [password, password2]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,32 +58,36 @@ function RegistrarUsuario() {
   }
 
   const validarPass = () => {
-    if(!expresiones.contra.test(password)) {
-      console.log("la contraseña debe tener de 6 a 12 carateres")
-      // document.getElementById("invalidPass").style.display = "block";
-      return false
-
-    } else {
+    console.log(password)
+    console.log(password2)
+    if(password.length >= 6 && password2.length >= 6) {
       console.log("contraseña correcta")
       // document.getElementById("invalidPass").style.display = "none";
       return true
+    } else {
+      console.log("la contraseña debe tener de 6 a 12 carateres")
+      // document.getElementById("invalidPass").style.display = "block";
+      return false
     }
   }
 
   const validarPass2 = () => {
     if(validarPass() === true) {
       if(password !== password2) {
-        console.log(' las contraseñas no son iguales ')
+        setValidPasswords(false);
+        // console.log(' las contraseñas no son iguales ')
         // document.getElementById("message1").style.display = "block";
         // document.getElementById("message2").style.display = "none";
         // document.getElementById("btn-enviar").disabled = true;
       } else {
         console.log('Las contraseñas son iguales')
+        setValidPasswords(true);
         // document.getElementById("message2").style.display = "block";
         // document.getElementById("message1").style.display = "none";
         // document.getElementById("btn-enviar").disabled = false;
       }
     } else {
+      setValidPasswords(false);
       // document.getElementById("message1").style.display = "none";
       // document.getElementById("message2").style.display = "none";
     }
@@ -192,7 +201,6 @@ function RegistrarUsuario() {
             name="password"
             id="contra"
             onChange={(e) => setPassword(e.target.value)}
-            onBlur={validarPass}
             value={password}
             required
           />
@@ -208,15 +216,16 @@ function RegistrarUsuario() {
               setPassword2(e.target.value)
             }
           }
-            onBlur={validarPass2}
             value={password2}
             required
           />
         </div>
 
-        <p id="message1" className="noCoinciden">Las contraseñas no coinciden
-        <img className="icon" src={mal}/>
-        </p>
+          {!validPasswords &&
+            <p id="message1" className="pass_noCoinciden">Las contraseñas no coinciden
+              <img className="icon" src={mal}/>
+            </p>
+          }
 
         <p id="message2" className="coinciden">Las contraseñas coinciden
         <img className="icon" src={cheque} />
@@ -233,7 +242,7 @@ function RegistrarUsuario() {
         </div>
         <div className="submit">
           <center>
-            <button id="btn-enviar" disabled={!isChecked}>Registrarme</button>
+            <button id="btn-enviar" disabled={!isChecked || !validPasswords || user.length === 0}>Registrarme</button>
           </center>
         </div>
       </div>
