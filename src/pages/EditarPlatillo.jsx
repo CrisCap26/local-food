@@ -39,6 +39,7 @@ function EditarPlatillo() {
     };
     update(product, id, getItem()).then((data) => {
       console.log("Platillo created succesfully", data);
+      navigate('/mi-negocio');
     });
   };
   return (
