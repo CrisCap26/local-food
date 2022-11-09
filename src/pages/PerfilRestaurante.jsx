@@ -119,7 +119,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         <span>Platillos</span>
         <button className="add-platillo" onClick={addPlatillo}>+</button>
       </h1>
-      <SlideShow platillos={localfood?.products} />
+      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} />
     </>
   );
 }

@@ -45,4 +45,12 @@ const update = async (product, id,token) => {
   }
 }
 
-export { get, create, update };
+const destroy = (token, productId) => {
+  return axios.delete(`${config.backendUrl}/product/${productId}`, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  });
+}
+
+export { get, create, update, destroy };
