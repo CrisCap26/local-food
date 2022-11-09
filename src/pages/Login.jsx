@@ -81,7 +81,7 @@ function Login() {
               required
             />
             <label htmlFor="username" className="form__label">
-              Correo:
+              Usuario:
             </label>
             <p id="avisoUsername" className="aviso">Escriba un username valido</p>
             <span className="form__line"></span>

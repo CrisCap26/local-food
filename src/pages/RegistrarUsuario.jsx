@@ -1,4 +1,5 @@
 import "./reg_usu.css";
+import { useNavigate } from 'react-router-dom';
 import logo from "../imgs/logo.png";
 import { useState } from "react";
 import {expresiones} from './utils'
@@ -16,6 +17,7 @@ function RegistrarUsuario() {
   const [apellidos, setApellidos] = useState("");
   const [telefono, setTelefono] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ function RegistrarUsuario() {
 
     create(userToRegister).then(data => {
       console.log('User created succesfully', data);
+      navigate('/login');
     });
 
   };
