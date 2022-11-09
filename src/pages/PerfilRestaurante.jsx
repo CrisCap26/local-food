@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from "../components/SlideShow";
@@ -7,6 +7,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { get } from "../services/localfoodService";
 
 function PerfilRestaurante({ logo, nombre, descripcion }) {
+  const navigate = useNavigate();
   const [localfood, setLocalfood] = React.useState(null);
   const { getItem: getToken } = useLocalStorage("token");
   const params = useParams();
@@ -25,6 +26,10 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         return "No"
       }
     }
+  }
+
+  const addPlatillo = () => {
+    navigate('/RegistrarPlatillo');
   }
 
   return (
@@ -112,7 +117,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
 
       <h1 className="title-underlime">
         <span>Platillos</span>
-        <button className="add-platillo">+</button>
+        <button className="add-platillo" onClick={addPlatillo}>+</button>
       </h1>
       <SlideShow platillos={localfood?.products} />
     </>
