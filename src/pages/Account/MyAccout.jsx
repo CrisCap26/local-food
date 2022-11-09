@@ -33,11 +33,18 @@ const MyAccount = () => {
     navigate('/mi-negocio');
   }
 
+  const handleOnCreateLocalfood = () => {
+    navigate('/RegistrarRestaurante');
+  }
+
   return (
     <main className="my-account">
       <button onClick={handleLogout}>Cerrar sesión</button>
       <button onClick={handleOnClickProfile}>Ir a mi perfil</button>
-      <button onClick={handleOnClickLocalfood} disabled={!localfoodId ? true : false}>Ir a mi negocio</button>
+      {localfoodId
+        ? <button onClick={handleOnClickLocalfood}>Ir a mi negocio</button>
+        : <button onClick={handleOnCreateLocalfood}>Crear un negocio</button>
+      }
     </main>
   );
 }

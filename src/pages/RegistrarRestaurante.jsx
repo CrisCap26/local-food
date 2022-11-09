@@ -40,6 +40,7 @@ function RegistrarRestaurante() {
     }
     create(localfood, getItem()).then(data => {
       console.log('Localfood created succesfully', data);
+      navigate('/mi-cuenta');
     });
   };
 
