@@ -112,8 +112,9 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
 
       <h1 className="title-underlime">
         <span>Platillos</span>
+        <button className="add-platillo">+</button>
       </h1>
-      <SlideShow />
+      <SlideShow platillos={localfood?.products} />
     </>
   );
 }

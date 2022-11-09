@@ -201,3 +201,9 @@ a{
 #contepuntos > a{
     font-size: 1.5em;
 }
+
+.add-platillo {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}

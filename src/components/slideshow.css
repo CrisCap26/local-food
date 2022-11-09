@@ -1,5 +1,5 @@
 .item {
-	height: 20rem;
+	min-height: 20rem;
 	/*max-width: 30rem;*/
 	padding: 2rem;
 }
