@@ -2,23 +2,21 @@ import axios from 'axios';
 import { config } from '../config';
 
 const login = async (username, password) => {
-  const body = {
-    username,
-    password,
-  }
+  const formData = new FormData();
+  formData.append('username', username);
+  formData.append('password', password);
 
   try {
-    const response = await fetch(`${config.backendUrl}/login/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    const response = await axios.post(`${config.backendUrl}/login/`, formData);
 
-    return response.json();
+    if (response.status !== 200) {
+      throw new Error();
+    }
+
+    return response.data;
   } catch {
     console.error('Error trying to login');
+    throw new Error();
   }
 }
 
