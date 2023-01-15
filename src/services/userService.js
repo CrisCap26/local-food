@@ -38,7 +38,7 @@ const update = async (user, id, token) => {
       formData.append(key, user[key]);
     });
 
-    return axios.put(`${config.backendUrl}/user/${id}/`,
+    return axios.patch(`${config.backendUrl}/user/${id}/`,
     formData, {
       headers: {
         'Authorization': `Token ${token}`,
