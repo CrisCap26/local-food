@@ -5,16 +5,21 @@ import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from "../components/SlideShow";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { get } from "../services/localfoodService";
+import { config } from "../config";
 
 function PerfilRestaurante({ logo, nombre, descripcion }) {
   const navigate = useNavigate();
   const [localfood, setLocalfood] = React.useState(null);
+  const [profileImage, setProfileImage] = React.useState(fotoPerfil);
   const { getItem: getToken } = useLocalStorage("token");
   const params = useParams();
 
   React.useEffect(() => {
     get(getToken(), params.localfoodId).then((response) => {
       setLocalfood(response.data);
+      if (response.data.profile_image) {
+        setProfileImage(config.backendUrl + response.data.profile_image)
+      }
     });
   }, []);
 
@@ -38,7 +43,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         <div className="cover-wrapper">
           <div className="cover-photo-container">
             <img
-              src={fotoPerfil}
+              src={profileImage}
               alt="Logotipo"
               className="cover-photo"
               height={200}

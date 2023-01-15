@@ -57,7 +57,9 @@ function RegistrarRestaurante() {
         rows={5}
         placeholder="Ingrese la Descripcion"
         id='descripcion'
-        {...register('description')}
+        {...register('description', {
+          required: true
+        })}
       />
       <h3>Domicilio: </h3>
       <input
