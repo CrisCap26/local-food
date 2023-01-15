@@ -24,7 +24,9 @@ function RegistrarUsuario() {
     formData.append('last_name', data.last_name);
     formData.append('phone_number', data.phone_number);
     formData.append('email', data.email);
-    formData.append('profile_image', data.profile_image[0]);
+    if (data.profile_image.length > 0) {
+      formData.append('profile_image', data.profile_image[0]);
+    }
 
     create(formData).then(res => {
       console.log('User created succesfully', res);
