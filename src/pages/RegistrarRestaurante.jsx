@@ -28,9 +28,9 @@ function RegistrarRestaurante() {
     if (data.profile_image.length > 0) {
       localfood.profile_image = data.profile_image[0];
     }
-    if (data.banner_image.length > 0) {
-      localfood.banner_image = data.banner_image[0];
-    }
+    // if (data.banner_image.length > 0) {
+    //   localfood.banner_image = data.banner_image[0];
+    // }
     create(localfood, getItem()).then(response => {
       console.log('Localfood created succesfully', response);
       navigate('/mi-cuenta');
@@ -100,13 +100,13 @@ function RegistrarRestaurante() {
         type="file"
         {...register('profile_image')}
       />
-      <h3>Foto del Local:</h3>
+      {/* <h3>Foto del Local:</h3>
       <input
         id='foto'
         className="controls"
         type="file"
         {...register('banner_image')}
-      />
+      /> */}
       <button id="btn-enviar" className='botons' type="submit" >Registrar</button>
     </form>
   );
