@@ -31,7 +31,6 @@ function RegistrarRestaurante() {
     if (data.banner_image.length > 0) {
       localfood.banner_image = data.banner_image[0];
     }
-    console.log(localfood)
     create(localfood, getItem()).then(response => {
       console.log('Localfood created succesfully', response);
       navigate('/mi-cuenta');

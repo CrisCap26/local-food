@@ -3,23 +3,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, update } from "../services/localfoodService";
+import { useForm } from "react-hook-form";
 
 function EditarRestaurante() {
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [domicilio, setDomicilio] = useState("");
-  const [horario, setHorario] = useState("");
-  const [hasDelivery, setHasDelivery] = useState(false);
-  const [logoRest, setLogoRest] = useState("");
-  const [fotoLocal, setFotoLocal] = useState("");
-  const [socialMedia, setSocialMedia] = useState("");
-  const [owner, setOwner] = useState(null);
   const [id, setId] = useState(null);
   const { getItem } = useLocalStorage("token");
   const navigate = useNavigate();
   const params = useParams();
-    useEffect(() => {
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
     if (!getItem()) {
       navigate("/login");
     }
@@ -28,107 +21,106 @@ function EditarRestaurante() {
   //Traer y mostrar datos actuales
   useEffect(() => {
     get(getItem(), params.idLocalfood).then((response) => {
-      setNombre(response.data.name);
-      setDescripcion(response.data.description);
-      setTelefono(response.data.phone_number);
-      setDomicilio(response.data.address);
-      setHorario(response.data.schedule);
-      setHasDelivery(response.data.has_delivery);
+      setValue('name', response.data.name ?? '');
+      setValue('description', response.data.description ?? '');
+      setValue('address', response.data.address ?? '');
+      setValue('phone_number', response.data.phone_number ?? '');
+      setValue('schedule', response.data.schedule ?? '');
       setId(response.data.id);
     })
   },[])
-  console.log(nombre, descripcion, telefono, domicilio, horario, hasDelivery);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = (data) => {
     const localfood = {
-      name: nombre,
-      description: descripcion,
-      address: domicilio,
-      phone_number: telefono,
-      schedule: horario,
-      has_delivery: hasDelivery,
-    };
-
+      "name": data.name,
+      "description": data.description,
+      "address": data.address,
+      "phone_number": data.phone_number,
+      "schedule": data.schedule,
+      "has_delivery": data.has_delivery,
+    }
+    if (data.profile_image.length > 0) {
+      localfood.profile_image = data.profile_image[0];
+    }
+    if (data.banner_image.length > 0) {
+      localfood.banner_image = data.banner_image[0];
+    }
     update(localfood, id, getItem()).then(data => {
-        console.log('User updated succesfully', data);
-      });
+      console.log('Localfood updated succesfully', data);
+    });
   };
 
   return (
-    <form className="datos" onSubmit={handleSubmit} method="post">
+    <form className="datos" onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
         <h4>Editar el Restaurante</h4>
       </font>
       <input
         className="controls"
-        type="text"
-        name="Nombre del negocio"
         id="nombre"
-        placeholder="Editar el Nombre"
-        onChange={(e) => setNombre(e.target.value)}
-        value={nombre}
-        required
+        placeholder="Ingrese el Nombre"
+        {...register('name', {
+          required: true
+        })}
       />
       <textarea
         className="controls"
         cols={20}
         rows={5}
-        placeholder="Editar la Descripcion"
-        name="Descripcion"
-        id="descripcion"
-        onChange={(e) => setDescripcion(e.target.value)}
-        value={descripcion}
-        required
+        placeholder="Ingrese la Descripcion"
+        id='descripcion'
+        {...register('description', {
+          required: true
+        })}
       />
       <h3>Domicilio: </h3>
       <input
         className="controls"
-        type="text"
-        name="Domicilio"
         id="domicilio"
-        placeholder="Editar Domicilio"
-        onChange={(e) => setDomicilio(e.target.value)}
-        value={domicilio}
-        required
+        placeholder="Ingrese el Domicilio"
+        {...register('address')}
       />
       <h3>Telefono:</h3>
       <input
         className="controls"
         type="tel"
-        name="Telefono"
         id="tel"
-        placeholder="Editar Telefono"
-        onChange={(e) => setTelefono(e.target.value)}
-        value={telefono}
-        required
+        placeholder="Ingrese el Telefono"
+        {...register('phone_number')}
       />
       <h3>Horario:</h3>
       <input
         className="controls"
-        type="text"
-        name="Horario"
         id="horario"
         placeholder="9:00am - 3:00pm"
-        onChange={(e) => setHorario(e.target.value)}
-        value={horario}
-        required
+        {...register('schedule')}
       />
       <h3>¿Cuenta con servicio a domicilio?</h3>
       <select
-        className="controls"
-        name="select"
-        id="select"
-        onChange={() => setHasDelivery(!hasDelivery)}
-        value={hasDelivery}
-        required
+      className='controls'
+      id='select'
+      {...register('has_delivery', {
+        required: true
+      })}
       >
         <option value={true}>Sí</option>
         <option value={false}>No</option>
       </select>
-
-      <input className="botons" type="submit" value="Editar" />
+      <h3>Logotipo:</h3>
+      <input
+        id='logoRes'
+        className="controls"
+        type="file"
+        {...register('profile_image')}
+      />
+      <h3>Foto del Local:</h3>
+      <input
+        id='foto'
+        className="controls"
+        type="file"
+        {...register('banner_image')}
+      />
+      <button id="btn-enviar" className='botons' type="submit" >Editar</button>
     </form>
   );
 }
