@@ -4,6 +4,7 @@ import images from '../imgs/images'
 import './slideshow.css'
 import { motion } from 'framer-motion'
 import { destroy } from "../services/productService";
+import { config } from '../config';
 
 function SlideShow({platillos, token, localfoodId}) {
   const navigate = useNavigate();
@@ -21,13 +22,20 @@ function SlideShow({platillos, token, localfoodId}) {
     }
   }
 
+  const getImage = (platillo, index) => {
+    if (!platillo.image) {
+      return images[index % 3];
+    }
+    return config.backendUrl + platillo.image;
+  }
+
   return (
     <div className='slider-container'>
       {
         platillos && platillos.reverse().map((platillo, i) => (
           <div key={i} className='item'>
             <div onClick={() => editPlatillo(platillo.id)} >
-              <img src={images[i % 3]} alt="" />
+              <img src={getImage(platillo, i)} alt="" />
             </div>
             <p>{platillo.name}</p>
             <p>{platillo.description}</p>

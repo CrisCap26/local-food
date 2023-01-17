@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { create } from '../services/productService';
@@ -20,14 +21,16 @@ function RegistrarPlatillo() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
     const product = {
-      "name": nombre,
-      "description": descrPlatillo,
-      "price": precio,
+      "name": data.name,
+      "description": data.description,
+      "price": data.price,
       "category": 1,
+    }
+    if (data.image.length > 0) {
+      product.image = data.image[0];
     }
     create(product, getItem()).then(data => {
       console.log('Platillo created succesfully', data);
@@ -36,20 +39,18 @@ function RegistrarPlatillo() {
   };
 
   return (
-    <form className="datos__pla" onSubmit={handleSubmit}>
+    <form className="datos__pla" onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
         <h4>Registro de Platillos</h4>
       </font>
       <h3>Nombre del Platillo:</h3>
       <input
         className="controls"
-        type="text"
-        name="Nombre"
         id="nombrePlat"
         placeholder="Ingrese el Nombre"
-        onChange={(e) => setNombre(e.target.value)}
-        value={nombre}
-        required
+        {...register('name', {
+          required: true
+        })}
       />
       <h3>Descripción: </h3>
       <textarea
@@ -58,21 +59,17 @@ function RegistrarPlatillo() {
         cols={20}
         rows={5}
         placeholder="Ingrese la Descripcion"
-        onChange={(e) => setDescrPlatillo(e.target.value)}
-        value={descrPlatillo}
-        required
+        {...register('description')}
       />
       <h3>Precio:</h3>
       <input
         id="precio"
         className="controls"
         type="number"
-        name="Precio"
         placeholder="Ingrese el Precio"
-        min={0}
-        onChange={(e) => setPrecio(e.target.value)}
-        value={precio}
-        required
+        {...register('price', {
+          min: 0
+        })}
       />
       <h3>Elegir categoria: </h3>
       <select className='controls' name="select" id="select" >
@@ -89,7 +86,14 @@ function RegistrarPlatillo() {
         accept=".pdf,.jpg,.png"
         multiple=""
       /> */}
-      <input className="botons" type="submit" value="Registrar" />
+      <h3>Imagen:</h3>
+      <input
+        id='logoRes'
+        className="controls"
+        type="file"
+        {...register('image')}
+      />
+      <button id="btn-enviar" className='botons' type="submit" >Registrar</button>
     </form>
   );
 }
