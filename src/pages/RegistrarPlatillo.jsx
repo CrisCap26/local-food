@@ -6,12 +6,6 @@ import { create } from '../services/productService';
 import './reg_platillo.css'
 
 function RegistrarPlatillo() {
-
-  const [nombre, setNombre] = useState("");
-  const [descrPlatillo, setDescrPlatillo] = useState("");
-  const [foto, setFoto] = useState("");
-  const [precio, setPrecio] = useState(0);
-
   const { getItem } = useLocalStorage('token');
   const navigate = useNavigate();
 
@@ -77,18 +71,9 @@ function RegistrarPlatillo() {
         {/* <option value={2}>categoria 2</option>
         <option value={3}>categoria 3</option> */}
       </select>
-      {/* <h3>Foto del Platillo:</h3>
+      <h3>Foto del Platillo:</h3>
       <input
         id='fotoPlat'
-        className="controls"
-        type="file"
-        name="Imagen Platillo"
-        accept=".pdf,.jpg,.png"
-        multiple=""
-      /> */}
-      <h3>Imagen:</h3>
-      <input
-        id='logoRes'
         className="controls"
         type="file"
         {...register('image')}

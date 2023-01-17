@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, update } from '../services/productService';
 
 function EditarPlatillo() {
-  const [nombre, setNombre] = useState("");
-  const [descrPlatillo, setDescrPlatillo] = useState("");
-  const [foto, setFoto] = useState("");
-  const [precio, setPrecio] = useState(undefined);
   const [id, setId] = useState(null);
   const { getItem } = useLocalStorage("token");
   const navigate = useNavigate();
   const params = useParams();
+  const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {
     if (!getItem()) {
@@ -21,65 +19,61 @@ function EditarPlatillo() {
 
   useEffect(() => {
     get(getItem(), params.productId).then((response) => {
-        setId(response.data.id);
-        setNombre(response.data.name);
-        setDescrPlatillo(response.data.description);
-        setPrecio(response.data.price);
+      setValue('name', response.data.name ?? '');
+      setValue('description', response.data.description ?? '');
+      setValue('price', response.data.price ?? 0);
+      setId(response.data.id);
     })
   },[]);
-  console.log(id, nombre, descrPlatillo)
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
+  const onSubmit = (data) => {
     const product = {
-      name: nombre,
-      description: descrPlatillo,
-      price: precio,
-      category: 1,
-    };
+      "name": data.name,
+      "description": data.description,
+      "price": data.price,
+      "category": 1,
+    }
+    if (data.image.length > 0) {
+      product.image = data.image[0];
+    }
     update(product, id, getItem()).then((data) => {
       console.log("Platillo created succesfully", data);
       navigate('/mi-negocio');
     });
   };
+
   return (
-    <form className="datos__pla" onSubmit={handleSubmit}>
+    <form className="datos__pla" onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
         <h4>Editar Platillo</h4>
       </font>
       <h3>Nombre del Platillo:</h3>
       <input
         className="controls"
-        type="text"
-        name="Nombre"
         id="nombrePlat"
         placeholder="Ingrese el Nombre"
-        onChange={(e) => setNombre(e.target.value)}
-        value={nombre}
-        required
+        {...register('name', {
+          required: true
+        })}
       />
       <h3>Descripción: </h3>
       <textarea
-        id="descripcionPlat"
+        id='descripcionPlat'
         className="controls"
         cols={20}
         rows={5}
         placeholder="Ingrese la Descripcion"
-        onChange={(e) => setDescrPlatillo(e.target.value)}
-        value={descrPlatillo}
-        required
+        {...register('description')}
       />
       <h3>Precio:</h3>
       <input
         id="precio"
         className="controls"
         type="number"
-        name="Precio"
         placeholder="Ingrese el Precio"
-        min={0}
-        onChange={(e) => setPrecio(e.target.value)}
-        value={precio}
-        required
+        {...register('price', {
+          min: 0
+        })}
       />
       <h3>Elegir categoria: </h3>
       <select className="controls" name="select" id="select">
@@ -87,16 +81,14 @@ function EditarPlatillo() {
         {/* <option value={2}>categoria 2</option>
       <option value={3}>categoria 3</option> */}
       </select>
-      {/* <h3>Foto del Platillo:</h3>
-    <input
-      id='fotoPlat'
-      className="controls"
-      type="file"
-      name="Imagen Platillo"
-      accept=".pdf,.jpg,.png"
-      multiple=""
-    /> */}
-      <input className="botons" type="submit" value="Modificar" />
+      <h3>Foto del Platillo:</h3>
+      <input
+        id='fotoPlat'
+        className="controls"
+        type="file"
+        {...register('image')}
+      />
+      <button id="btn-enviar" className='botons' type="submit" >Actualizar</button>
     </form>
   );
 }
