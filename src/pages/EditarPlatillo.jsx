@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, getAllCategories, update } from '../services/productService';
+import { toast } from 'react-toastify';
 
 function EditarPlatillo() {
   const [categories, setCategories] = useState([]);
@@ -47,6 +48,9 @@ function EditarPlatillo() {
     }
     update(product, id, getItem()).then((data) => {
       console.log("Platillo created succesfully", data);
+      toast.success("Platillo actualizado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/mi-negocio');
     });
   };

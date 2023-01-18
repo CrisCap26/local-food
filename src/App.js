@@ -16,12 +16,14 @@ import { MyLocalfood } from './pages/Localfood/MyLocallfood';
 import EditarRestaurante from './pages/EditarRestaurante';
 import EditarUsuario from './pages/EditarUsuario';
 import EditarPlatillo from './pages/EditarPlatillo';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/Login' element={<Login/>}/>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { toast } from 'react-toastify';
 import "./login.css";
 
 function Login() {
@@ -32,7 +33,14 @@ function Login() {
       console.log('Login succesfully', data);
       saveToken(data.token);
       saveUserId(data.user.id);
+      toast.success("Sesión iniciada correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/');
+    }).catch(() => {
+      toast.error("Usuario o contraseña incorrectos", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
     });
   };
 

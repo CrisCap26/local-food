@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { expresiones } from "./utils";
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 
 function EditarUsuario() {
   const [username, setUsername] = useState(null);
@@ -45,6 +46,9 @@ function EditarUsuario() {
 
     update(userToUpdate, id, getItem()).then((response) => {
       console.log("User updated succesfully", response);
+      toast.success("Usuario actualizado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/mi-usuario');
     });
   };

@@ -7,6 +7,7 @@ import {expresiones} from './utils'
 import cheque from '../imgs/cheque.png'
 import mal from '../imgs/cerrar.png'
 import { create } from '../services/userService';
+import { toast } from 'react-toastify';
 
 function RegistrarUsuario() {
   const [password, setPassword] = useState("");
@@ -30,6 +31,9 @@ function RegistrarUsuario() {
 
     create(formData).then(res => {
       console.log('User created succesfully', res);
+      toast.success("Usuario creado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/login');
     });
   };

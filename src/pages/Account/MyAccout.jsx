@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { logout, getInfoFromToken } from '../../services/authService';
+import { toast } from 'react-toastify';
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ const MyAccount = () => {
       console.log('Logout successfully', data);
       deleteToken();
       deleteUserId();
+      toast.success("Sesión cerrada correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/');
     });
   }

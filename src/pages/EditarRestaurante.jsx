@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from "axios";
+import { toast } from 'react-toastify';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, update } from "../services/localfoodService";
 import { useForm } from "react-hook-form";
@@ -47,6 +47,9 @@ function EditarRestaurante() {
     // }
     update(localfood, id, getItem()).then(data => {
       console.log('Localfood updated succesfully', data);
+      toast.success("Negocio actualizado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
     });
   };
 

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { create, getAllCategories } from '../services/productService';
+import { toast } from 'react-toastify';
 import './reg_platillo.css'
 
 function RegistrarPlatillo() {
@@ -36,6 +37,9 @@ function RegistrarPlatillo() {
     }
     create(product, getItem()).then(data => {
       console.log('Platillo created succesfully', data);
+      toast.success("Platillo creado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/mi-negocio');
     });
   };

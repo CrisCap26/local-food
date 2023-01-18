@@ -5,6 +5,7 @@ import './slideshow.css'
 import { motion } from 'framer-motion'
 import { destroy } from "../services/productService";
 import { config } from '../config';
+import { toast } from 'react-toastify';
 
 function SlideShow({platillos, token, localfoodId}) {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ function SlideShow({platillos, token, localfoodId}) {
     if(window.confirm('¿Estás seguro?')) {
       destroy(token, productId).then(data => {
         console.log('Platillo deleted successfully', data);
+        toast.success("Platillo eliminado correctamente", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
         navigate(`/mi-negocio`);
       });
     }

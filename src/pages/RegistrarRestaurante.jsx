@@ -4,6 +4,7 @@ import './restaurante.css'
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { create } from '../services/localfoodService';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 function RegistrarRestaurante() {
   const { getItem } = useLocalStorage('token');
@@ -33,6 +34,9 @@ function RegistrarRestaurante() {
     // }
     create(localfood, getItem()).then(response => {
       console.log('Localfood created succesfully', response);
+      toast.success("Negocio creado correctamente", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
       navigate('/mi-cuenta');
     });
   };

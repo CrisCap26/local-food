@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { getInfoFromToken } from '../../services/authService';
 import { destroy } from '../../services/localfoodService';
+import { toast } from 'react-toastify';
 
 const MyLocalfood = () => {
   const navigate = useNavigate();
@@ -27,6 +28,9 @@ const MyLocalfood = () => {
     if(window.confirm('¿Estás seguro?')) {
       destroy(getToken(), localfoodId).then(data => {
         console.log('Negocio deleted successfully', data);
+        toast.success("Negocio eliminado correctamente", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
       });
     }
   }

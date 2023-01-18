@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { destroy } from '../../services/userService';
+import { toast } from 'react-toastify';
 
 const MyUser = () => {
   const navigate = useNavigate();
@@ -19,6 +20,9 @@ const MyUser = () => {
         console.log('User deleted successfully', data);
         deleteToken();
         deleteUserId();
+        toast.success("Usuario eliminado correctamente", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
         navigate('/');
       });
     }
