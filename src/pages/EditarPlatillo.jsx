@@ -27,7 +27,6 @@ function EditarPlatillo() {
 
   useEffect(() => {
     get(getItem(), params.productId).then((response) => {
-      console.log(response.data)
       setValue('name', response.data.name ?? '');
       setValue('description', response.data.description ?? '');
       setValue('price', response.data.price ?? 0);
