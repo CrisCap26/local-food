@@ -47,6 +47,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
               alt="Logotipo"
               className="cover-photo"
               height={200}
+              width={200}
             />
           </div>
           <div className="cover-text">
