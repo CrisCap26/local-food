@@ -9,6 +9,10 @@ const get = async (token, productId) => {
   });
 }
 
+const getAllCategories = async (token, productId) => {
+  return axios.get(`${config.backendUrl}/product/category/`);
+}
+
 const create = async (product, token) => {
   try {
     const formData = new FormData();
@@ -53,4 +57,4 @@ const destroy = (token, productId) => {
   });
 }
 
-export { get, create, update, destroy };
+export { get, getAllCategories, create, update, destroy };

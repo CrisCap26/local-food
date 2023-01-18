@@ -2,18 +2,26 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { create } from '../services/productService';
+import { create, getAllCategories } from '../services/productService';
 import './reg_platillo.css'
 
 function RegistrarPlatillo() {
+  const [categories, setCategories] = useState([]);
   const { getItem } = useLocalStorage('token');
   const navigate = useNavigate();
 
   useEffect(() => {
     if(!getItem()) {
       navigate('/login');
+    } else {
+      getCategories();
     }
   }, []);
+
+  const getCategories = async () => {
+    const {data} = await getAllCategories();
+    setCategories(data);
+  }
 
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
@@ -21,7 +29,7 @@ function RegistrarPlatillo() {
       "name": data.name,
       "description": data.description,
       "price": data.price,
-      "category": 1,
+      "category": data.category,
     }
     if (data.image.length > 0) {
       product.image = data.image[0];
@@ -66,10 +74,12 @@ function RegistrarPlatillo() {
         })}
       />
       <h3>Elegir categoria: </h3>
-      <select className='controls' name="select" id="select" >
-        <option value={1}>categoria 1</option>
-        {/* <option value={2}>categoria 2</option>
-        <option value={3}>categoria 3</option> */}
+      <select className='controls' id="select" {...register('category')} >
+        {categories.map((category) => {
+          return (
+            <option key={category.id} value={category.id}>{category.description}</option>
+          );
+        })}
       </select>
       <h3>Foto del Platillo:</h3>
       <input
