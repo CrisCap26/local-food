@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { get, update } from '../services/productService';
+import { get, getAllCategories, update } from '../services/productService';
 
 function EditarPlatillo() {
+  const [categories, setCategories] = useState([]);
   const [id, setId] = useState(null);
   const { getItem } = useLocalStorage("token");
   const navigate = useNavigate();
@@ -14,14 +15,23 @@ function EditarPlatillo() {
   useEffect(() => {
     if (!getItem()) {
       navigate("/login");
+    } else {
+      getCategories();
     }
   }, []);
 
+  const getCategories = async () => {
+    const {data} = await getAllCategories();
+    setCategories(data);
+  }
+
   useEffect(() => {
     get(getItem(), params.productId).then((response) => {
+      console.log(response.data)
       setValue('name', response.data.name ?? '');
       setValue('description', response.data.description ?? '');
       setValue('price', response.data.price ?? 0);
+      setValue('category', response.data.category.id ?? 0);
       setId(response.data.id);
     })
   },[]);
@@ -31,7 +41,7 @@ function EditarPlatillo() {
       "name": data.name,
       "description": data.description,
       "price": data.price,
-      "category": 1,
+      "category": data.category,
     }
     if (data.image.length > 0) {
       product.image = data.image[0];
@@ -76,10 +86,12 @@ function EditarPlatillo() {
         })}
       />
       <h3>Elegir categoria: </h3>
-      <select className="controls" name="select" id="select">
-        <option value={1}>categoria 1</option>
-        {/* <option value={2}>categoria 2</option>
-      <option value={3}>categoria 3</option> */}
+      <select className='controls' id="select" {...register('category', {required: true})} >
+        {categories.map((category) => {
+          return (
+            <option key={category.id} value={category.id}>{category.description}</option>
+          );
+        })}
       </select>
       <h3>Foto del Platillo:</h3>
       <input

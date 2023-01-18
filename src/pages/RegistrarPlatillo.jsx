@@ -74,7 +74,7 @@ function RegistrarPlatillo() {
         })}
       />
       <h3>Elegir categoria: </h3>
-      <select className='controls' id="select" {...register('category')} >
+      <select className='controls' id="select" {...register('category', {required: true})} >
         {categories.map((category) => {
           return (
             <option key={category.id} value={category.id}>{category.description}</option>
