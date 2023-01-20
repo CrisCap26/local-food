@@ -24,6 +24,8 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
       if (response.data.profile_image) {
         setProfileImage(config.backendUrl + response.data.profile_image)
       }
+    }).catch(e => {
+      navigate('/404');
     });
   }
 

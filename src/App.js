@@ -16,6 +16,7 @@ import { MyLocalfood } from './pages/Localfood/MyLocallfood';
 import EditarRestaurante from './pages/EditarRestaurante';
 import EditarUsuario from './pages/EditarUsuario';
 import EditarPlatillo from './pages/EditarPlatillo';
+import PageNotFound from './pages/PageNotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
         <Route path='/editar-usuario/:userId' element={<EditarUsuario/>} />
         <Route path='/editar-platillo/:productId' element={<EditarPlatillo/>} />
+        <Route path='/*' element={<PageNotFound/>} />
       </Routes>
   </BrowserRouter>
   );

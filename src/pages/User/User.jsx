@@ -1,6 +1,6 @@
 import './User.css';
 import React from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { get } from '../../services/userService';
 import imgUser from '../../imgs/icon-user.png';
@@ -8,6 +8,7 @@ import { config } from '../../config';
 
 const User = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const { getItem: getToken } = useLocalStorage('token');
   const [user, setUser] = React.useState(null);
   const [profileImage, setProfileImage] = React.useState(imgUser);
@@ -21,6 +22,8 @@ const User = () => {
       } else {
         setProfileImage(imgUser);
       }
+    }).catch(e => {
+      navigate('/404');
     });
   }, []);
 
