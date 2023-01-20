@@ -38,7 +38,7 @@ function SlideShow({platillos, token, localfoodId}) {
       {
         platillos && platillos.reverse().map((platillo, i) => (
           <div key={i} className='item'>
-            <div onClick={() => editPlatillo(platillo.id)} >
+            <div className='item__image-container' onClick={() => editPlatillo(platillo.id)} >
               <img src={getImage(platillo, i)} alt="" />
             </div>
             <p>{platillo.name}</p>
