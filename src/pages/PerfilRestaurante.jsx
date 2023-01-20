@@ -15,13 +15,17 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
   const params = useParams();
 
   React.useEffect(() => {
+    reloadPlatillos();
+  }, []);
+
+  function reloadPlatillos() {
     get(getToken(), params.localfoodId).then((response) => {
       setLocalfood(response.data);
       if (response.data.profile_image) {
         setProfileImage(config.backendUrl + response.data.profile_image)
       }
     });
-  }, []);
+  }
 
   function hasDelivery() {
     if(localfood) {
@@ -125,7 +129,7 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
         <span>Platillos</span>
         <button className="add-platillo" onClick={addPlatillo}>+</button>
       </h1>
-      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} />
+      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} />
     </>
   );
 }

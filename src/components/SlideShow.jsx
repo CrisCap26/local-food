@@ -7,7 +7,7 @@ import { destroy } from "../services/productService";
 import { config } from '../config';
 import { toast } from 'react-toastify';
 
-function SlideShow({platillos, token, localfoodId}) {
+function SlideShow({platillos, token, reloadPlatillos}) {
   const navigate = useNavigate();
 
   const editPlatillo = (productId) => {
@@ -21,7 +21,7 @@ function SlideShow({platillos, token, localfoodId}) {
         toast.success("Platillo eliminado correctamente", {
           position: toast.POSITION.BOTTOM_LEFT
         });
-        navigate(`/mi-negocio`);
+        reloadPlatillos();
       });
     }
   }
