@@ -277,3 +277,16 @@ footer{
     justify-content: center;
 }
 
+
+.user__logo-container {
+    position: relative;
+}
+
+.user__options {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    padding: 8px;
+    list-style: none;
+    background-color: white;
+}

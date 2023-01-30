@@ -19,11 +19,20 @@ import EditarPlatillo from './pages/EditarPlatillo';
 import PageNotFound from './pages/PageNotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
+  const [isLogedIn, setIsLogedIn] = useState(false);
+  const { getItem: getToken } = useLocalStorage('token');
+
+  useEffect(() => {
+    setIsLogedIn(!!getToken());
+  }, []);
+
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar isLogedIn={isLogedIn} />
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}/>

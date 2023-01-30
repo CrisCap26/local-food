@@ -5,6 +5,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { logout, getInfoFromToken } from '../../services/authService';
 import { toast } from 'react-toastify';
 
+// @deprecated
 const MyAccount = () => {
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
