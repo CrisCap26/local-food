@@ -9,7 +9,6 @@ import PerfilRestaurante from './pages/PerfilRestaurante';
 import RegistrarPlatillo from './pages/RegistrarPlatillo';
 import RegistrarRestaurante from './pages/RegistrarRestaurante';
 import RegistrarUsuario from './pages/RegistrarUsuario';
-import { MyAccount } from './pages/Account/MyAccout';
 import { MyUser } from './pages/User/MyUser';
 import { User } from './pages/User/User';
 import { MyLocalfood } from './pages/Localfood/MyLocallfood';
@@ -32,15 +31,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar isLogedIn={isLogedIn} />
+      <NavBar isLogedIn={isLogedIn} setIsLogedIn={setIsLogedIn} />
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/Login' element={<Login/>}/>
+        <Route path='/Login' element={<Login setIsLogedIn={setIsLogedIn}/>}/>
         <Route path='/RegistrarPlatillo' element={<RegistrarPlatillo/>}/>
         <Route path='/RegistrarRestaurante' element={<RegistrarRestaurante/>} />
         <Route path='/RegistrarUsuario' element={<RegistrarUsuario/>} />
-        <Route path='/mi-cuenta' element={<MyAccount/>} />
         <Route path='/mi-usuario' element={<MyUser/>} />
         <Route path='/usuario/:userId' element={<User/>} />
         <Route path='/mi-negocio' element={<MyLocalfood/>} />

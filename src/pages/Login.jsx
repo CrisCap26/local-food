@@ -5,7 +5,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { toast } from 'react-toastify';
 import "./login.css";
 
-function Login() {
+function Login({setIsLogedIn}) {
   const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -33,6 +33,7 @@ function Login() {
       console.log('Login succesfully', data);
       saveToken(data.token);
       saveUserId(data.user.id);
+      setIsLogedIn(true);
       toast.success("Sesión iniciada correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });

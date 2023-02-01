@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
-function NavBar({isLogedIn}) {
+function NavBar({isLogedIn, setIsLogedIn}) {
   const [showUserOptions, setShowUserOptions] = useState(false);
   const [localfoodId, setLocalfoodId] = React.useState(null);
 
@@ -34,6 +34,7 @@ function NavBar({isLogedIn}) {
       console.log('Logout successfully', data);
       deleteToken();
       deleteUserId();
+      setIsLogedIn(false);
       toast.success("Sesión cerrada correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });
