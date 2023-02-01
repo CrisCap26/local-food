@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../pages/index.css'
 import logo from '../imgs/logo.png'
 import iconUser from '../imgs/icon-user.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { logout } from "../services/authService";
+import { getInfoFromToken, logout } from "../services/authService";
 import { toast } from "react-toastify";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
 function NavBar({isLogedIn}) {
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const [localfoodId, setLocalfoodId] = React.useState(null);
 
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { deleteItem: deleteUserId } = useLocalStorage('userId');
+
+  useEffect(() => {
+    getInfoFromToken(getToken()).then(response => {
+      setLocalfoodId(response.data.localfood.id);
+    });
+  }, []);
 
   const onClickUserLogoHandler = () => {
     const toggle = !showUserOptions;
@@ -34,6 +41,18 @@ function NavBar({isLogedIn}) {
     });
   }
 
+  const handleOnClickProfile = () => {
+    navigate('/mi-usuario');
+  }
+
+  const handleOnClickLocalfood = () => {
+    navigate('/mi-negocio');
+  }
+
+  const handleOnCreateLocalfood = () => {
+    navigate('/RegistrarRestaurante');
+  }
+
   return (
     <header className="nav_header">
       <div className="nav_header__logo">
@@ -48,7 +67,7 @@ function NavBar({isLogedIn}) {
       {isLogedIn
       ?
         <div className="user__logo-container">
-          <button onClick={onClickUserLogoHandler}>
+          <button className="user__logo-button" onClick={onClickUserLogoHandler}>
             <img
               src={iconUser}
               alt="Iniciar sesión"
@@ -57,6 +76,11 @@ function NavBar({isLogedIn}) {
           </button>
           {showUserOptions &&
             <ul className="user__options">
+              <li onClick={handleOnClickProfile}>Ir a mi perfil</li>
+              {localfoodId
+                ? <li onClick={handleOnClickLocalfood}>Ir a mi negocio</li>
+                : <li onClick={handleOnCreateLocalfood}>Crear un negocio</li>
+              }
               <li onClick={handleLogout}>Cerrar sesión</li>
             </ul>
           }

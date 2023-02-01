@@ -282,6 +282,10 @@ footer{
     position: relative;
 }
 
+.user__logo-button {
+    cursor: pointer;
+}
+
 .user__options {
     position: absolute;
     top: 100%;
@@ -289,4 +293,8 @@ footer{
     padding: 8px;
     list-style: none;
     background-color: white;
+}
+
+.user__options > li {
+    cursor: pointer;
 }
