@@ -60,7 +60,8 @@
 .datos .botons{
     width: 100%;
     background: #1f53c5;
-    border: none;
+    border: #282424 2px solid;
+    border-radius: 10px;
     padding: 12px;
     color: white;
     margin: 16px 0;

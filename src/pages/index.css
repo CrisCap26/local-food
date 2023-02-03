@@ -47,8 +47,21 @@ a{
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+.nav_header .btn-login {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    background-color: #2e518b;
+}
+.nav_header .btn-login ~ a {
+    background-color: #1dae1d;
 }
 
 .nav_header__logo{
@@ -66,7 +79,7 @@ a{
 .nav{
     width: 80%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -139,7 +152,7 @@ a{
 /*SECTION NEGO*/
 
 .inicio_nego{
-    height: 60vh;
+    height: auto;
     width: 100%;
     padding: 10px;
     background-color: var(--color-principal);
@@ -176,7 +189,7 @@ height: 50px;
 /*SECTION conocernos*/
 
 .inicio_regis{
-    height: 60vh;
+    height: auto;
     width: 100%;
     padding: 13px;
     background-color: wheat;
@@ -213,7 +226,7 @@ height: 50px;
 /*SECTION registro restaurante*/
 
 .inicio_restaurant{
-    height: 60vh;
+    height: auto;
     width: 100%;
     padding: 0px 13px;
     background-color: var(--color-principal);
@@ -284,17 +297,52 @@ footer{
 
 .user__logo-button {
     cursor: pointer;
+    padding: 3px;
+    border: black 2px solid;
+    border-radius: 14px;
 }
 
 .user__options {
     position: absolute;
     top: 100%;
-    left: 100%;
-    padding: 8px;
+    right: 45%;
     list-style: none;
-    background-color: white;
+    background-color: #241f1d;
+    width: 218px;
+    height: auto;
+    margin-top: 5px;
 }
 
 .user__options > li {
     cursor: pointer;
+    padding: 14px;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+.user__options > li:hover {
+    background-color:#2e518b;
+}
+
+@media (min-width: 426px) {
+    .inicio_hero {
+        height: 44vh;
+        width: 80%;
+        margin: auto;
+        padding: 10px;
+        background-color: var(--color-principal);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 15px;
+    }
+}
+
+@media (min-width: 424px) {
+    .inicio_texto {
+        margin-bottom: 18px;
+    }
 }

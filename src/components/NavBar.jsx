@@ -103,9 +103,14 @@ function NavBar({isLogedIn, setIsLogedIn}) {
             </ul>
           }
         </div>
-      : <Link to='/Login'>
+      : <>
+          <Link className="btn-login" to='/Login'>
           Iniciar sesión
-        </Link>
+          </Link>
+          <Link className="btn-login" to='/RegistrarUsuario'>
+            Registrarse
+          </Link>
+        </>
       }
     </header>
   );
