@@ -46,6 +46,7 @@ function RegistrarRestaurante() {
       <font color="black">
         <h4>Registro de Restaurante</h4>
       </font>
+      <h3>Nombre: </h3>
       <input
         className="controls"
         id="nombre"
@@ -54,6 +55,7 @@ function RegistrarRestaurante() {
           required: true
         })}
       />
+      <h3>Descripción: </h3>
       <textarea
         className="controls"
         cols={20}

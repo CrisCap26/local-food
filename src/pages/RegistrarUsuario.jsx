@@ -49,7 +49,7 @@ function RegistrarUsuario() {
   }
 
   return (
-    <form className="user_form" onSubmit={handleSubmit(onSubmit)} >
+    <form className="user_form_register" onSubmit={handleSubmit(onSubmit)} >
       <center>
         <h1 className="user_form_titulo">Formulario de Registro</h1>
       </center>

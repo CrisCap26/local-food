@@ -84,6 +84,8 @@ function NavBar({isLogedIn, setIsLogedIn}) {
       </div>
       {isLogedIn
       ?
+      <>
+        <h1 className="title-localfood">LocalFood</h1>
         <div className="user__logo-container">
           <button className="user__logo-button" onClick={onClickUserLogoHandler}>
             <img
@@ -103,6 +105,7 @@ function NavBar({isLogedIn, setIsLogedIn}) {
             </ul>
           }
         </div>
+      </>
       : <>
           <Link className="btn-login" to='/Login'>
           Iniciar sesión

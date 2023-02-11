@@ -149,3 +149,9 @@
         font-family: "Roboto", sans-serif;
     }
 }
+
+@media (min-width: 600px) {
+    .form {
+        height: 500px;
+    }
+}

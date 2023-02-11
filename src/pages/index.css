@@ -51,6 +51,10 @@ a{
     align-items: center;
 }
 
+.title-localfood {
+    display: none;
+}
+
 .nav_header .btn-login {
     font-family: "Roboto", sans-serif;
     font-size: 0.9rem;
@@ -112,12 +116,38 @@ a{
     padding: 7px;
 }
 
+.buscar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .inicio_hero__barra-busqueda {
     height: 40px;
     border-radius: 30px;
     border: none;
     padding: 0 20px;
+    margin-bottom: 6px;
 }
+
+.btn-buscar {
+    cursor: pointer;
+    padding: 7px 23px 7px 23px;
+    align-self: center;
+    border-radius: 8px;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border: #201b1b 2px solid;
+    background-color:#2e518b;
+}
+
+.inicio_hero h2 {
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
 .inicio_hero_subtitle {
     font-family: "Roboto";
 }
@@ -197,6 +227,8 @@ height: 50px;
 
 .inicio_regis__title {
     margin-top: 8px;
+    color: #f82510;
+    font-size: 1.3rem;
 }
 
 .inicio_info__reg{
@@ -211,15 +243,23 @@ height: 50px;
 
 
 .inicio_reg__boton {
-border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+ /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
 background-color: #2e518b; /*color botón*/
 color: #ffffff; /*color texto*/
 text-decoration: none; /*decoración texto*/
 text-transform: uppercase; /*capitalización texto*/
 font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 50px; /*bordes redondos*/
+border-radius: 18px; /*bordes redondos*/
 height: 50px;
+border: #201b1b 2px solid;
+font-weight: bold;
+}
+
+.inicio_reg__boton:hover {
+    background-color:#e7eaf1;
+    color: black;
+    transition: 0.8s;
 }
 
 
@@ -250,15 +290,23 @@ height: 50px;
 }
 
 .inicio_resta__button{
-border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+/*border: 1px solid #2e518b; /*anchura, estilo y color borde*/
 padding: 10px; /*espacio alrededor texto*/
 background-color: #2e518b; /*color botón*/
 color: #ffffff; /*color texto*/
 text-decoration: none; /*decoración texto*/
 text-transform: uppercase; /*capitalización texto*/
 font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 50px; /*bordes redondos*/
+border-radius: 18px; /*bordes redondos*/
 height: 50px;
+border: #201b1b 2px solid;
+font-weight: bold;
+}
+
+.inicio_resta__button:hover {
+    background-color:#e7eaf1;
+    color: black;
+    transition: 0.8s;
 }
 
 
@@ -325,24 +373,202 @@ footer{
     background-color:#2e518b;
 }
 
+@media (min-width: 414px) {
+
+}
+
 @media (min-width: 426px) {
+    .title-localfood {
+        display: block;
+        font-family: "Roboto", sans-serif;
+        color: var(--color-principal);
+    }
     .inicio_hero {
-        height: 44vh;
-        width: 80%;
+        height: 28vh;
+        width: 100%;
         margin: auto;
         padding: 10px;
         background-color: var(--color-principal);
         color: white;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        border-radius: 15px;
+    }
+    .inicio_hero h1 {
+        display: none;
+    }
+    .inicio_hero h2 {
+        font-size: 1.1rem;
+    }
+    .inicio_hero__barra-busqueda {
+        padding: 0 60px;
+    }
+    .btn-buscar {
+        cursor: pointer;
+        padding: 10px;
+        margin-right: 7px;
+        margin-left: 5px;
+        border-radius: 8px;
+        color: white;
+        font-family: "Roboto", sans-serif;
+        font-weight: bold;
+        border: #201b1b 2px solid;
+        background-color:#2e518b;
     }
 }
 
 @media (min-width: 424px) {
     .inicio_texto {
         margin-bottom: 18px;
+    }
+}
+
+@media (min-width: 719px) {
+    .inicio_hero {
+        height: 30vh;
+    }
+
+    .inicio_hero__barra-busqueda {
+        margin-top: 18px;
+        padding: 0 112px;
+    }
+
+    .btn-buscar {
+        font-size: 1rem;
+    }
+
+    .inicio_hero h2 {
+        font-size: 1.4rem;
+    }
+
+    .inicio_info__title {
+        font-size: 1.7rem;
+    }
+    .inicio_info__image {
+        height: auto;
+        width: 150px;
+    }
+
+    .inicio_nego {
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 34px;
+    }
+
+    .inicio_text {
+        padding: 10px;
+        font-size: 1.4rem;
+        font-weight: 300;
+    }
+    .inicio_res__info {
+        width: 240px;
+        height: auto;
+        margin: 8px;
+    }
+
+    .inicio_regis {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 56px;
+    }
+    .inicio_regis__title {
+        font-size: 1.8rem;
+    }
+    .inicio_info__reg {
+        width: 297px;
+        height: auto;
+    }
+    .inicio_reg__boton {
+        font-size: 1.2rem;
+    }
+
+    .inicio_restaurant {
+        display: flex;
+        align-items: center;
+        height: auto;
+        width: 100%;
+        padding: 22px;
+    }
+    .inicio_reg__res {
+        width: 306px;
+        height: auto;
+        margin: 15px;
+    }
+    .inicio_texto {
+        font-size: 1.1rem;
+        padding: 8px;
+    }
+    .inicio_resta__button {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    .inicio_hero__barra-busqueda {
+        padding: 25px 140px;
+        margin-bottom: 15px;
+    }
+    .btn-buscar {
+        font-size: 1.2rem;
+    }
+    .inicio_hero {
+        height: 50vh;
+    }
+    .inicio_text {
+        padding: 87px;
+        line-height: 1.5;
+    }
+    .inicio_info__title {
+        padding: 43px;
+    }
+    .inicio_info__image {
+        width: 200px;
+        margin: 32px;
+    }
+    .inicio_res__info {
+        width: 255px;
+        margin-right: 100px;
+    }
+    .inicio_info__reg {
+        width: 325px;
+    }
+    .inicio_restaurant {
+        padding: 28px;
+        height: 70vh;
+    }
+    .inicio_texto {
+        font-size: 1.3rem;
+        padding: 12px 80px;
+    }
+    .titulo-seccion {
+        font-size: 2rem;
+    }
+    .content span {
+        font-size: 1.4rem;
+    }
+    .content span img {
+        width: 30px;
+        height: auto;
+    }
+    .logo-footer {
+        width: 100%;
+        height: auto;
+    }
+    .contenedor p {
+        font-size: 1.2rem;
+    }
+    .inicio_nego {
+        height: 70vh;
+    }
+    .inicio_regis {
+        height: 70vh;
+    }
+    .inicio_reg__res {
+        margin: 60px;
+        width: 350px;
     }
 }

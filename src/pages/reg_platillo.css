@@ -17,7 +17,6 @@
 
 .datos__pla{
     width: 100%;
-    /*height: calc(100vh - 50px);*/
     background: #e3272f;
     padding: 34px;
     margin: auto;
@@ -53,11 +52,51 @@
 .datos__pla .botons{
     width: 100%;
     background: #1f53c5;
-    border: none;
+    border: #282424 2px solid;
+    border-radius: 10px;
     padding: 12px;
     color: white;
     margin: 16px 0;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media (min-width: 400px) {
+    .datos__pla {
+        height: 100vh;
+    }
+}
+
+@media (min-width: 600px) {
+    .datos__pla {
+        padding: 50px 180px;
+        /*height: calc(100vh - 50px);*/
+    }
+}
+
+@media(min-width: 900px) {
+    .datos__pla {
+        padding: 50px 320px;
+        height: 100%;
+    }
+}
+
+@media(width: 1024px) {
+    .datos__pla {
+        height: 100vh;
+    }
+}
+
+@media(min-width: 1200px) {
+    .datos__pla {
+        padding: 50px 450px;
+    }
+}
+
+@media(min-width: 1439px) {
+    .datos__pla {
+        padding: 50px 530px;
+        height: 100vh;
+    }
 }

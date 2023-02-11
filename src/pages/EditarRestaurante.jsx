@@ -58,6 +58,7 @@ function EditarRestaurante() {
       <font color="black">
         <h4>Editar el Restaurante</h4>
       </font>
+      <h3>Nombre: </h3>
       <input
         className="controls"
         id="nombre"
@@ -66,6 +67,7 @@ function EditarRestaurante() {
           required: true
         })}
       />
+      <h3>Descripción: </h3>
       <textarea
         className="controls"
         cols={20}

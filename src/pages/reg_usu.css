@@ -27,10 +27,16 @@
     background-color: wheat;
     margin: auto;
     width: 100%;
-    /*max-width: 400px;*/
     padding: 1.5em 3em;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px -5px rgb(0, 0, 0 /30%);
+}
+
+.user_form_register{
+    font-family: 'Roboto', sans-serif;
+    background-color: wheat;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 1.5em 3em;
 }
 
 .user_form_titulo{
@@ -109,4 +115,53 @@
     border: 2px solid #696969;
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media (min-height: 534px) {
+    .user_form {
+        height: 100vh;
+    }
+}
+
+@media (min-width: 600px) {
+    .user_form {
+        padding: 26px 190px;
+    }
+    .field label {
+        font-size: 1.1rem;
+    }
+
+    .user_form_register {
+        padding: 50px 200px;
+    }
+}
+
+@media (min-width: 900px) {
+    .user_form_register {
+        padding: 50px 350px;
+        height: 200vh;
+    }
+    .user_form {
+        padding: 50px 350px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .user_form_register {
+        padding: 50px 480px;
+        height: 200vh;
+    }
+    .user_form {
+        padding: 50px 480px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .user_form_register {
+        padding: 50px 670px;
+        height: 200vh;
+    }
+    .user_form {
+        padding: 50px 670px;
+    }
 }

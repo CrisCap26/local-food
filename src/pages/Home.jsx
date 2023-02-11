@@ -9,11 +9,14 @@ function Home() {
       <main>
         <section className="inicio_hero">
           <h1 className="inicio_hero__title">LocalFood</h1>
-          <input
-            type="text"
-            className="inicio_hero__barra-busqueda"
-            placeholder="¿Qué estás buscando?"
-          />
+          <div className="buscar">
+            <input
+              type="text"
+              className="inicio_hero__barra-busqueda"
+              placeholder="¿Qué estás buscando?"
+            />
+            <button className="btn-buscar">Buscar</button>
+          </div>
           <h2 className="inicio_hero__subtitle">
             "Recetas especiales para personas especiales"
           </h2>
@@ -58,11 +61,13 @@ function Home() {
 
         <section className="inicio_regis">
           <center className="inicio_regis__title">
-            <font size={6} face="impact" color="#f82510">
+            {/*<font size={6} face="impact" color="#f82510">
               Únete a LocalFood
-            </font>
+          </font>*/}
+            <h3>Únete a LocalFood</h3>
           </center>
           <br />
+          <div className="inicio_regis__container">
           <center>
             <img
               src="./unete2.jpg"
@@ -78,6 +83,7 @@ function Home() {
               Conocer mas
             </a>
           </center>
+          </div>
         </section>
 
         <section className="inicio_restaurant">
@@ -93,6 +99,7 @@ function Home() {
             />
           </center>
           <br />
+          <div className="inicio_restaurant_container">
           <p className="inicio_texto">
             Presume tus platillos para que los usuarios prueben el verdadero
             sabor de la comida mexicana.
@@ -106,6 +113,7 @@ function Home() {
               Registrar restaurante
             </a>
           </center>
+          </div>
         </section>
       </main>
       <Footer />

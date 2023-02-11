@@ -47,6 +47,7 @@ function AcercaDeNostros() {
         <br />
       </section>
       <section className="about_fin">
+        <div className="about_fin__container">
         <center>
           <img
             src={objetivo}
@@ -63,6 +64,7 @@ function AcercaDeNostros() {
           nuevos materiales y platillos orientados a conocer y abordar las
           necesidades de los clientes y sea un beneficio para ambas partes.
         </p>
+        </div>
         <center>
           <img
             src={imgFinal}
