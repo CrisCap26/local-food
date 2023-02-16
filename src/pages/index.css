@@ -142,6 +142,11 @@ a{
     border: #201b1b 2px solid;
     background-color:#2e518b;
 }
+.btn-buscar:hover {
+    background-color:#e7eaf1;
+    color: black;
+    transition: 0.8s;
+}
 
 .inicio_hero h2 {
     font-size: 1.1rem;

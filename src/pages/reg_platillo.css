@@ -11,6 +11,9 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #e3272f;
+}
 
 
 /*SECTION DATOS__PLA*/
@@ -18,11 +21,12 @@
 .datos__pla{
     width: 100%;
     background: #e3272f;
+    height: 100vh;
     padding: 34px;
-    margin: auto;
+    /*margin: auto;*/
     font-family: "Roboto", sans-serif;
     color: white;
-    box-shadow: 7px 13px 37px #000;
+    /*box-shadow: 7px 13px 37px #000;*/
 }
 
 .datos__pla h4{
@@ -61,32 +65,38 @@
     font-weight: bold;
     cursor: pointer;
 }
-
+.datos__pla .botons:hover {
+    background-color:#e7eaf1;
+    color: black;
+    transition: 0.8s;
+}
+/*
 @media (min-width: 400px) {
     .datos__pla {
         height: 100vh;
     }
-}
+}*/
 
 @media (min-width: 600px) {
     .datos__pla {
         padding: 50px 180px;
         /*height: calc(100vh - 50px);*/
+        /*height: 100vh;*/
     }
 }
 
 @media(min-width: 900px) {
     .datos__pla {
         padding: 50px 320px;
-        height: 100%;
+        /*height: 100%;*/
     }
 }
 
-@media(width: 1024px) {
+/*@media(width: 1024px) {
     .datos__pla {
         height: 100vh;
     }
-}
+}*/
 
 @media(min-width: 1200px) {
     .datos__pla {
@@ -97,6 +107,6 @@
 @media(min-width: 1439px) {
     .datos__pla {
         padding: 50px 530px;
-        height: 100vh;
+        /*height: 100vh;*/
     }
 }

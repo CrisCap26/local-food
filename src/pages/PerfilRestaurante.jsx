@@ -91,7 +91,6 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
             <span>Mas Informacion</span>
           </h1>
         </header>
-        <br />
         <div className="block">
           <ul className="list">
             <li>
@@ -124,7 +123,6 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
 </li>*/}
           </ul>
         </div>
-        <br />
       </section>
 
       <h1 className="title-underlime">

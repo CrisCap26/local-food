@@ -45,7 +45,8 @@ function RegistrarPlatillo() {
   };
 
   return (
-    <form className="datos__pla" onSubmit={handleSubmit(onSubmit)}>
+    <div className="datos__pla">
+      <form onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
         <h4>Registro de Platillos</h4>
       </font>
@@ -94,6 +95,8 @@ function RegistrarPlatillo() {
       />
       <button id="btn-enviar" className='botons' type="submit" >Registrar</button>
     </form>
+    </div>
+    
   );
 }
 

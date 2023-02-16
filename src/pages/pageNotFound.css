@@ -1,12 +1,12 @@
-body {
-    background-color: #FC9C72;
-}
 .notFound_container {
-    margin: 60px;
+    background-color: #FC9C72;
+    height: 100vh;
+    /*margin: 60px;*/
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
 }
 .notFound_title {
     font-family: "Roboto", sans-serif;

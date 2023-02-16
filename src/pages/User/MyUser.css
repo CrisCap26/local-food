@@ -26,9 +26,28 @@
   border: 3px solid #2D65DD;
   background-position: 100%;
   background-size: 250%;
-  transition: background 0.4s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 
 .my-user > button:hover {
   background-position: 0;
+  color: white;
+}
+
+@media(min-width: 767px) {
+  .my-user {
+    justify-content: flex-start;
+    padding-top: 70px;
+  }
+  .my-user > button {
+    font-size: 1.1rem;
+  }
+}
+
+@media(min-width: 1000px) {
+  .my-user > button {
+    width: 30%;
+    height: 70px;
+    font-size: 1.2rem;
+  }
 }

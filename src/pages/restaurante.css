@@ -19,7 +19,7 @@
     margin: auto;
     font-family: "Roboto";
     color: white;
-    box-shadow: 7px 13px 37px #000;
+    /*box-shadow: 7px 13px 37px #000;*/
 }
 
 .datos h4{
@@ -70,11 +70,24 @@
     cursor: pointer;
 }
 
+.datos .botons:hover {
+    background-color:#e7eaf1;
+    color: black;
+    transition: 0.8s;
+}
+
 
 @media(min-width: 600px) {
     .datos {
-        padding: 50px 190px;
-        height: 100vh;
+        padding: 50px 120px;
+        height: 100%;
+    }
+}
+
+@media(min-width: 768px) {
+    .datos {
+        padding: 50px 200px;
+        height: 100%;
     }
 }
 
