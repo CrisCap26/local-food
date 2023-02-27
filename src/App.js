@@ -20,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import VerRestaurantes from './pages/VerRestaurantes';
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
         <Route path='/editar-usuario/:userId' element={<EditarUsuario/>} />
         <Route path='/editar-platillo/:productId' element={<EditarPlatillo/>} />
+        <Route path='/verRestaurantes' element={<VerRestaurantes/>} />
         <Route path='/*' element={<PageNotFound/>} />
       </Routes>
   </BrowserRouter>
