@@ -30,6 +30,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+}
+.fav:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 5px;
+}
+.explorar:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 5px;
+}
+.categ:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 5px;
 }
 
 .bar-Restaurantes img {
@@ -42,8 +55,9 @@
     border: 3px solid black;
     border-radius: 15px;
     overflow: hidden;
-    max-width: 500px;
+    max-width: 400px;
     background-color: white;
+    color: #312121;
 }
 .img-restaurant img{
     width: 100%;
@@ -123,7 +137,7 @@
     font-weight: bold;
     background-color: rgb(68, 141, 224);
     color: white;
-    padding: 10px 20px;
+    padding: 10px 36px;
     border-radius: 10px;
 }
 .btn-verMas:hover {
@@ -135,12 +149,14 @@
     .verRestaurantes {
         display: grid;
         width: 100%;
-        grid-auto-flow: column;
+        grid-template-columns: auto auto;
         grid-template-rows: auto auto;
         gap: 20px;
     }
     .card-restaurant {
         margin: 0 auto;
+        min-width: 320px;
+        max-width: 320px;
     }
     .bar-Restaurantes {
         font-size: 0.9rem;
@@ -150,11 +166,25 @@
 }
 
 @media(min-width: 900px) {
+    .card-restaurant {
+        max-width: 400px;
+        min-width: 400px;
+    }
+}
+
+@media(min-width: 1000px) {
     .verRestaurantes {
         grid-template-columns: auto auto auto;
         grid-auto-flow: row;
     }
     .card-restaurant {
-        max-width: 400px;
+        max-width: 310px;
+        min-width: 310px;
+    }
+}
+@media(min-width: 1200px) {
+    .card-restaurant {
+        max-width: 380px;
+        min-width: 380px;
     }
 }

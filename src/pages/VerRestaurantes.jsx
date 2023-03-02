@@ -3,11 +3,26 @@ import './verResta.css'
 import fav from '../imgs/fav.png'
 import explorar from '../imgs/buscar.png'
 import categ from '../imgs/categorias.png'
-import rest from '../imgs/tijuanaTacos.jpg'
-import fav2 from '../imgs/me-gusta.svg'
+import CardRestaurant from '../components/CardRestaurant'
+import { getAll } from '../services/localfoodService'
+import localImg from '../imgs/tijuanaTacos.jpg'
+import { config } from "../config";
 
 
 function VerRestaurantes() {
+  const [localfood, setLocalfood] = React.useState([]);
+
+  React.useEffect(() => {
+    getLocalFoods();
+  },[])
+  function getLocalFoods() {
+    getAll().then((response) => {
+      console.log(response.data)
+      setLocalfood(response.data)
+    }).catch(e => {
+      console.log(e);
+    })
+  }
   return (
     <>
     <div className="bar-Restaurantes">
@@ -31,96 +46,34 @@ function VerRestaurantes() {
       </div>
     </div>
     <section className="verRestaurantes">
-      <div className="card-restaurant">
-        <div className="img-restaurant">
-          <img src={rest} alt="" />
-        </div>
-        <div className="info-restaurant">
-          <div className="add-fav">
-            <h3>Tijuana Tacos</h3>
-            <button>
-              <img src={fav2} alt="" />
-            </button>
-          </div>
-          <div className="descr">
-            <p>Descripción: </p>
-            <div>Local de tacos, tenemos tacos de todo tipo, ven y prueba.</div>
-          </div>
-          <div className="cat">
-            <p>Categorías:</p>
-            <ul>
-              <li>cat 1, </li>
-              <li>cat 2, </li>
-              <li>cat 3, </li>
-            </ul>
-          </div>
-          <div className="verMas">
-            <a href="/" className="btn-verMas">
-              Ver más
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="card-restaurant">
-        <div className="img-restaurant">
-          <img src={rest} alt="" />
-        </div>
-        <div className="info-restaurant">
-          <div className="add-fav">
-            <h3>El Chaparrito</h3>
-            <button>
-              <img src={fav2} alt="" />
-            </button>
-          </div>
-          <div className="descr">
-            <p>Descripción: </p>
-            <div>Local de comida Mexicana, ven y prueba la mejor comida Mexicana. </div>
-          </div>
-          <div className="cat">
-            <p>Categorías:</p>
-            <ul>
-              <li>cat 1, </li>
-              <li>cat 2, </li>
-              <li>cat 3, </li>
-            </ul>
-          </div>
-          <div className="verMas">
-            <a href="/" className="btn-verMas">
-              Ver más
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="card-restaurant">
-        <div className="img-restaurant">
-          <img src={rest} alt="" />
-        </div>
-        <div className="info-restaurant">
-          <div className="add-fav">
-            <h3>Lonches Doña Lety</h3>
-            <button>
-              <img src={fav2} alt="" />
-            </button>
-          </div>
-          <div className="descr">
-            <p>Descripción: </p>
-            <div>Local de comida Mexicana, ven y prueba la mejor comida Mexicana. </div>
-          </div>
-          <div className="cat">
-            <p>Categorías:</p>
-            <ul>
-              <li>cat 1, </li>
-              <li>cat 2, </li>
-              <li>cat 3, </li>
-            </ul>
-          </div>
-          <div className="verMas">
-            <a href="/" className="btn-verMas">
-              Ver más
-            </a>
-          </div>
-        </div>
-      </div>
+      <CardRestaurant
+        image={localImg}
+        title="Tacos Tijuana"
+        descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
+      />
+      <CardRestaurant
+        image={localImg}
+        title="El Chaparrito"
+        descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
+      />
+      <CardRestaurant
+        image={localImg}
+        title="Lonches Doña Lety"
+        descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
+      />
+
+      {
+        localfood.map((local, i) => (
+          <CardRestaurant key={i}
+            id={local.id}
+            image={config.backendUrl +local.profile_image}
+            name={local.name}
+            descr={local.description}
+            horario={local.schedule}
+            dir={local.address}
+          />
+        ))
+      }
     </section>
   </>
   )

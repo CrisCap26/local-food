@@ -9,6 +9,10 @@ const get = async (token, localfoodId) => {
   });
 }
 
+const getAll = async () => {
+  return axios.get(`${config.backendUrl}/localfood/`)
+}
+
 const create = async (localfood, token) => {
   const formData = new FormData();
 
@@ -50,4 +54,4 @@ const update = async (localfood, id, token) => {
   }
 }
 
-export { get, create, destroy , update};
+export { get, create, destroy , update, getAll};
