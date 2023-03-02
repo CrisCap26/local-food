@@ -45,7 +45,7 @@ function Home() {
             variedad de platillos hasta la puerta de tu casa!
           </p>
           <br />
-          <center>
+          <div className="container_negocios">
             <img
               src="./res.png"
               align="center"
@@ -53,10 +53,10 @@ function Home() {
               width="190"
               height="90"
             />
-            {/* <a href="#" className="inicio_res__button">
+            <a href="/verRestaurantes" className="inicio_res__button">
               Ver restaurantes
-            </a> */}
-          </center>
+            </a>
+          </div>
         </section>
 
         <section className="inicio_regis">

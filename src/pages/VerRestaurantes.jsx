@@ -48,17 +48,17 @@ function VerRestaurantes() {
     <section className="verRestaurantes">
       <CardRestaurant
         image={localImg}
-        title="Tacos Tijuana"
+        name="Tacos Tijuana"
         descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
       />
       <CardRestaurant
         image={localImg}
-        title="El Chaparrito"
+        name="El Chaparrito"
         descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
       />
       <CardRestaurant
         image={localImg}
-        title="Lonches Doña Lety"
+        name="Lonches Doña Lety"
         descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
       />
 
