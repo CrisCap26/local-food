@@ -1,12 +1,8 @@
 import axios from 'axios';
 import { config } from '../config';
 
-const get = async (token, localfoodId) => {
-  return axios.get(`${config.backendUrl}/localfood/${localfoodId}`, {
-    headers: {
-      'Authorization': `Token ${token}`,
-    }
-  });
+const get = async (localfoodId) => {
+  return axios.get(`${config.backendUrl}/localfood/${localfoodId}`);
 }
 
 const getAll = async () => {

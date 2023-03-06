@@ -2,13 +2,14 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import images from '../imgs/images'
 import './slideshow.css'
-import { motion } from 'framer-motion'
 import { destroy } from "../services/productService";
 import { config } from '../config';
 import { toast } from 'react-toastify';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-function SlideShow({platillos, token, reloadPlatillos, canEdit}) {
+function SlideShow({platillos, reloadPlatillos, canEdit}) {
   const navigate = useNavigate();
+  const { getItem: getToken } = useLocalStorage("token");
 
   const editPlatillo = (productId) => {
     if (canEdit) {
@@ -18,7 +19,7 @@ function SlideShow({platillos, token, reloadPlatillos, canEdit}) {
 
   const onDeletePlatillo = (productId) => {
     if(window.confirm('¿Estás seguro?')) {
-      destroy(token, productId).then(data => {
+      destroy(getToken(), productId).then(data => {
         console.log('Platillo deleted successfully', data);
         toast.success("Platillo eliminado correctamente", {
           position: toast.POSITION.BOTTOM_LEFT

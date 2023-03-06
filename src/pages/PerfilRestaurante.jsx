@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from "../components/SlideShow";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { get } from "../services/localfoodService";
 import { config } from "../config";
 
@@ -11,7 +10,6 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   const navigate = useNavigate();
   const [localfood, setLocalfood] = React.useState(null);
   const [profileImage, setProfileImage] = React.useState(fotoPerfil);
-  const { getItem: getToken } = useLocalStorage("token");
   const params = useParams();
   const isCurrentOwner = localfoodOwnerId == params.localfoodId;
 
@@ -20,7 +18,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   }, []);
 
   function reloadPlatillos() {
-    get(getToken(), params.localfoodId).then((response) => {
+    get(params.localfoodId).then((response) => {
       setLocalfood(response.data);
       if (response.data.profile_image) {
         setProfileImage(config.backendUrl + response.data.profile_image)
@@ -130,7 +128,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
         <span>Platillos</span>
         {isCurrentOwner && <button className="add-platillo" onClick={addPlatillo}>+</button>}
       </h1>
-      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+      <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
     </>
   );
 }
