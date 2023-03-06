@@ -35,7 +35,7 @@ function App() {
         saveLocalfoodId(response.data.localfood.id);
       });
     }
-  }, [getToken]);
+  }, [isLogedIn]);
 
   return (
     <BrowserRouter>

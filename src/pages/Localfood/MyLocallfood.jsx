@@ -1,32 +1,31 @@
 import './MyLocalfood.css';
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { getInfoFromToken } from '../../services/authService';
 import { destroy } from '../../services/localfoodService';
 import { toast } from 'react-toastify';
 
 const MyLocalfood = () => {
   const navigate = useNavigate();
   const { getItem: getToken} = useLocalStorage('token');
-  const [localfoodId, setLocalfoodId] = React.useState(null);
+  const { getItem: getLocalfoodId } = useLocalStorage('localfoodId');
 
-  React.useEffect(() => {
-    getInfoFromToken(getToken()).then(response => {
-      setLocalfoodId(response.data.localfood.id);
-    });
+  useEffect(() => {
+    if(!getToken()) {
+      navigate('/login');
+    } else if(!getLocalfoodId()) {
+      navigate('/RegistrarRestaurante');
+    }
   }, []);
 
   const handleOnClickSee = () => {
-    /*if (localfoodId) {
-      navigate(`/restaurante/${localfoodId}`);
-    }*/
-    navigate(`/PerfilRestaurante/${localfoodId}`)
+    console.log(getLocalfoodId())
+    navigate(`/PerfilRestaurante/${getLocalfoodId()}`)
   }
 
   const handleOnDelete = () => {
     if(window.confirm('¿Estás seguro?')) {
-      destroy(getToken(), localfoodId).then(data => {
+      destroy(getToken(), getLocalfoodId()).then(data => {
         console.log('Negocio deleted successfully', data);
         toast.success("Negocio eliminado correctamente", {
           position: toast.POSITION.BOTTOM_LEFT
@@ -36,7 +35,7 @@ const MyLocalfood = () => {
   }
 
   const handleUpdate = () => {
-    navigate(`/editar-negocio/${localfoodId}`)
+    navigate(`/editar-negocio/${getLocalfoodId()}`)
   }
 
   return (

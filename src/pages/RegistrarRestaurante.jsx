@@ -7,12 +7,15 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 function RegistrarRestaurante() {
-  const { getItem } = useLocalStorage('token');
+  const { getItem: getToken } = useLocalStorage('token');
+  const { getItem: getLocalfoodId, saveItem: saveLocalfoodId } = useLocalStorage('localfoodId');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!getItem()) {
+    if(!getToken()) {
       navigate('/login');
+    } else if(!!getLocalfoodId()) {
+      navigate('/mi-negocio');
     }
   }, []);
 
@@ -32,12 +35,13 @@ function RegistrarRestaurante() {
     // if (data.banner_image.length > 0) {
     //   localfood.banner_image = data.banner_image[0];
     // }
-    create(localfood, getItem()).then(response => {
+    create(localfood, getToken()).then(response => {
       console.log('Localfood created succesfully', response);
       toast.success("Negocio creado correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });
-      navigate('/mi-cuenta');
+      saveLocalfoodId(response.data.id);
+      navigate('/mi-negocio');
     });
   };
 

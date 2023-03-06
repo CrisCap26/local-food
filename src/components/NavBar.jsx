@@ -43,7 +43,6 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
       toast.success("Sesión cerrada correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });
-      navigate('/');
     }).catch(() => {
       toast.error("Error al iniciar sesión", {
         position: toast.POSITION.BOTTOM_LEFT

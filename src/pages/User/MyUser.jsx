@@ -1,5 +1,5 @@
 import './MyUser.css';
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { destroy } from '../../services/userService';
@@ -9,6 +9,12 @@ const MyUser = () => {
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { getItem: getUserId, deleteItem: deleteUserId } = useLocalStorage('userId');
+
+  useEffect(() => {
+    if(!getToken()) {
+      navigate('/login');
+    }
+  }, []);
 
   const handleOnSee = () => {
     navigate(`/usuario/${getUserId()}`);
