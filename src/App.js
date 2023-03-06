@@ -21,18 +21,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import VerRestaurantes from './pages/VerRestaurantes';
+import { getInfoFromToken } from './services/authService';
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const { getItem: getToken } = useLocalStorage('token');
+  const { getItem: getLocalfoodId, saveItem: saveLocalfoodId } = useLocalStorage('localfoodId');
 
   useEffect(() => {
     setIsLogedIn(!!getToken());
-  }, []);
+    console.log(getLocalfoodId())
+    if (!getLocalfoodId()) {
+      getInfoFromToken(getToken()).then(response => {
+        saveLocalfoodId(response.data.localfood.id);
+      });
+    }
+  }, [getToken]);
 
   return (
     <BrowserRouter>
-      <NavBar isLogedIn={isLogedIn} setIsLogedIn={setIsLogedIn} />
+      <NavBar isLogedIn={isLogedIn} setIsLogedIn={setIsLogedIn} hasLocalfood={!!getLocalfoodId()} />
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -44,7 +52,7 @@ function App() {
         <Route path='/usuario/:userId' element={<User/>} />
         <Route path='/mi-negocio' element={<MyLocalfood/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
-        <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante/>} />
+        <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante localfoodOwnerId={getLocalfoodId()} />} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
         <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
         <Route path='/editar-usuario/:userId' element={<EditarUsuario/>} />

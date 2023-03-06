@@ -7,11 +7,13 @@ import { destroy } from "../services/productService";
 import { config } from '../config';
 import { toast } from 'react-toastify';
 
-function SlideShow({platillos, token, reloadPlatillos}) {
+function SlideShow({platillos, token, reloadPlatillos, canEdit}) {
   const navigate = useNavigate();
 
   const editPlatillo = (productId) => {
-    navigate(`/editar-platillo/${productId}`);
+    if (canEdit) {
+      navigate(`/editar-platillo/${productId}`);
+    }
   }
 
   const onDeletePlatillo = (productId) => {
@@ -45,7 +47,7 @@ function SlideShow({platillos, token, reloadPlatillos}) {
             <p>{platillo.description}</p>
             <p>{platillo.price}</p>
             <p>{platillo.category.description}</p>
-            <button className='platillo__button--delete' onClick={() => onDeletePlatillo(platillo.id)}>Eliminar</button>
+            {canEdit && <button className='platillo__button--delete' onClick={() => onDeletePlatillo(platillo.id)}>Eliminar</button>}
           </div>
         ))
       }

@@ -4,26 +4,20 @@ import logo from '../imgs/logo.png'
 import iconUser from '../imgs/icon-user.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getInfoFromToken, logout } from "../services/authService";
+import { logout } from "../services/authService";
 import { toast } from "react-toastify";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useRef } from "react";
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 
 
-function NavBar({isLogedIn, setIsLogedIn}) {
+function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
   const [showUserOptions, setShowUserOptions] = useState(false);
-  const [localfoodId, setLocalfoodId] = React.useState(null);
 
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { deleteItem: deleteUserId } = useLocalStorage('userId');
-
-  useEffect(() => {
-    getInfoFromToken(getToken()).then(response => {
-      setLocalfoodId(response.data.localfood.id);
-    });
-  }, []);
+  const { deleteItem: deleteLocalfoodId } = useLocalStorage('localfoodId');
 
   const closeShowOptions = () => {
     setShowUserOptions(false);
@@ -44,6 +38,7 @@ function NavBar({isLogedIn, setIsLogedIn}) {
       console.log('Logout successfully', data);
       deleteToken();
       deleteUserId();
+      deleteLocalfoodId();
       setIsLogedIn(false);
       toast.success("Sesión cerrada correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
@@ -97,7 +92,7 @@ function NavBar({isLogedIn, setIsLogedIn}) {
           {showUserOptions &&
             <ul className="user__options" ref={wrapperRef}>
               <li onClick={handleOnClickProfile}>Ir a mi perfil</li>
-              {localfoodId
+              {hasLocalfood
                 ? <li onClick={handleOnClickLocalfood}>Ir a mi negocio</li>
                 : <li onClick={handleOnCreateLocalfood}>Crear un negocio</li>
               }

@@ -7,12 +7,13 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { get } from "../services/localfoodService";
 import { config } from "../config";
 
-function PerfilRestaurante({ logo, nombre, descripcion }) {
+function PerfilRestaurante({ localfoodOwnerId }) {
   const navigate = useNavigate();
   const [localfood, setLocalfood] = React.useState(null);
   const [profileImage, setProfileImage] = React.useState(fotoPerfil);
   const { getItem: getToken } = useLocalStorage("token");
   const params = useParams();
+  const isCurrentOwner = localfoodOwnerId == params.localfoodId;
 
   React.useEffect(() => {
     reloadPlatillos();
@@ -127,9 +128,9 @@ function PerfilRestaurante({ logo, nombre, descripcion }) {
 
       <h1 className="title-underlime">
         <span>Platillos</span>
-        <button className="add-platillo" onClick={addPlatillo}>+</button>
+        {isCurrentOwner && <button className="add-platillo" onClick={addPlatillo}>+</button>}
       </h1>
-      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} />
+      <SlideShow platillos={localfood?.products} token={getToken()} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
     </>
   );
 }
