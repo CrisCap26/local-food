@@ -30,8 +30,7 @@ function App() {
 
   useEffect(() => {
     setIsLogedIn(!!getToken());
-    console.log(getLocalfoodId())
-    if (!getLocalfoodId()) {
+    if (!!getToken() && !getLocalfoodId()) {
       getInfoFromToken(getToken()).then(response => {
         saveLocalfoodId(response.data.localfood.id);
       });
