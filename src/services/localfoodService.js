@@ -50,4 +50,16 @@ const update = async (localfood, id, token) => {
   }
 }
 
-export { get, create, destroy , update, getAll};
+const restore = async (id, token) => {
+  try {
+    return axios.post(`${config.backendUrl}/localfood/${id}/restore/`, undefined, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { get, create, destroy , update, getAll, restore};
