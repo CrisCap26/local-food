@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, update } from "../services/localfoodService";
@@ -7,20 +7,20 @@ import { useForm } from "react-hook-form";
 
 function EditarRestaurante() {
   const [id, setId] = useState(null);
-  const { getItem } = useLocalStorage("token");
+  const { getItem: getToken } = useLocalStorage("token");
+  const { getItem: getLocalfoodId } = useLocalStorage("localfoodId");
   const navigate = useNavigate();
-  const params = useParams();
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {
-    if (!getItem()) {
+    if (!getToken()) {
       navigate("/login");
     }
   }, []);
 
   //Traer y mostrar datos actuales
   useEffect(() => {
-    get(getItem(), params.idLocalfood).then((response) => {
+    get(getLocalfoodId()).then((response) => {
       setValue('name', response.data.name ?? '');
       setValue('description', response.data.description ?? '');
       setValue('address', response.data.address ?? '');
@@ -45,7 +45,7 @@ function EditarRestaurante() {
     // if (data.banner_image.length > 0) {
     //   localfood.banner_image = data.banner_image[0];
     // }
-    update(localfood, id, getItem()).then(data => {
+    update(localfood, id, getToken()).then(data => {
       console.log('Localfood updated succesfully', data);
       toast.success("Negocio actualizado correctamente", {
         position: toast.POSITION.BOTTOM_LEFT

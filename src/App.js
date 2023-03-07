@@ -53,8 +53,8 @@ function App() {
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
         <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante localfoodOwnerId={getLocalfoodId()} />} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
-        <Route path='/editar-negocio/:idLocalfood' element={<EditarRestaurante/>} />
-        <Route path='/editar-usuario/:userId' element={<EditarUsuario/>} />
+        <Route path='/editar-negocio' element={<EditarRestaurante/>} />
+        <Route path='/editar-usuario' element={<EditarUsuario/>} />
         <Route path='/editar-platillo/:productId' element={<EditarPlatillo/>} />
         <Route path='/verRestaurantes' element={<VerRestaurantes/>} />
         <Route path='/*' element={<PageNotFound/>} />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { update, get } from "../services/userService";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { expresiones } from "./utils";
 import { useForm } from "react-hook-form";
@@ -9,12 +9,12 @@ import { toast } from 'react-toastify';
 function EditarUsuario() {
   const [username, setUsername] = useState(null);
   const [id, setId] = useState(null);
-  const { getItem } = useLocalStorage("token");
+  const { getItem: getToken } = useLocalStorage("token");
+  const { getItem: getUserId } = useLocalStorage("userId");
   const navigate = useNavigate();
-  const params = useParams();
 
   useEffect(() => {
-    if (!getItem()) {
+    if (!getToken()) {
       navigate("/login");
     }
   }, []);
@@ -23,7 +23,7 @@ function EditarUsuario() {
 
   //Traer y mostrar datos actuales en el formulario
   useEffect(() => {
-    get(getItem(), params.userId).then((response) => {
+    get(getToken(), getUserId()).then((response) => {
       setUsername(response.data.username);
       setValue('name', response.data.name ?? '');
       setValue('last_name', response.data.last_name ?? '');
@@ -44,7 +44,7 @@ function EditarUsuario() {
       userToUpdate.profile_image = data.profile_image[0];
     }
 
-    update(userToUpdate, id, getItem()).then((response) => {
+    update(userToUpdate, id, getToken()).then((response) => {
       console.log("User updated succesfully", response);
       toast.success("Usuario actualizado correctamente", {
         position: toast.POSITION.BOTTOM_LEFT

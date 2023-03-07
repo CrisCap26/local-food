@@ -35,7 +35,7 @@ const MyUser = () => {
   }
 
   const handleUpdate = () => {
-    navigate(`/editar-usuario/${getUserId()}`);
+    navigate('/editar-usuario');
   }
 
   return (

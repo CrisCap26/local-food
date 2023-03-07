@@ -35,7 +35,7 @@ const MyLocalfood = () => {
   }
 
   const handleUpdate = () => {
-    navigate(`/editar-negocio/${getLocalfoodId()}`)
+    navigate('/editar-negocio')
   }
 
   return (
