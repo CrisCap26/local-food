@@ -26,7 +26,7 @@ import { getInfoFromToken } from './services/authService';
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const { getItem: getToken } = useLocalStorage('token');
-  const { getItem: getLocalfoodId, saveItem: saveLocalfoodId } = useLocalStorage('localfoodId');
+  const { item: localfoodId, getItem: getLocalfoodId, saveItem: saveLocalfoodId } = useLocalStorage('localfoodId');
 
   useEffect(() => {
     setIsLogedIn(!!getToken());
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar isLogedIn={isLogedIn} setIsLogedIn={setIsLogedIn} hasLocalfood={!!getLocalfoodId()} />
+      <NavBar isLogedIn={isLogedIn} setIsLogedIn={setIsLogedIn} hasLocalfood={!!localfoodId} />
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -51,7 +51,7 @@ function App() {
         <Route path='/usuario/:userId' element={<User/>} />
         <Route path='/mi-negocio' element={<MyLocalfood/>} />
         <Route path='/AcercaDeNosotros' element={<AcercaDeNostros/>} />
-        <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante localfoodOwnerId={getLocalfoodId()} />} />
+        <Route path='/PerfilRestaurante/:localfoodId' element={<PerfilRestaurante localfoodOwnerId={localfoodId} />} />
         <Route path='/ChangePassword' element={<ChangePassword/>} />
         <Route path='/editar-negocio' element={<EditarRestaurante/>} />
         <Route path='/editar-usuario' element={<EditarUsuario/>} />
