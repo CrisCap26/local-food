@@ -23,9 +23,11 @@ function CardRestaurant(props) {
           <div className="cat">
             <p>Categorías:</p>
             <ul>
-              <li>cat 1, </li>
-              <li>cat 2, </li>
-              <li>cat 3, </li>
+              {
+                props.categories.map(category => (
+                  <li key={category.id}>{category.description}</li>
+                ))
+              }
             </ul>
   </div>
           {/*<div className="descr">

@@ -72,6 +72,7 @@ function VerRestaurantes() {
             descr={local.description}
             horario={local.schedule}
             dir={local.address}
+            categories={local.categories}
           />
         ))
       }

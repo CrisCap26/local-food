@@ -6,7 +6,7 @@ const get = async (localfoodId) => {
 }
 
 const getAll = async () => {
-  return axios.get(`${config.backendUrl}/localfood/`)
+  return axios.get(`${config.backendUrl}/localfood/?categories=true`)
 }
 
 const create = async (localfood, token) => {
