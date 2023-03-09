@@ -27,26 +27,27 @@ function VerRestaurantes() {
     <>
     <div className="bar-Restaurantes">
       <div className="fav">
-        <a href="/">
+        <button>
           <img src={fav} alt="" />
-          Favoritos
-        </a>
+          <span>Favoritos</span>
+        </button>
       </div>
       <div className="explorar">
-        <a href="/">
+        <button>
           <img src={explorar} alt="" />
-          Explorar
-        </a>
+          <span>Explorar</span>
+        </button>
       </div>
       <div className="categ">
-        <a href="/">
+        <button>
           <img src={categ} alt="" />
-          Categorías
-        </a>
+          <span>Categorías</span>
+        </button>
       </div>
     </div>
     <section className="verRestaurantes">
-      <CardRestaurant
+      {/* These 3 should be in the db */}
+      {/* <CardRestaurant
         image={localImg}
         name="Tacos Tijuana"
         descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
@@ -60,7 +61,7 @@ function VerRestaurantes() {
         image={localImg}
         name="Lonches Doña Lety"
         descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
-      />
+      /> */}
 
       {
         localfood.map((local, i) => (

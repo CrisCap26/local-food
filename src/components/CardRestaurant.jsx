@@ -1,6 +1,7 @@
 import React from 'react'
 import '../pages/verResta.css'
 import fav2 from '../imgs/me-gusta.svg'
+import { Link } from 'react-router-dom'
 
 function CardRestaurant(props) {
   return (
@@ -36,9 +37,9 @@ function CardRestaurant(props) {
             <div>{props.dir}</div>
   </div>*/}
           <div className="verMas">
-            <a href={`/PerfilRestaurante/${props.id}`} className="btn-verMas">
+            <Link to={`/PerfilRestaurante/${props.id}`} className="btn-verMas">
               Ver más
-            </a>
+            </Link>
           </div>
         </div>
       </div>

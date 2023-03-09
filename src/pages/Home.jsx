@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import bandeja from "../imgs/bandeja.png";
 import './index.css'
@@ -53,9 +54,9 @@ function Home() {
               width="190"
               height="90"
             />
-            <a href="/verRestaurantes" className="inicio_res__button">
+            <Link to="/verRestaurantes" className="inicio_res__button">
               Ver restaurantes
-            </a>
+            </Link>
           </div>
         </section>
 
