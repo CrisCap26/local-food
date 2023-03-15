@@ -7,16 +7,19 @@ import CardRestaurant from '../components/CardRestaurant'
 import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
 import { config } from "../config";
-
+import { useSearchParams } from 'react-router-dom'
 
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
 
+  const [searchParams] = useSearchParams();
+
   React.useEffect(() => {
-    getLocalFoods();
-  },[])
-  function getLocalFoods() {
-    getAll().then((response) => {
+    getLocalFoods(searchParams.get('buscar'));
+  }, []);
+
+  function getLocalFoods(keywords = null) {
+    getAll(keywords).then((response) => {
       console.log(response.data)
       setLocalfood(response.data)
     }).catch(e => {

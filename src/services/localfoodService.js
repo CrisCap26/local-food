@@ -5,8 +5,10 @@ const get = async (localfoodId) => {
   return axios.get(`${config.backendUrl}/localfood/${localfoodId}`);
 }
 
-const getAll = async () => {
-  return axios.get(`${config.backendUrl}/localfood/?categories=true`)
+const getAll = async (keywords = null) => {
+  let queryParams = '?categories=true';
+  if (!!keywords) queryParams += '&keywords=' + keywords;
+  return axios.get(`${config.backendUrl}/localfood/${queryParams}`)
 }
 
 const create = async (localfood, token) => {
