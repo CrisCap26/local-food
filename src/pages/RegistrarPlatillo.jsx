@@ -96,7 +96,6 @@ function RegistrarPlatillo() {
       <button id="btn-enviar" className='botons' type="submit" >Registrar</button>
     </form>
     </div>
-    
   );
 }
 

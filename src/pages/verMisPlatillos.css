@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container-platillos {
+    padding: 20px 20px;
+}
+
+.misPlatillos-titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 5px;
+}
+
+.misPlatillos-titulo-2 {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.misPlatillos-card {
+    margin: 30px auto;
+    border: 3px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 400px;
+    background-color: white;
+    color: #312121;
+}
+.info-platillo {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+.info-platillo span {
+    margin-bottom: 5px;
+}
+.imgPlatillo {
+    width: 100%;
+    height: 150px;
+}
+.nombrePlatillo {
+    margin-bottom: 7px;
+    font-size: 1.2rem;
+}
+.precioPlatillo {
+    font-size: 1rem;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px;
+}
+.btnEditarPlatillo {
+    padding: 7px 23px;
+    background-color: rgb(61, 143, 219);
+    border-radius: 7px;
+    border: 1px solid rgb(61, 143, 219);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btnEditarPlatillo:hover {
+    background-color: rgb(112, 173, 230);
+    border: 2px solid rgb(31, 127, 216);
+}
+.btnEliminarPlatillo {
+    padding: 7px 15px;
+    background-color: rgb(194, 68, 19);
+    border-radius: 7px;
+    border: 1px solid rgb(194, 68, 19);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btnEliminarPlatillo:hover {
+    background-color: rgb(197, 117, 85);
+    border: 2px solid rgb(199, 63, 9);
+}
+.container-agregar {
+    display: flex;
+    justify-content: center;
+}
+.agregarPlatilloFlot {
+    padding: 7px 18px;
+    background-color: rgb(41, 170, 15);
+    border-radius: 50%;
+    border: 1px solid rgb(41, 170, 15);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2rem;
+    position: fixed;
+    top: 100px;
+    right: 15px;
+}
+.agregarPlatillo{
+    padding: 7px 18px;
+    background-color: rgb(41, 170, 15);
+    border-radius: 8px;
+    border: 1px solid rgb(41, 170, 15);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+.agregarPlatillo:hover {
+    background-color: rgb(26, 141, 3);
+}
+
+@media(min-width: 700px) {
+    .misPlatillos {
+        display: grid;
+        width: 100%;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        margin-bottom: 23px;
+        margin-top: 15px;
+    }
+    .misPlatillos-card {
+        margin: 0 auto;
+        min-width: 320px;
+        max-width: 320px;
+    }
+}
+
+@media(min-width: 900px) {
+    .misPlatillos-card {
+        max-width: 400px;
+        min-width: 400px;
+    }
+}
+
+@media(min-width: 1000px) {
+    .misPlatillos {
+        grid-template-columns: auto auto auto;
+        grid-auto-flow: row;
+    }
+    .misPlatillos-card {
+        max-width: 310px;
+        min-width: 310px;
+    }
+}
+@media(min-width: 1200px) {
+    .misPlatillos-card {
+        max-width: 380px;
+        min-width: 380px;
+    }
+}

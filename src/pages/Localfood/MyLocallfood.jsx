@@ -57,12 +57,17 @@ const MyLocalfood = () => {
     }
   }
 
+  const verPlatillos = () => {
+    navigate('/mis-platillos')
+  }
+
   return (
     <main className="my-localfood">
       <h1>Mi negocio</h1>
       {!wasLocalfoodDeleted
         ? <>
           <button onClick={handleOnClickSee}>Ver mi negocio</button>
+          <button onClick={verPlatillos}>Ver mis platillos</button>
           <button onClick={handleUpdate}>Editar mi negocio</button>
           <button onClick={handleOnDelete}>Eliminar mi negocio</button>
         </>
