@@ -1,6 +1,6 @@
 .item {
 	display: flex;
-	width: 350px;
+	/*width: 350px;*/
 	flex-direction: column;
 	align-items: center;
 	min-height: 20rem;
@@ -17,6 +17,9 @@
 .item__image-container {
 	cursor: pointer;
 }
+.cont-platillos {
+	background-color: wheat;
+}
 /* .slider {
 	cursor: grab;
 } */
@@ -27,6 +30,21 @@
 	/* overflow-x: hidden; */
 	background-color: wheat;
 }
+.cont-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+.btn-verMasPlat {
+	margin: 0 auto;
+	font-family: "Roboto";
+	font-size: 0.8rem;
+	padding: 8px 15px;
+	background-color: blue;
+	color: white;
+	border-radius: 5px;
+}
 
 .platillo__button--delete {
 	background-color: red;
@@ -35,4 +53,12 @@
 	padding: 10px;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+@media (min-width: 700px) {
+	.slider-container {
+		display: grid;
+		grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+	}
 }

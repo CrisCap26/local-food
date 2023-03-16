@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import VerRestaurantes from './pages/VerRestaurantes';
 import { getInfoFromToken } from './services/authService';
+import VerMisPlatillos from './pages/VerMisPlatillos';
 
 function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
@@ -57,6 +58,7 @@ function App() {
         <Route path='/editar-usuario' element={<EditarUsuario/>} />
         <Route path='/editar-platillo/:productId' element={<EditarPlatillo/>} />
         <Route path='/verRestaurantes' element={<VerRestaurantes/>} />
+        <Route path='/mis-platillos' element={<VerMisPlatillos/>} />
         <Route path='/*' element={<PageNotFound/>} />
       </Routes>
   </BrowserRouter>
