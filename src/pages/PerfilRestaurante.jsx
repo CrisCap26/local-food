@@ -126,7 +126,6 @@ function PerfilRestaurante({ localfoodOwnerId }) {
 
       <h1 className="title-underlime">
         <span>Platillos</span>
-        {isCurrentOwner && <button className="add-platillo" onClick={addPlatillo}>+</button>}
       </h1>
       <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
     </>

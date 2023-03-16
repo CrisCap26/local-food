@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import images from '../imgs/images'
 import './slideshow.css'
 import { destroy } from "../services/productService";
@@ -37,21 +37,25 @@ function SlideShow({platillos, reloadPlatillos, canEdit}) {
   }
 
   return (
-    <div className='slider-container'>
-      {
-        platillos && platillos.reverse().map((platillo, i) => (
-          <div key={i} className='item'>
-            <div className='item__image-container' onClick={() => editPlatillo(platillo.id)} >
-              <img src={getImage(platillo, i)} alt="" />
+    <div className='cont-platillos'>
+      <div className='slider-container'>
+        {
+          platillos && platillos.reverse().map((platillo, i) => (
+            <div key={i} className='item'>
+              <div className='item__image-container'>
+                <img src={getImage(platillo, i)} alt="" />
+              </div>
+              <p>{platillo.name}</p>
+              {/*<p>{platillo.description}</p>
+              <p>{platillo.price}</p>
+          <p>{platillo.category.description}</p>*/}
             </div>
-            <p>{platillo.name}</p>
-            <p>{platillo.description}</p>
-            <p>{platillo.price}</p>
-            <p>{platillo.category.description}</p>
-            {canEdit && <button className='platillo__button--delete' onClick={() => onDeletePlatillo(platillo.id)}>Eliminar</button>}
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
+      <div className='cont-btn'>
+      <Link to={'/mis-platillos'} className='btn-verMasPlat'>Ver más</Link>
+      </div>
     </div>
   )
 }
