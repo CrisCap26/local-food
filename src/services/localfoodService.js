@@ -5,10 +5,20 @@ const get = async (localfoodId) => {
   return axios.get(`${config.backendUrl}/localfood/${localfoodId}`);
 }
 
-const getAll = async (keywords = null) => {
+const getAll = async (keywords = null, token = undefined) => {
   let queryParams = '?categories=true';
   if (!!keywords) queryParams += '&keywords=' + keywords;
-  return axios.get(`${config.backendUrl}/localfood/${queryParams}`)
+
+  let requestConfig = undefined;
+  if (!!token) {
+    requestConfig = {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    };
+  }
+
+  return axios.get(`${config.backendUrl}/localfood/${queryParams}`, requestConfig);
 }
 
 const create = async (localfood, token) => {

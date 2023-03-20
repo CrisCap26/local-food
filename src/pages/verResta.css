@@ -74,12 +74,12 @@
     all: unset;
     cursor: pointer;
 }
-.add-fav img:hover {
-    filter: invert(16%) sepia(60%) saturate(5017%) hue-rotate(356deg) brightness(103%) contrast(95%);
-}
-.add-fav img {
+.add-fav > button > svg {
     width: 30px;
     height: 30px;
+}
+.add-fav > button > svg:hover {
+    stroke: red;
 }
 .info-restaurant h3{
     text-align: center;

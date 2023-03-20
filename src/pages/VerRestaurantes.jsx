@@ -8,9 +8,11 @@ import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
 import { config } from "../config";
 import { useSearchParams } from 'react-router-dom'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
+  const { getItem: getToken } = useLocalStorage('token');
 
   const [searchParams] = useSearchParams();
 
@@ -19,8 +21,8 @@ function VerRestaurantes() {
   }, []);
 
   function getLocalFoods(keywords = null) {
-    getAll(keywords).then((response) => {
-      console.log(response.data)
+    getAll(keywords, getToken()).then((response) => {
+      console.log('localfoods', response.data)
       setLocalfood(response.data)
     }).catch(e => {
       console.log(e);
@@ -76,6 +78,7 @@ function VerRestaurantes() {
             horario={local.schedule}
             dir={local.address}
             categories={local.categories}
+            isAddedToFav={local.added_to_fav}
           />
         ))
       }
