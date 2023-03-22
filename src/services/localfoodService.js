@@ -74,4 +74,28 @@ const restore = async (id, token) => {
   }
 }
 
-export { get, create, destroy , update, getAll, restore};
+const addToFav = async (id, token) => {
+  try {
+    return axios.post(`${config.backendUrl}/localfood/${id}/fav/`, undefined, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const removeFromFav = async (id, token) => {
+  try {
+    return axios.delete(`${config.backendUrl}/localfood/${id}/fav/`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { get, create, destroy , update, getAll, restore, addToFav, removeFromFav};

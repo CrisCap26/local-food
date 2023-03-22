@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../pages/verResta.css'
 import { Link } from 'react-router-dom'
+import { addToFav, removeFromFav } from '../services/localfoodService';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { toast } from 'react-toastify';
 
 function CardRestaurant(props) {
+  const [isAddedToFav, setIsAddedToFav] = useState(props.isAddedToFav);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { getItem: getToken } = useLocalStorage('token');
+
+  const onToggleFav = async () => {
+    try {
+      setIsLoading(true);
+      if (isAddedToFav) {
+        await removeFromFav(props.id, getToken());
+        setIsAddedToFav(false);
+        toast.success("Se ha removido de favoritos exitosamente", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      } else {
+        await addToFav(props.id, getToken());
+        setIsAddedToFav(true);
+        toast.success("Se ha añadido a favoritos exitosamente", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      }
+    } catch (e) {
+      toast.error("Ha ocurrido un error, favor de intentarlo más tarde", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="card-restaurant">
         <div className="img-restaurant">
@@ -11,8 +44,8 @@ function CardRestaurant(props) {
         <div className="info-restaurant">
           <div className="add-fav">
             <h3>{props.name}</h3>
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" fill={props.isAddedToFav ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth={1.5} stroke={props.isAddedToFav ? 'red' : 'currentColor'} className="w-6 h-6">
+            <button onClick={onToggleFav} disabled={isLoading}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill={isAddedToFav ? 'red' : 'none'} viewBox="0 0 24 24" strokeWidth={1.5} stroke={isAddedToFav ? 'red' : 'currentColor'} className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
             </button>
