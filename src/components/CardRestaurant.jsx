@@ -20,6 +20,7 @@ function CardRestaurant(props) {
         toast.success("Se ha removido de favoritos exitosamente", {
           position: toast.POSITION.BOTTOM_LEFT
         });
+        props.handleOnFav(props.id);
       } else {
         await addToFav(props.id, getToken());
         setIsAddedToFav(true);
