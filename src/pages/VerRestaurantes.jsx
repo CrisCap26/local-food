@@ -8,35 +8,70 @@ import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
 import { config } from "../config";
 import { useSearchParams } from 'react-router-dom'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import { getMyFavLocalfoods } from '../services/userService'
 
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
+  const [onlyFavs, setOnlyFavs] = React.useState(false);
 
-  const [searchParams] = useSearchParams();
+  const { getItem: getToken } = useLocalStorage('token');
+  const { getItem: getUserId } = useLocalStorage('userId');
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   React.useEffect(() => {
-    getLocalFoods(searchParams.get('buscar'));
-  }, []);
+    if (searchParams.get('favoritos')) {
+      setOnlyFavs(true);
+    } else {
+      setOnlyFavs(false);
+    }
+  }, [searchParams]);
 
-  function getLocalFoods(keywords = null) {
-    getAll(keywords).then((response) => {
-      console.log(response.data)
-      setLocalfood(response.data)
-    }).catch(e => {
-      console.log(e);
-    })
+  React.useEffect(() => {
+    getLocalFoods(searchParams.get('buscar'), onlyFavs);
+  }, [onlyFavs]);
+
+  function getLocalFoods(keywords = null, onlyFavs = false) {
+    if (onlyFavs) {
+      getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
+          setLocalfood(response.data);
+        }).catch(e => {
+          console.log(e);
+        });
+    } else {
+      getAll(keywords, getToken()).then((response) => {
+        setLocalfood(response.data);
+      }).catch(e => {
+        console.log(e);
+      });
+    }
   }
+
+  const onClickFav = () => {
+    setSearchParams({favoritos: true});
+  }
+
+  const onClickExplore = () => {
+    setSearchParams({});
+  }
+
+  const handleOnFav = (localfoodId) => {
+    const stillFav = localfood.filter(lf => lf.id !== localfoodId);
+    setLocalfood(stillFav);
+  }
+
   return (
     <>
     <div className="bar-Restaurantes">
       <div className="fav">
-        <button>
+        <button onClick={onClickFav}>
           <img src={fav} alt="" />
           <span>Favoritos</span>
         </button>
       </div>
       <div className="explorar">
-        <button>
+        <button onClick={onClickExplore}>
           <img src={explorar} alt="" />
           <span>Explorar</span>
         </button>
@@ -76,6 +111,8 @@ function VerRestaurantes() {
             horario={local.schedule}
             dir={local.address}
             categories={local.categories}
+            isAddedToFav={local.added_to_fav}
+            handleOnFav={handleOnFav}
           />
         ))
       }

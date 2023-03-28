@@ -9,8 +9,9 @@ function Home() {
 
   const navigate = useNavigate();
 
-  const onSearch = () => {
-    navigate(`/verRestaurantes?buscar=${encodeURIComponent(searchText)}`);
+  const onSearch = (e) => {
+    e.preventDefault();
+    if (searchText.length > 0) navigate(`/verRestaurantes?buscar=${encodeURIComponent(searchText)}`);
   }
 
   return (
@@ -18,7 +19,7 @@ function Home() {
       <main>
         <section className="inicio_hero">
           <h1 className="inicio_hero__title">LocalFood</h1>
-          <div className="buscar">
+          <form className="buscar" onSubmit={onSearch}>
             <input
               type="text"
               className="inicio_hero__barra-busqueda"
@@ -26,8 +27,8 @@ function Home() {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <button className="btn-buscar" onClick={onSearch}>Buscar</button>
-          </div>
+            <button className="btn-buscar" type='submit'>Buscar</button>
+          </form>
           <h2 className="inicio_hero__subtitle">
             "Recetas especiales para personas especiales"
           </h2>

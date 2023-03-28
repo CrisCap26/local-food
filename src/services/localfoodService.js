@@ -5,10 +5,20 @@ const get = async (localfoodId) => {
   return axios.get(`${config.backendUrl}/localfood/${localfoodId}`);
 }
 
-const getAll = async (keywords = null) => {
+const getAll = async (keywords = null, token = undefined) => {
   let queryParams = '?categories=true';
   if (!!keywords) queryParams += '&keywords=' + keywords;
-  return axios.get(`${config.backendUrl}/localfood/${queryParams}`)
+
+  let requestConfig = undefined;
+  if (!!token) {
+    requestConfig = {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    };
+  }
+
+  return axios.get(`${config.backendUrl}/localfood/${queryParams}`, requestConfig);
 }
 
 const create = async (localfood, token) => {
@@ -64,4 +74,28 @@ const restore = async (id, token) => {
   }
 }
 
-export { get, create, destroy , update, getAll, restore};
+const addToFav = async (id, token) => {
+  try {
+    return axios.post(`${config.backendUrl}/localfood/${id}/fav/`, undefined, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const removeFromFav = async (id, token) => {
+  try {
+    return axios.delete(`${config.backendUrl}/localfood/${id}/fav/`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { get, create, destroy , update, getAll, restore, addToFav, removeFromFav};

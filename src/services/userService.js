@@ -49,4 +49,16 @@ const update = async (user, id, token) => {
   }
 }
 
-export { get, create, destroy, update };
+const getMyFavLocalfoods = async (id, token) => {
+  try {
+    return axios.get(`${config.backendUrl}/user/${id}/favorite-localfoods?categories=true`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { get, create, destroy, update, getMyFavLocalfoods };
