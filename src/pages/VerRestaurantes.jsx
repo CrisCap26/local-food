@@ -65,19 +65,19 @@ function VerRestaurantes() {
     <>
     <div className="bar-Restaurantes">
       <div className="fav">
-        <button onClick={onClickFav}>
+        <button className='bar-Resta-btn' onClick={onClickFav}>
           <img src={fav} alt="" />
           <span>Favoritos</span>
         </button>
       </div>
       <div className="explorar">
-        <button onClick={onClickExplore}>
+        <button className='bar-Resta-btn' onClick={onClickExplore}>
           <img src={explorar} alt="" />
           <span>Explorar</span>
         </button>
       </div>
       <div className="categ">
-        <button>
+        <button className='bar-Resta-btn'>
           <img src={categ} alt="" />
           <span>Categorías</span>
         </button>

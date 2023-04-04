@@ -6,7 +6,7 @@
 .verRestaurantes {
     padding: 20px 20px;
 }
-.bar-Restaurantes {
+/*.bar-Restaurantes {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -17,6 +17,23 @@
     border: 5px solid black;
     border-radius: 35px;
     margin: 10px 5px 0 5px;
+}*/
+.bar-Restaurantes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background-color: #fc9c72;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    align-content: center;
+}
+.bar-Resta-btn {
+    background-color: #fc9c72;
+    border: none;
 }
 .bar-Restaurantes a {
     display: flex;
@@ -46,8 +63,8 @@
 }
 
 .bar-Restaurantes img {
-    width: 60%;
-    height: 25px;
+    width: 40%;
+    height: 26px;
     padding-right: 2px;
 }
 .card-restaurant {
@@ -159,9 +176,17 @@
         max-width: 320px;
     }
     .bar-Restaurantes {
-        font-size: 0.9rem;
-        max-width: 750px;
-        margin: 10px auto;
+        padding: 14px 0;
+    }
+    .bar-Resta-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+    }
+    .bar-Restaurantes img {
+        width: 47%;
+        height: 32px;
     }
 }
 

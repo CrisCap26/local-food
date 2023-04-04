@@ -45,14 +45,29 @@ a{
     position: relative;
     background: white;
     width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
+    height: 61px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    /*justify-content: space-around;*/
     align-items: center;
+    grid-auto-flow: column;
 }
 
+.cont-img {
+    padding-top: 2px;
+}
+.cont-title {
+    display: none;
+}
 .title-localfood {
     display: none;
+}
+
+.container-botones {
+    /*background-color: violet;*/
+    display: flex;
+    justify-content: right;
+    margin-right: 12px;
 }
 
 .nav_header .btn-login {
@@ -60,19 +75,24 @@ a{
     font-size: 0.9rem;
     font-weight: bold;
     color: white;
-    padding: 5px;
+    padding: 6px;
     border-radius: 7px;
     background-color: #2e518b;
 }
 .nav_header .btn-login ~ a {
     background-color: #1dae1d;
+    margin-left: 15px;
 }
 
 .nav_header__logo{
-    height: 50px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
 }
-.nav_header__logo > img {
+.nav_header__logo img {
     object-fit: cover;
+    width: 50px;
+    height: 38px;
 }
 .nav_header__login {
     position: absolute;
@@ -358,20 +378,24 @@ footer{
 
 
 .user__logo-container {
-    position: relative;
+    /*position: relative;*/
+    display: flex;
+    justify-content: right;
+    margin-right: 23px;
 }
 
 .user__logo-button {
     cursor: pointer;
-    padding: 3px;
-    border: black 2px solid;
-    border-radius: 14px;
+    /*padding: 3px;*/
+    border: none;
+    /*border-radius: 14px;*/
+    background-color: white;
 }
 
 .user__options {
     position: absolute;
-    top: 100%;
-    right: 45%;
+    top: 65%;
+    right: 6%;
     list-style: none;
     background-color: #241f1d;
     width: 218px;
@@ -396,10 +420,27 @@ footer{
 }
 
 @media (min-width: 426px) {
+    /*.nav_header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /*justify-content: space-around;
+        align-items: center;
+    }*/
+    .cont-title {
+        display: block;
+    }
     .title-localfood {
         display: block;
         font-family: "Roboto", sans-serif;
         color: var(--color-principal);
+        font-size: 2rem;
+    }
+    .nav_header__logo{
+        height: 41px;
+        display: flex;
+        justify-content: left;
+        margin-left: 5px;
+        align-content: center;
     }
     .inicio_hero {
         height: 28vh;
@@ -439,6 +480,15 @@ footer{
 @media (min-width: 424px) {
     .inicio_texto {
         margin-bottom: 18px;
+    }
+}
+
+@media(min-width: 471px) {
+    .nav_header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /*justify-content: space-around;*/
+        align-items: center;
     }
 }
 
@@ -522,6 +572,12 @@ footer{
     }
     .inicio_resta__button {
         font-size: 1.1rem;
+    }
+}
+
+@media(min-width: 926px) {
+    .user__options {
+        right: 4%;
     }
 }
 

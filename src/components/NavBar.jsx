@@ -68,24 +68,30 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
   return (
     <header className="nav_header">
       <div className="nav_header__logo">
+        <div className="cont-img">
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Logo LocalFood"
+              style={{ width: "auto", height: 31 }}
+            />
+          </Link>
+        </div>
+        <div className="cont-title">
         <Link to="/">
-          <img
-            src={logo}
-            alt="Logo LocalFood"
-            style={{ width: 65, height: 50 }}
-          />
+            <h1 className="title-localfood">LocalFood</h1>
         </Link>
+      </div>
       </div>
       {isLogedIn
       ?
       <>
-        <h1 className="title-localfood">LocalFood</h1>
         <div className="user__logo-container">
           <button className="user__logo-button" onClick={onClickUserLogoHandler}>
             <img
               src={iconUser}
               alt="Iniciar sesión"
-              style={{ width: 25, height: 25 }}
+              style={{ width: 31, height: 27 }}
             />
           </button>
           {showUserOptions &&
@@ -101,12 +107,14 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
         </div>
       </>
       : <>
-          <Link className="btn-login" to='/Login'>
-          Iniciar sesión
-          </Link>
-          <Link className="btn-login" to='/RegistrarUsuario'>
-            Registrarse
-          </Link>
+          <div className="container-botones">
+            <Link className="btn-login" to='/Login'>
+            Iniciar sesión
+            </Link>
+            <Link className="btn-login" to='/RegistrarUsuario'>
+              Registrarse
+            </Link>
+          </div>
         </>
       }
     </header>
