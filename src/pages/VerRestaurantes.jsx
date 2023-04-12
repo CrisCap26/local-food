@@ -3,6 +3,7 @@ import './verResta.css'
 import fav from '../imgs/fav.png'
 import explorar from '../imgs/buscar.png'
 import categ from '../imgs/categorias.png'
+import msg from '../imgs/no-connection2.png'
 import CardRestaurant from '../components/CardRestaurant'
 import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
@@ -35,10 +36,10 @@ function VerRestaurantes() {
   function getLocalFoods(keywords = null, onlyFavs = false) {
     if (onlyFavs) {
       getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
-          setLocalfood(response.data);
-        }).catch(e => {
-          console.log(e);
-        });
+        setLocalfood(response.data);
+      }).catch(e => {
+        console.log(e);
+      });
     } else {
       getAll(keywords, getToken()).then((response) => {
         setLocalfood(response.data);
@@ -49,7 +50,7 @@ function VerRestaurantes() {
   }
 
   const onClickFav = () => {
-    setSearchParams({favoritos: true});
+    setSearchParams({ favoritos: true });
   }
 
   const onClickExplore = () => {
@@ -63,29 +64,31 @@ function VerRestaurantes() {
 
   return (
     <>
-    <div className="bar-Restaurantes">
-      <div className="fav">
-        <button className='bar-Resta-btn' onClick={onClickFav}>
-          <img src={fav} alt="" />
-          <span>Favoritos</span>
-        </button>
+      <div className="bar-Restaurantes">
+        <div className="fav">
+          <button className='bar-Resta-btn' onClick={onClickFav}>
+            <img src={fav} alt="" />
+            <span>Favoritos</span>
+          </button>
+        </div>
+        <div className="explorar">
+          <button className='bar-Resta-btn' onClick={onClickExplore}>
+            <img src={explorar} alt="" />
+            <span>Explorar</span>
+          </button>
+        </div>
+        <div className="categ">
+          <button className='bar-Resta-btn'>
+            <img src={categ} alt="" />
+            <span>Categorías</span>
+          </button>
+        </div>
       </div>
-      <div className="explorar">
-        <button className='bar-Resta-btn' onClick={onClickExplore}>
-          <img src={explorar} alt="" />
-          <span>Explorar</span>
-        </button>
-      </div>
-      <div className="categ">
-        <button className='bar-Resta-btn'>
-          <img src={categ} alt="" />
-          <span>Categorías</span>
-        </button>
-      </div>
-    </div>
-    <section className="verRestaurantes">
-      {/* These 3 should be in the db */}
-      {/* <CardRestaurant
+      {
+        localfood.length > 0 ?
+          <section className="verRestaurantes">
+            {/* These 3 should be in the db */}
+            {/* <CardRestaurant
         image={localImg}
         name="Tacos Tijuana"
         descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
@@ -101,23 +104,28 @@ function VerRestaurantes() {
         descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
       /> */}
 
-      {
-        localfood.map((local, i) => (
-          <CardRestaurant key={i}
-            id={local.id}
-            image={config.backendUrl +local.profile_image}
-            name={local.name}
-            descr={local.description}
-            horario={local.schedule}
-            dir={local.address}
-            categories={local.categories}
-            isAddedToFav={local.added_to_fav}
-            handleOnFav={handleOnFav}
-          />
-        ))
+            {
+              localfood.map((local, i) => (
+                <CardRestaurant key={i}
+                  id={local.id}
+                  image={config.backendUrl + local.profile_image}
+                  name={local.name}
+                  descr={local.description}
+                  horario={local.schedule}
+                  dir={local.address}
+                  categories={local.categories}
+                  isAddedToFav={local.added_to_fav}
+                  handleOnFav={handleOnFav}
+                />
+              ))
+            }
+          </section>
+          : <div className='msg-local'>
+              <h2>No hay Restaurantes registrados</h2>
+              <img src={msg}></img>
+            </div>
       }
-    </section>
-  </>
+    </>
   )
 }
 
