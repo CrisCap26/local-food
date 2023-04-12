@@ -56,9 +56,24 @@ function VerRestaurantes() {
     setSearchParams({});
   }
 
-  const handleOnFav = (localfoodId) => {
-    const stillFav = localfood.filter(lf => lf.id !== localfoodId);
-    setLocalfood(stillFav);
+  const handleOnFav = (localfoodId, wasAdded) => {
+    //hide from fav section
+    if (onlyFavs && !wasAdded) {
+      const localfoodsWithoutLastRemoved = localfood.filter(lf => lf.id !== localfoodId);
+      setLocalfood(localfoodsWithoutLastRemoved);
+      return;
+    }
+
+    const favUpdatedLocalfood = localfood.map(lf => {
+      if (lf.id === localfoodId) {
+        return {
+          ...lf,
+          added_to_fav: wasAdded
+        }
+      }
+      return lf;
+    });
+    setLocalfood(favUpdatedLocalfood);
   }
 
   return (
