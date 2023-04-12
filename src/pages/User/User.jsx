@@ -27,19 +27,30 @@ const User = () => {
     });
   }, []);
 
+  const handleUpdate = () => {
+    navigate('/editar-usuario');
+  }
+
   return (
-    <main className="user">
-      <h1>Hola {user?.username}</h1>
-      <div className='container'>
-      <img src={profileImage}></img>
-      <div className='container-info-user'>
-        <div className='info-user'>Nombre: <p>{user?.name}</p></div>
-        <div className='info-user'>Apellidos: <p>{user?.last_name}</p></div>
-        <div className='info-user'>Telefono: <p>{user?.phone_number}</p></div>
-        <div className='info-user'>Email: <p>{user?.email}</p></div>
-      </div>
+    <main className='user-cont'>
+      <h1 className='user-title'>Hola {user?.username}</h1>
+      <div className="container">
+        <div className="shape">
+            <div className="image">
+              <img src={profileImage}></img>
+            </div>
+        </div>
+        
+        <div className='container-info-user'>
+          <div className='info-user'>Nombre: <p>{user?.name}</p></div>
+          <div className='info-user'>Apellidos: <p>{user?.last_name}</p></div>
+          <div className='info-user'>Telefono: <p>{user?.phone_number}</p></div>
+          <div className='info-user'>Email: <p>{user?.email}</p></div>
+        </div>
+        <button className='editar-user' onClick={handleUpdate}>Editar</button>
       </div>
     </main>
+    
   );
 }
 

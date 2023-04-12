@@ -401,6 +401,7 @@ footer{
     width: 218px;
     height: auto;
     margin-top: 5px;
+    z-index: 2;
 }
 
 .user__options > li {

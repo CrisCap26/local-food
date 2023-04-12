@@ -1,4 +1,4 @@
-.user {
+/*.user {
     font-family: "Roboto", sans-serif;
     background: wheat;
     height: 100vh;
@@ -82,4 +82,99 @@
     .info-user p {
         font-size: 1.3rem;
     }
+}*/
+
+.user-cont {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.user-title {
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
+    padding: 10px;
+}
+.container{
+    height: 450px;
+    width: 300px;
+    box-shadow: 0 10px 20px #000;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    font-family: sans-serif;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.shape{
+    background-color: #2b2828;
+    height: 250px;
+    width: 400px;
+    margin-left: -15px;
+    position: relative;
+    top: -102px;
+    box-shadow: 0 2px 15px #000;
+    transform: rotate(25deg);
+}
+
+.image{
+    height: 110px;
+    width: 110px;
+    /*background-image: url(./perfil.jpg);*/
+    position: relative;
+    top: 195px;
+    margin-left: 167px;
+    background-size: cover;
+    border: none;
+    border-radius: 25%;
+    box-shadow: 0 2px 15px rgb(105, 109, 109);
+    transform: rotate(-24deg);
+    background-color: white;
+}
+.image img {
+    height: 109px;
+    width: 109px;
+    border-radius: 25%;
+}
+
+
+.title{
+    font-size: 15px;
+    padding-bottom: 6px;
+    color: #FF1744;
+}
+
+.container-info-user {
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+}
+.info-user {
+    padding-left: 63px;
+    font-size: 1rem;
+    padding-bottom: 10px;
+    display: flex;
+    font-weight: bold;
+    color: #e3272f;
+}
+.info-user p {
+    font-size: 1rem;
+    padding-left: 4px;
+    font-weight: normal;
+    color: black;
+}
+.editar-user{
+    padding: 8px 20px;
+    margin-top: 17px;
+    font-size: 1rem;
+    background: #1779d0;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
 }
