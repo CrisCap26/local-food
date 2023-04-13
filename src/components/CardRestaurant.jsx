@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../pages/verResta.css'
 import { Link } from 'react-router-dom'
 import { addToFav, removeFromFav } from '../services/localfoodService';
@@ -11,22 +11,25 @@ function CardRestaurant(props) {
 
   const { getItem: getToken } = useLocalStorage('token');
 
+  useEffect(() => {
+    setIsAddedToFav(props.isAddedToFav);
+  }, [props.isAddedToFav]);
+
   const onToggleFav = async () => {
     try {
       setIsLoading(true);
       if (isAddedToFav) {
         await removeFromFav(props.id, getToken());
-        setIsAddedToFav(false);
         toast.success("Se ha removido de favoritos exitosamente", {
           position: toast.POSITION.BOTTOM_LEFT
         });
-        props.handleOnFav(props.id);
+        props.handleOnFav(props.id, false);
       } else {
         await addToFav(props.id, getToken());
-        setIsAddedToFav(true);
         toast.success("Se ha añadido a favoritos exitosamente", {
           position: toast.POSITION.BOTTOM_LEFT
         });
+        props.handleOnFav(props.id, true);
       }
     } catch (e) {
       toast.error("Ha ocurrido un error, favor de intentarlo más tarde", {
