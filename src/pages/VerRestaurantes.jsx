@@ -92,12 +92,12 @@ function VerRestaurantes() {
             <span>Explorar</span>
           </button>
         </div>
-        <div className="categ">
+        {/* <div className="categ">
           <button className='bar-Resta-btn'>
             <img src={categ} alt="" />
             <span>Categorías</span>
           </button>
-        </div>
+        </div> */}
       </div>
       {
         localfood.length > 0 ?
