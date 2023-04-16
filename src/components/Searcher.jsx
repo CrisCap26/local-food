@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Searcher.css';
 
 function Searcher(props) {
   const [searchText, setSearchText] = useState('');

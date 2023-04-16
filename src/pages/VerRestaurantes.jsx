@@ -11,6 +11,7 @@ import { config } from "../config";
 import { useSearchParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { getMyFavLocalfoods } from '../services/userService'
+import Searcher from '../components/Searcher'
 
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
@@ -99,6 +100,7 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
+      <Searcher />
       {
         localfood.length > 0 ?
           <section className="verRestaurantes">

@@ -136,38 +136,6 @@ a{
     padding: 7px;
 }
 
-.buscar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.inicio_hero__barra-busqueda {
-    height: 40px;
-    border-radius: 30px;
-    border: none;
-    padding: 0 20px;
-    margin-bottom: 6px;
-}
-
-.btn-buscar {
-    cursor: pointer;
-    padding: 7px 23px 7px 23px;
-    align-self: center;
-    border-radius: 8px;
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    font-size: 0.8rem;
-    border: #201b1b 2px solid;
-    background-color:#2e518b;
-}
-.btn-buscar:hover {
-    background-color:#e7eaf1;
-    color: black;
-    transition: 0.8s;
-}
-
 .inicio_hero h2 {
     font-size: 1.1rem;
     padding: 15px;
@@ -461,21 +429,6 @@ footer{
     .inicio_hero h2 {
         font-size: 1.1rem;
     }
-    .inicio_hero__barra-busqueda {
-        padding: 0 60px;
-    }
-    .btn-buscar {
-        cursor: pointer;
-        padding: 10px;
-        margin-right: 7px;
-        margin-left: 5px;
-        border-radius: 8px;
-        color: white;
-        font-family: "Roboto", sans-serif;
-        font-weight: bold;
-        border: #201b1b 2px solid;
-        background-color:#2e518b;
-    }
 }
 
 @media (min-width: 424px) {
@@ -496,15 +449,6 @@ footer{
 @media (min-width: 719px) {
     .inicio_hero {
         height: 30vh;
-    }
-
-    .inicio_hero__barra-busqueda {
-        margin-top: 18px;
-        padding: 0 112px;
-    }
-
-    .btn-buscar {
-        font-size: 1rem;
     }
 
     .inicio_hero h2 {
@@ -583,13 +527,6 @@ footer{
 }
 
 @media (min-width: 1000px) {
-    .inicio_hero__barra-busqueda {
-        padding: 25px 140px;
-        margin-bottom: 15px;
-    }
-    .btn-buscar {
-        font-size: 1.2rem;
-    }
     .inicio_hero {
         height: 50vh;
     }
