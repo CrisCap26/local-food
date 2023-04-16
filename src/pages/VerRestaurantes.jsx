@@ -50,6 +50,13 @@ function VerRestaurantes() {
     }
   }
 
+  const onSearch = (text) => {
+    getLocalFoods(text, onlyFavs);
+    setSearchParams({
+      buscar: text,
+    });
+  }
+
   const onClickFav = () => {
     setSearchParams({ favoritos: true });
   }
@@ -100,7 +107,7 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
-      <Searcher />
+      <Searcher defaultText={searchParams.get('buscar')} onSearch={onSearch} />
       {
         localfood.length > 0 ?
           <section className="verRestaurantes">

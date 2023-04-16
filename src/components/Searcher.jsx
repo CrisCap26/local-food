@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './Searcher.css';
 
 function Searcher(props) {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(props.defaultText ?? '');
 
   const handleSearch = (e) => {
     e.preventDefault();
