@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import bandeja from "../imgs/bandeja.png";
 import './index.css'
+import Searcher from "../components/Searcher";
 
 function Home() {
-  const [searchText, setSearchText] = useState('');
-
   const navigate = useNavigate();
 
-  const onSearch = (e) => {
-    e.preventDefault();
-    if (searchText.length > 0) navigate(`/verRestaurantes?buscar=${encodeURIComponent(searchText)}`);
+  const onSearch = (keywords) => {
+    navigate(`/verRestaurantes?buscar=${encodeURIComponent(keywords)}`);
   }
 
   return (
@@ -19,16 +17,7 @@ function Home() {
       <main>
         <section className="inicio_hero">
           <h1 className="inicio_hero__title">LocalFood</h1>
-          <form className="buscar" onSubmit={onSearch}>
-            <input
-              type="text"
-              className="inicio_hero__barra-busqueda"
-              placeholder="¿Qué estás buscando?"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            <button className="btn-buscar" type='submit'>Buscar</button>
-          </form>
+          <Searcher onSearch={onSearch} />
           <h2 className="inicio_hero__subtitle">
             "Recetas especiales para personas especiales"
           </h2>
