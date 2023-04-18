@@ -98,4 +98,14 @@ const removeFromFav = async (id, token) => {
   }
 }
 
-export { get, create, destroy , update, getAll, restore, addToFav, removeFromFav};
+const addComment = async (id, token, comment) => {
+  
+
+  return axios.post(`${config.backendUrl}/localfood/${id}/comment/`, {text: comment}, {
+    headers: {
+      'Authorization': `Token ${token}`,
+    }
+  })
+}
+
+export { get, create, destroy , update, getAll, restore, addToFav, removeFromFav, addComment};

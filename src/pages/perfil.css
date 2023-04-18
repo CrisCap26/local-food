@@ -210,3 +210,13 @@ a{
     height: 30px;
     cursor: pointer;
 }
+
+.sect-coment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: wheat;
+    padding: 10px;
+    height: auto;
+}
