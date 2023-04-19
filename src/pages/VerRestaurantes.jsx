@@ -31,6 +31,18 @@ function VerRestaurantes() {
     updateStateFromParams();
   }, [searchParams]);
 
+  const updateParams = (kw = null, onlyFavs = false) => {
+    if (!!kw) {
+      setSearchParams({ buscar: kw });
+      return;
+    }
+    if (onlyFavs) {
+      setSearchParams({ favoritos: true });
+      return;
+    }
+    setSearchParams({})
+  }
+
   const updateStateFromParams = () => {
     const isFavs = searchParams.get('favoritos');
     if (isFavs) {
@@ -62,21 +74,15 @@ function VerRestaurantes() {
   }
 
   const onSearch = (text) => {
-    if (!!text) {
-      setSearchParams({
-        buscar: text,
-      });
-    } else {
-      setSearchParams({});
-    }
+    updateParams(text);
   }
 
   const onClickFav = () => {
-    setSearchParams({ favoritos: true });
+    updateParams(null, true);
   }
 
   const onClickExplore = () => {
-    setSearchParams({});
+    updateParams(keywords);
   }
 
   const handleOnFav = (localfoodId, wasAdded) => {
@@ -121,7 +127,7 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
-      <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty />
+      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty />}
       {
         localfood.length > 0 ?
           <section className="verRestaurantes">
