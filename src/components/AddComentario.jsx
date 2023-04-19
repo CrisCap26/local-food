@@ -7,17 +7,20 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { toast } from 'react-toastify';
 
 
-function AddComentario() {
+function AddComentario(props) {
     const [comentario, setComentario] = React.useState("");
     const params = useParams();
     const { getItem } = useLocalStorage("token");
 
     const onSubmit = (e) => {
         e.preventDefault();
-        addComment(params.localfoodId, getItem(), comentario).then(()=> {
+        addComment(params.localfoodId, getItem(), comentario).then((response)=> {
+            setComentario("");
+            props.addComentario(response.data);
             toast.success("Comentario creado correctamente", {
                 position: toast.POSITION.BOTTOM_LEFT
               });
+            console.log(response.data)
         })
         .catch(()=> {
             toast.error("Error al crear el comentario", {

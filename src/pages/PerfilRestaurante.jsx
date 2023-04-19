@@ -15,6 +15,13 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   const params = useParams();
   const isCurrentOwner = localfoodOwnerId == params.localfoodId;
 
+  const [comentarios, setComentarios] = React.useState([]);
+    
+    const addComentario = (newComentario) => {
+        const newComentarios = [newComentario, ...comentarios];
+        setComentarios(newComentarios);
+    }
+
   React.useEffect(() => {
     reloadPlatillos();
   }, []);
@@ -22,6 +29,8 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   function reloadPlatillos() {
     get(params.localfoodId).then((response) => {
       setLocalfood(response.data);
+      setComentarios(response.data.comments);
+      console.log(response.data)
       if (response.data.profile_image) {
         setProfileImage(config.backendUrl + response.data.profile_image)
       }
@@ -131,8 +140,8 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       </h1>
       <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
       <section className="sect-coment">
-        <Cometarios></Cometarios>
-        <AddComentario></AddComentario>
+        <Cometarios comentarios={comentarios}></Cometarios>
+        <AddComentario addComentario={addComentario}></AddComentario>
       </section>
     </>
   );
