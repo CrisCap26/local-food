@@ -5,7 +5,7 @@ import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from "../components/SlideShow";
 import { get } from "../services/localfoodService";
 import { config } from "../config";
-import Cometarios from "../components/Cometarios";
+import Comentarios from "../components/Comentarios";
 import AddComentario from "../components/AddComentario";
 
 function PerfilRestaurante({ localfoodOwnerId }) {
@@ -140,7 +140,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       </h1>
       <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
       <section className="sect-coment">
-        <Cometarios comentarios={comentarios}></Cometarios>
+        <Comentarios comentarios={comentarios}></Comentarios>
         <AddComentario addComentario={addComentario}></AddComentario>
       </section>
     </>

@@ -90,7 +90,7 @@
 .input-com{
     max-width: 500px;
     background: none;
-    
+    width: 100%;
 }
 
 #nuevoComentario{
@@ -123,11 +123,13 @@
 }
 
 .btn-agg button {
-    
     padding: 12px 20px 12px 20px;
     border-radius: 20px;
     border: 0;
     outline: none;
     font-size: 15px;
     cursor: pointer;
+    background-color: #448de0;
+    color: white;
+    font-weight: bold;
 }

@@ -4,7 +4,7 @@ import './comentarios.css'
 
 
 function Cometarios(props) {
-    
+
     return (
         <>
             <section className="cont-comentarios">
@@ -24,7 +24,12 @@ function Cometarios(props) {
                         )
                     })
                 }
-
+                {
+                    props.comentarios == 0 ?
+                    <h4>Aún no hay comentarios</h4>
+                    :
+                    <></>
+                }
             </section>
         </>
     )
