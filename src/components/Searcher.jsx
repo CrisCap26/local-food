@@ -4,9 +4,15 @@ import './Searcher.css';
 function Searcher(props) {
   const [searchText, setSearchText] = useState(props.defaultText ?? '');
 
+  React.useEffect(() => {
+    setSearchText(props.defaultText ?? '');
+  }, [props.defaultText]);
+
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchText.length > 0 && props.onSearch) props.onSearch(searchText);
+    if (props.allowEmpty) {
+      props.onSearch && props.onSearch(searchText || null);
+    } else if (searchText.length > 0 && props.onSearch) props.onSearch(searchText);
   }
 
   return (

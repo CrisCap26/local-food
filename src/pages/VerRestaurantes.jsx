@@ -16,6 +16,7 @@ import Searcher from '../components/Searcher'
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
   const [onlyFavs, setOnlyFavs] = React.useState(false);
+  const [keywords, setKeywords] = React.useState(null);
 
   const { getItem: getToken } = useLocalStorage('token');
   const { getItem: getUserId } = useLocalStorage('userId');
@@ -23,18 +24,28 @@ function VerRestaurantes() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   React.useEffect(() => {
-    if (searchParams.get('favoritos')) {
+    updateStateFromParams();
+  }, []);
+
+  React.useEffect(() => {
+    updateStateFromParams();
+  }, [searchParams]);
+
+  const updateStateFromParams = () => {
+    const isFavs = searchParams.get('favoritos');
+    if (isFavs) {
       setOnlyFavs(true);
     } else {
       setOnlyFavs(false);
     }
-  }, [searchParams]);
 
-  React.useEffect(() => {
-    getLocalFoods(searchParams.get('buscar'), onlyFavs);
-  }, [onlyFavs]);
+    const kw = searchParams.get('buscar');
+    setKeywords(kw);
 
-  function getLocalFoods(keywords = null, onlyFavs = false) {
+    getLocalFoods(kw, isFavs);
+  }
+
+  function getLocalFoods(kw = null, onlyFavs = false) {
     if (onlyFavs) {
       getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
         setLocalfood(response.data);
@@ -42,7 +53,7 @@ function VerRestaurantes() {
         console.log(e);
       });
     } else {
-      getAll(keywords, getToken()).then((response) => {
+      getAll(kw, getToken()).then((response) => {
         setLocalfood(response.data);
       }).catch(e => {
         console.log(e);
@@ -51,10 +62,13 @@ function VerRestaurantes() {
   }
 
   const onSearch = (text) => {
-    getLocalFoods(text, onlyFavs);
-    setSearchParams({
-      buscar: text,
-    });
+    if (!!text) {
+      setSearchParams({
+        buscar: text,
+      });
+    } else {
+      setSearchParams({});
+    }
   }
 
   const onClickFav = () => {
@@ -107,7 +121,7 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
-      <Searcher defaultText={searchParams.get('buscar')} onSearch={onSearch} />
+      <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty />
       {
         localfood.length > 0 ?
           <section className="verRestaurantes">
