@@ -27,6 +27,7 @@
     max-width: 400px;
     background-color: white;
     color: #312121;
+    width: 100%;
 }
 .info-platillo {
     display: flex;

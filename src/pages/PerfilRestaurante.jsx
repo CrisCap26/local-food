@@ -7,6 +7,7 @@ import { get } from "../services/localfoodService";
 import { config } from "../config";
 import Comentarios from "../components/Comentarios";
 import AddComentario from "../components/AddComentario";
+import VerMisPlatillos from "./VerMisPlatillos";
 
 function PerfilRestaurante({ localfoodOwnerId }) {
   const navigate = useNavigate();
@@ -16,11 +17,11 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   const isCurrentOwner = localfoodOwnerId == params.localfoodId;
 
   const [comentarios, setComentarios] = React.useState([]);
-    
-    const addComentario = (newComentario) => {
-        const newComentarios = [newComentario, ...comentarios];
-        setComentarios(newComentarios);
-    }
+
+  const addComentario = (newComentario) => {
+    const newComentarios = [newComentario, ...comentarios];
+    setComentarios(newComentarios);
+  }
 
   React.useEffect(() => {
     reloadPlatillos();
@@ -40,15 +41,15 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   }
 
   function hasDelivery() {
-    if(localfood) {
-      if(localfood.has_delivery) {
+    if (localfood) {
+      if (localfood.has_delivery) {
         return "Sí"
       } else {
         return "No"
       }
     }
   }
-
+  console.log(localfood?.products)
   const addPlatillo = () => {
     navigate('/RegistrarPlatillo');
   }
@@ -138,7 +139,20 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       <h1 className="title-underlime">
         <span>Platillos</span>
       </h1>
-      <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+      {
+        localfood?.products <= 0 ?
+          <div className='noPlatillos'>
+            <h2>Aún no hay platillos</h2>
+          </div>
+          :
+          <section className="sect-platillos">
+            <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+          </section>
+      }
+
+      <h1 className="title-underlime">
+        <span>Comentarios</span>
+      </h1>
       <section className="sect-coment">
         <Comentarios comentarios={comentarios}></Comentarios>
         <AddComentario addComentario={addComentario}></AddComentario>
