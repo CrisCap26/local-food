@@ -87,6 +87,9 @@
 .add-fav > button > svg:hover {
     stroke: red;
 }
+.add-fav > button > svg:hover.logout, .add-fav > button > svg:active.logout {
+    stroke: black;
+}
 .info-restaurant h3{
     text-align: center;
     margin: 5px 0;
