@@ -20,6 +20,7 @@ function VerRestaurantes() {
   const [keywords, setKeywords] = React.useState(null);
   const [shouldLogin, setShouldLogin] = React.useState(true);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
   const { getItem: getToken } = useLocalStorage('token');
   const { getItem: getUserId } = useLocalStorage('userId');
@@ -62,6 +63,7 @@ function VerRestaurantes() {
 
   function getLocalFoods(kw = null, onlyFavs = false) {
     setLoading(true);
+    setError(true);
     if (onlyFavs) {
       if (getUserId() && getToken()) {
         setShouldLogin(false);
@@ -70,6 +72,7 @@ function VerRestaurantes() {
         }).catch(e => {
           console.log(e);
           setLocalfood([]);
+          setError(true);
         }).finally(() => {
           setLoading(false);
         });
@@ -84,6 +87,7 @@ function VerRestaurantes() {
       }).catch(e => {
         console.log(e);
         setLocalfood([]);
+        setError(true);
       }).finally(() => {
         setLoading(false);
       });
@@ -178,6 +182,13 @@ function VerRestaurantes() {
     }
   }
 
+  if (error) {
+    return <section className='temporary-state-bg' style={{flexDirection: 'column'}}>
+      <h2 style={{color: 'white', marginBottom: '12px'}}>Un error ha ocurrido. Intente de nuevo más tarde</h2>
+      <img style={{width: '80%'}} src={msg}></img>
+    </section>
+  }
+
   return (
     <>
       <div className="bar-Restaurantes">
@@ -201,7 +212,7 @@ function VerRestaurantes() {
         </div> */}
       </div>
       {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty style={{marginTop: '12px'}} disabled={loading} />}
-      {loading ? <section className='loading-bg'>
+      {loading ? <section className='temporary-state-bg'>
           <RotateLoader color="#FFA200" />
         </section>
       : showLocalfood()
