@@ -8,15 +8,19 @@ import CardRestaurant from '../components/CardRestaurant'
 import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
 import { config } from "../config";
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { getMyFavLocalfoods } from '../services/userService'
 import Searcher from '../components/Searcher'
+import { RotateLoader } from 'react-spinners'
 
 function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
   const [onlyFavs, setOnlyFavs] = React.useState(false);
   const [keywords, setKeywords] = React.useState(null);
+  const [shouldLogin, setShouldLogin] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
   const { getItem: getToken } = useLocalStorage('token');
   const { getItem: getUserId } = useLocalStorage('userId');
@@ -58,17 +62,34 @@ function VerRestaurantes() {
   }
 
   function getLocalFoods(kw = null, onlyFavs = false) {
+    setLoading(true);
+    setError(true);
     if (onlyFavs) {
-      getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
-        setLocalfood(response.data);
-      }).catch(e => {
-        console.log(e);
-      });
+      if (getUserId() && getToken()) {
+        setShouldLogin(false);
+        getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
+          setLocalfood(response.data);
+        }).catch(e => {
+          console.log(e);
+          setLocalfood([]);
+          setError(true);
+        }).finally(() => {
+          setLoading(false);
+        });
+      } else {
+        setShouldLogin(true);
+        setLocalfood([]);
+        setLoading(false);
+      }
     } else {
       getAll(kw, getToken()).then((response) => {
         setLocalfood(response.data);
       }).catch(e => {
         console.log(e);
+        setLocalfood([]);
+        setError(true);
+      }).finally(() => {
+        setLoading(false);
       });
     }
   }
@@ -105,6 +126,69 @@ function VerRestaurantes() {
     setLocalfood(favUpdatedLocalfood);
   }
 
+  const showLocalfood = () => {
+    if (localfood.length > 0) {
+      return <section className="verRestaurantes">
+        {/* These 3 should be in the db */}
+        {/*
+        <CardRestaurant
+          image={localImg}
+          name="Tacos Tijuana"
+          descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
+        />
+        <CardRestaurant
+          image={localImg}
+          name="El Chaparrito"
+          descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
+        />
+        <CardRestaurant
+          image={localImg}
+          name="Lonches Doña Lety"
+          descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
+        />
+        */}
+
+        {
+          localfood.map((local, i) => (
+            <CardRestaurant key={i}
+              id={local.id}
+              image={config.backendUrl + local.profile_image}
+              name={local.name}
+              descr={local.description}
+              horario={local.schedule}
+              dir={local.address}
+              categories={local.categories}
+              isAddedToFav={local.added_to_fav}
+              handleOnFav={handleOnFav}
+            />
+          ))
+        }
+      </section>
+    } else {
+      return <div className='msg-local'>
+        {(shouldLogin && onlyFavs)
+        ?
+        <>
+          <h4 style={{textAlign: 'center', marginBottom: '8px', marginTop: '24px'}}>Necesitas iniciar sesión para acceder a tus favoritos</h4>
+          <Link className="btn-login" to='/Login'>Iniciar sesión</Link>
+        </>
+        :
+        <>
+          <h2>No se encontró ningún Restaurante</h2>
+          <img src={msg}></img>
+        </>
+        }
+      </div>
+    }
+  }
+
+  if (error) {
+    return <section className='temporary-state-bg' style={{flexDirection: 'column'}}>
+      <h2 style={{color: 'white', marginBottom: '12px'}}>Un error ha ocurrido. Intente de nuevo más tarde</h2>
+      <img style={{width: '80%'}} src={msg}></img>
+    </section>
+  }
+
   return (
     <>
       <div className="bar-Restaurantes">
@@ -127,47 +211,11 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
-      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty />}
-      {
-        localfood.length > 0 ?
-          <section className="verRestaurantes">
-            {/* These 3 should be in the db */}
-            {/* <CardRestaurant
-        image={localImg}
-        name="Tacos Tijuana"
-        descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
-      />
-      <CardRestaurant
-        image={localImg}
-        name="El Chaparrito"
-        descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
-      />
-      <CardRestaurant
-        image={localImg}
-        name="Lonches Doña Lety"
-        descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
-      /> */}
-
-            {
-              localfood.map((local, i) => (
-                <CardRestaurant key={i}
-                  id={local.id}
-                  image={config.backendUrl + local.profile_image}
-                  name={local.name}
-                  descr={local.description}
-                  horario={local.schedule}
-                  dir={local.address}
-                  categories={local.categories}
-                  isAddedToFav={local.added_to_fav}
-                  handleOnFav={handleOnFav}
-                />
-              ))
-            }
-          </section>
-          : <div className='msg-local'>
-              <h2>No hay Restaurantes registrados</h2>
-              <img src={msg}></img>
-            </div>
+      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty style={{marginTop: '12px'}} disabled={loading} />}
+      {loading ? <section className='temporary-state-bg'>
+          <RotateLoader color="#FFA200" />
+        </section>
+      : showLocalfood()
       }
     </>
   )

@@ -70,7 +70,7 @@ a{
     margin-right: 12px;
 }
 
-.nav_header .btn-login {
+.btn-login {
     font-family: "Roboto", sans-serif;
     font-size: 0.9rem;
     font-weight: bold;
@@ -79,7 +79,7 @@ a{
     border-radius: 7px;
     background-color: #2e518b;
 }
-.nav_header .btn-login ~ a {
+.btn-login ~ a {
     background-color: #1dae1d;
     margin-left: 15px;
 }

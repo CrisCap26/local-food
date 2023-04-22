@@ -87,6 +87,9 @@
 .add-fav > button > svg:hover {
     stroke: red;
 }
+.add-fav > button > svg:hover.logout, .add-fav > button > svg:active.logout {
+    stroke: black;
+}
 .info-restaurant h3{
     text-align: center;
     margin: 5px 0;
@@ -171,6 +174,15 @@
     height: 200px;
     width: 200px;
 }
+
+.temporary-state-bg {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40%;
+}
+
 @media(min-width: 700px) {
     .msg-local {
         font-size: 1.2rem;
