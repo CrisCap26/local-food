@@ -49,6 +49,7 @@ function VerMisPlatillos() {
                   precio={platillo.price}
                   descr={platillo.description}
                   reloadPlatillos={reloadPlatillos}
+                  canEdit={true}
                 />
               ))
             }

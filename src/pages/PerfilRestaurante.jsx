@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./perfil.css";
 import fotoPerfil from "../imgs/foto_perfil.jpg";
 import SlideShow from "../components/SlideShow";
@@ -145,9 +145,14 @@ function PerfilRestaurante({ localfoodOwnerId }) {
             <h2>Aún no hay platillos</h2>
           </div>
           :
-          <section className="sect-platillos">
-            <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
-          </section>
+          <>
+            <section className="sect-platillos">
+              <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+            </section>
+            <div className='cont-btn'>
+              <Link to={`/mis-platillos/${localfood?.id}`} className='btn-verMasPlat'>Ver más</Link>
+            </div>
+          </>
       }
 
       <h1 className="title-underlime">
