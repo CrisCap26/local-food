@@ -24,7 +24,7 @@ function Searcher(props) {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button className="btn-buscar" type='submit'>Buscar</button>
+      <button className="btn-buscar" type='submit' disabled={props.disabled}>Buscar</button>
     </form>
   );
 }
