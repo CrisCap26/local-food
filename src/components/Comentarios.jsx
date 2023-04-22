@@ -8,7 +8,6 @@ function Cometarios(props) {
     return (
         <>
             <section className="cont-comentarios">
-                <h2>Comentarios</h2>
                 {
                     props.comentarios?.map((comentario, i) => {
                         return (
