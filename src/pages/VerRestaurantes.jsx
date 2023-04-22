@@ -63,7 +63,7 @@ function VerRestaurantes() {
 
   function getLocalFoods(kw = null, onlyFavs = false) {
     setLoading(true);
-    setError(true);
+    setError(false);
     if (onlyFavs) {
       if (getUserId() && getToken()) {
         setShouldLogin(false);
