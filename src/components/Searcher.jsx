@@ -16,7 +16,7 @@ function Searcher(props) {
   }
 
   return (
-    <form className="buscar" onSubmit={handleSearch}>
+    <form className="buscar" onSubmit={handleSearch} style={props.style || undefined}>
       <input
         type="text"
         className="inicio_hero__barra-busqueda"

@@ -8,7 +8,7 @@ import CardRestaurant from '../components/CardRestaurant'
 import { getAll } from '../services/localfoodService'
 import localImg from '../imgs/tijuanaTacos.jpg'
 import { config } from "../config";
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { getMyFavLocalfoods } from '../services/userService'
 import Searcher from '../components/Searcher'
@@ -17,6 +17,7 @@ function VerRestaurantes() {
   const [localfood, setLocalfood] = React.useState([]);
   const [onlyFavs, setOnlyFavs] = React.useState(false);
   const [keywords, setKeywords] = React.useState(null);
+  const [shouldLogin, setShouldLogin] = React.useState(true);
 
   const { getItem: getToken } = useLocalStorage('token');
   const { getItem: getUserId } = useLocalStorage('userId');
@@ -59,16 +60,24 @@ function VerRestaurantes() {
 
   function getLocalFoods(kw = null, onlyFavs = false) {
     if (onlyFavs) {
-      getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
-        setLocalfood(response.data);
-      }).catch(e => {
-        console.log(e);
-      });
+      if (getUserId() && getToken()) {
+        setShouldLogin(false);
+        getMyFavLocalfoods(getUserId(), getToken()).then((response) => {
+          setLocalfood(response.data);
+        }).catch(e => {
+          console.log(e);
+          setLocalfood([]);
+        });
+      } else {
+        setShouldLogin(true);
+        setLocalfood([]);
+      }
     } else {
       getAll(kw, getToken()).then((response) => {
         setLocalfood(response.data);
       }).catch(e => {
         console.log(e);
+        setLocalfood([]);
       });
     }
   }
@@ -127,26 +136,28 @@ function VerRestaurantes() {
           </button>
         </div> */}
       </div>
-      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty />}
+      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty style={{marginTop: '12px'}} />}
       {
         localfood.length > 0 ?
           <section className="verRestaurantes">
             {/* These 3 should be in the db */}
-            {/* <CardRestaurant
-        image={localImg}
-        name="Tacos Tijuana"
-        descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
-      />
-      <CardRestaurant
-        image={localImg}
-        name="El Chaparrito"
-        descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
-      />
-      <CardRestaurant
-        image={localImg}
-        name="Lonches Doña Lety"
-        descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
-      /> */}
+            {/*
+            <CardRestaurant
+              image={localImg}
+              name="Tacos Tijuana"
+              descr="Local de tacos, tenemos tacos de todo tipo, ven y prueba."
+            />
+            <CardRestaurant
+              image={localImg}
+              name="El Chaparrito"
+              descr="Local de comida Mexicana, ven y prueba la mejor comida Mexicana."
+            />
+            <CardRestaurant
+              image={localImg}
+              name="Lonches Doña Lety"
+              descr="Ven y prueba los mejores lonches de la zona, tenemos lonches de todo, los mejores precios que podras encontrar."
+            />
+            */}
 
             {
               localfood.map((local, i) => (
@@ -165,9 +176,19 @@ function VerRestaurantes() {
             }
           </section>
           : <div className='msg-local'>
+            {(shouldLogin && onlyFavs)
+            ?
+            <>
+              <h4 style={{textAlign: 'center', marginBottom: '8px', marginTop: '24px'}}>Necesitas iniciar sesión para acceder a tus favoritos</h4>
+              <Link className="btn-login" to='/Login'>Iniciar sesión</Link>
+            </>
+            :
+            <>
               <h2>No hay Restaurantes registrados</h2>
               <img src={msg}></img>
-            </div>
+            </>
+            }
+          </div>
       }
     </>
   )
