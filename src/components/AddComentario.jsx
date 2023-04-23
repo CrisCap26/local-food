@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './comentarios.css'
 import imgUser from '../imgs/icon-user.png'
 import { addComment } from '../services/localfoodService';
@@ -20,7 +20,6 @@ function AddComentario(props) {
             toast.success("Comentario creado correctamente", {
                 position: toast.POSITION.BOTTOM_LEFT
             });
-            console.log(response.data)
         })
             .catch(() => {
                 toast.error("Error al crear el comentario", {
@@ -43,7 +42,7 @@ function AddComentario(props) {
                         onChange={(e) => setComentario(e.target.value)}
                     />
                     <div className='btn-agg'>
-                        <button type="submit">Comentar</button>
+                        {getItem() ? <button type="submit">Comentar</button> : <Link className="btn-login" to='/Login'>Iniciar sesión</Link>}
                     </div>
                 </div>
             </form>

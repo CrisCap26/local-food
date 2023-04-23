@@ -1,9 +1,16 @@
 import React from 'react'
 import './comentarios.css'
 
+function Comentarios(props) {
 
+    const formatDate = (date) => {
+        const datePart = date.match(/\d+/g);
+        const year = datePart[0];
+        const month = datePart[1];
+        const day = datePart[2];
 
-function Cometarios(props) {
+        return day+'/'+month+'/'+year;
+    }
 
     return (
         <>
@@ -17,7 +24,7 @@ function Cometarios(props) {
                                 </div>
                                 <div className="info-coment">
                                     <p className="text-com size-text">{comentario.text}</p>
-                                    <p className="fecha-com size-fecha">15-03-2024</p>
+                                    <p className="fecha-com size-fecha">{formatDate(comentario.created_at)}</p>
                                 </div>
                             </div>
                         )
@@ -34,4 +41,4 @@ function Cometarios(props) {
     )
 }
 
-export default Cometarios
+export default Comentarios
