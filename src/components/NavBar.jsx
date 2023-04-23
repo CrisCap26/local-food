@@ -13,11 +13,16 @@ import { useOnClickOutside } from "../hooks/useOnClickOutside";
 
 function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const [showButtons, setShowButtons] = useState(true);
 
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { deleteItem: deleteUserId } = useLocalStorage('userId');
   const { deleteItem: deleteLocalfoodId } = useLocalStorage('localfoodId');
+
+  useEffect(() => {
+    setShowButtons(!(window.location.pathname === '/Login' || window.location.pathname === '/RegistrarUsuario'));
+  }, [window.location.pathname]);
 
   const closeShowOptions = () => {
     setShowUserOptions(false);
@@ -106,7 +111,7 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
           }
         </div>
       </>
-      : <>
+      : showButtons && <>
           <div className="container-botones">
             <Link className="btn-login" to='/Login'>
             Iniciar sesión
