@@ -49,10 +49,6 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       }
     }
   }
-  console.log(localfood?.products)
-  const addPlatillo = () => {
-    navigate('/RegistrarPlatillo');
-  }
 
   return (
     <>

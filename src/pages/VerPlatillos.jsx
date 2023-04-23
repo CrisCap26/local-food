@@ -7,31 +7,23 @@ import { config } from "../config";
 import imageDefault from "../imgs/tacos.jpg"
 
 function VerPlatillos() {
+  const [platillos, setPlatillos] = React.useState([]);
+  const params = useParams();
+  const {item:localfoodId} = useLocalStorage('localfoodId');
+  const isCurrentOwner = localfoodId == params.localfoodId;
 
-    const [platillos, setPlatillos] = React.useState([]);
-    const params = useParams();
-    const {item:localfoodId} = useLocalStorage('localfoodId');
-    console.log(localfoodId)
-    console.log(params.localfoodId)
-    const isCurrentOwner = localfoodId == params.localfoodId;
-    console.log(isCurrentOwner)
+  function reloadPlatillos() {
+    get(params.localfoodId).then((response) => {
+      setPlatillos(response.data.products);
+    }).catch(e => {
+      console.log('/404');
+    });
+  }
 
-    function reloadPlatillos() {
-      get(params.localfoodId).then((response) => {
-        setPlatillos(response.data.products);
-        console.log(response.data.products)
-      }).catch(e => {
-        console.log('/404');
-      });
-    }
+  React.useEffect(()=> {
+    reloadPlatillos();
+  }, []);
 
-    React.useEffect(()=> {
-      reloadPlatillos();
-    }, []);
-
-    
-    
-    
   return (
     <div className='container-platillos'>
       <h1 className="misPlatillos-titulo">Platillos</h1>
@@ -56,7 +48,6 @@ function VerPlatillos() {
           </section>
           : <div className='msg-platillos'>
             <h2 className='misPlatillos-titulo-2'>No tienes platillos creados, crea uno dando clic en el boton "Añadir Platillo"</h2>
-            
           </div>
       }
     </div>
