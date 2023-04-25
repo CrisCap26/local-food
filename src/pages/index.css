@@ -360,6 +360,10 @@ footer{
     background-color: white;
 }
 
+.user__logo-button img {
+    border-radius: 50%;
+}
+
 .user__options {
     position: absolute;
     top: 65%;

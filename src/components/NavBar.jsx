@@ -9,19 +9,37 @@ import { toast } from "react-toastify";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useRef } from "react";
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
+import { get } from "../services/userService"
+import { config } from '../config';
 
 
 function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
   const [showUserOptions, setShowUserOptions] = useState(false);
   const [showButtons, setShowButtons] = useState(true);
+  const [userImage, setUserImage] = useState(iconUser);
 
   const navigate = useNavigate();
   const { getItem: getToken, deleteItem: deleteToken } = useLocalStorage('token');
   const { deleteItem: deleteUserId } = useLocalStorage('userId');
   const { deleteItem: deleteLocalfoodId } = useLocalStorage('localfoodId');
+  const { getItem: idUser } = useLocalStorage('userId');
+
+  function getImageUser() {
+    get(getToken(), idUser()).then((response) => {
+      console.log(response.data.profile_image);
+      setUserImage(response.data.profile_image);
+      if (response.data.profile_image) {
+        setUserImage(config.backendUrl + response.data.profile_image);
+      } else {
+        setUserImage(iconUser);
+      }
+    });
+  }
+  
 
   useEffect(() => {
     setShowButtons(!(window.location.pathname === '/Login' || window.location.pathname === '/RegistrarUsuario'));
+    getImageUser();
   }, [window.location.pathname]);
 
   const closeShowOptions = () => {
@@ -94,9 +112,9 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
         <div className="user__logo-container">
           <button className="user__logo-button" onClick={onClickUserLogoHandler}>
             <img
-              src={iconUser}
+              src={userImage}
               alt="Iniciar sesión"
-              style={{ width: 31, height: 27 }}
+              style={{ width: 35, height: 33 }}
             />
           </button>
           {showUserOptions &&

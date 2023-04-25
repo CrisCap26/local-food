@@ -79,12 +79,14 @@
 }
 
 .imagen-usuario{
-    height: 80px;
-    margin-left: 10px;
+    height: 90px;
+    margin-left: 2px;
 }
 
 .imagen-usuario img {
-    max-width: 25px;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
 }
 
 .input-com{

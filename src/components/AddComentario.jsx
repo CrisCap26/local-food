@@ -5,12 +5,31 @@ import imgUser from '../imgs/icon-user.png'
 import { addComment } from '../services/localfoodService';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { toast } from 'react-toastify';
-
+import { get } from "../services/userService"
+import { config } from '../config';
 
 function AddComentario(props) {
     const [comentario, setComentario] = React.useState("");
+    const [userImage, setUserImage] = React.useState(imgUser);
     const params = useParams();
     const { getItem } = useLocalStorage("token");
+    const { getItem: idUser } = useLocalStorage('userId');
+
+    function getImageUser() {
+        get(getItem(), idUser()).then((response) => {
+          console.log(response.data.profile_image);
+          setUserImage(response.data.profile_image);
+          if (response.data.profile_image) {
+            setUserImage(config.backendUrl + response.data.profile_image);
+          } else {
+            setUserImage(imgUser);
+          }
+        });
+      }
+
+    React.useEffect(()=> {
+        getImageUser();
+    },[]);  
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -31,7 +50,7 @@ function AddComentario(props) {
         <section className="cont-add-coment">
             <form className="contenedor-agg-com" onSubmit={onSubmit}>
                 <div className="imagen-usuario">
-                    <img src={imgUser} />
+                    <img src={userImage} />
                 </div>
                 <div className='input-com'>
                     <input
