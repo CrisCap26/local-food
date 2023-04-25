@@ -51,6 +51,7 @@ function RegistrarRestaurante() {
         <h4>Registro de Restaurante</h4>
       </font>
       <h3>Nombre: </h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <input
         className="controls"
         id="nombre"
@@ -60,6 +61,7 @@ function RegistrarRestaurante() {
         })}
       />
       <h3>Descripción: </h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <textarea
         className="controls"
         cols={20}
@@ -93,6 +95,7 @@ function RegistrarRestaurante() {
         {...register('schedule')}
       />
       <h3>¿Cuenta con servicio a domicilio?</h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <select
       className='controls'
       id='select'

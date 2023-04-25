@@ -66,6 +66,7 @@ function RegistrarUsuario() {
       <div className="formulario">
         <div className="field">
           <label>Usuario</label>
+          <span className="campo_requerido">* Este campo es requerido</span>
           <input
             id="usuario"
             placeholder="Nombre de Usuario"
@@ -112,6 +113,7 @@ function RegistrarUsuario() {
         <p id="invalidEmail" className="noCoinciden">El email es invalido</p>
         <div className="field">
           <label>Contraseña</label>
+          <span className="campo_requerido">* Este campo es requerido</span>
           <input
             type="password"
             id="contra"
@@ -127,6 +129,7 @@ function RegistrarUsuario() {
         {/* <p id="invalidPass" className="noCoinciden">La contraseña debe tener entre 6 y 12 caracteres</p> */}
         <div className="field">
           <label>Repetir contraseña</label>
+          <span className="campo_requerido">* Este campo es requerido</span>
           <input
             type="password"
             id="contra2"

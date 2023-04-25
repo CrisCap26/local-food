@@ -51,9 +51,12 @@
     font-family: "Roboto", sans-serif;
 }
 
-/*.formulario{
-    margin-top: 1em;
-}*/
+.campo_requerido {
+    color: red;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
 .field{
     display: flex;

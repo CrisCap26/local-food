@@ -51,6 +51,7 @@ function RegistrarPlatillo() {
         <h4>Registro de Platillos</h4>
       </font>
       <h3>Nombre del Platillo:</h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <input
         className="controls"
         id="nombrePlat"
@@ -60,6 +61,7 @@ function RegistrarPlatillo() {
         })}
       />
       <h3>Descripción: </h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <textarea
         id='descripcionPlat'
         className="controls"
@@ -69,6 +71,7 @@ function RegistrarPlatillo() {
         {...register('description')}
       />
       <h3>Precio:</h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <input
         id="precio"
         className="controls"
@@ -79,6 +82,7 @@ function RegistrarPlatillo() {
         })}
       />
       <h3>Elegir categoria: </h3>
+      <span className="campo_requerido_res">* Este campo es requerido</span>
       <select className='controls' id="select" {...register('category', {required: true})} >
         {categories.map((category) => {
           return (

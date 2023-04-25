@@ -30,7 +30,7 @@
 
 .datos h3{
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 7px;
     margin-left: 14px;
 }
 
@@ -43,7 +43,8 @@
     border: 1px solid #1f531f;
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
-    color: black
+    color: black;
+    margin-top: 5px;
 }
 
 .datos p{
@@ -74,6 +75,14 @@
     background-color:#e7eaf1;
     color: black;
     transition: 0.8s;
+}
+
+.campo_requerido_res{
+    color: #2c3838;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 12px;
 }
 
 

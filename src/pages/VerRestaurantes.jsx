@@ -149,7 +149,7 @@ function VerRestaurantes() {
         */}
 
         {
-          localfood.map((local, i) => (
+          localfood.reverse().map((local, i) => (
             <CardRestaurant key={i}
               id={local.id}
               image={config.backendUrl + local.profile_image}
