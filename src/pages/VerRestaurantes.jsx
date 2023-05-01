@@ -191,6 +191,12 @@ function VerRestaurantes() {
 
   return (
     <>
+      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty style={{marginTop: '12px'}} disabled={loading} />}
+      {loading ? <section className='temporary-state-bg'>
+          <RotateLoader color="#FFA200" />
+        </section>
+      : showLocalfood()
+      }
       <div className="bar-Restaurantes">
         <div className="fav">
           <button className='bar-Resta-btn' onClick={onClickFav}>
@@ -204,19 +210,7 @@ function VerRestaurantes() {
             <span>Explorar</span>
           </button>
         </div>
-        {/* <div className="categ">
-          <button className='bar-Resta-btn'>
-            <img src={categ} alt="" />
-            <span>Categorías</span>
-          </button>
-        </div> */}
       </div>
-      {!onlyFavs && <Searcher defaultText={keywords} onSearch={onSearch} allowEmpty style={{marginTop: '12px'}} disabled={loading} />}
-      {loading ? <section className='temporary-state-bg'>
-          <RotateLoader color="#FFA200" />
-        </section>
-      : showLocalfood()
-      }
     </>
   )
 }
