@@ -5,10 +5,12 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { expresiones } from "./utils";
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import { config } from "../config";
 
 function EditarUsuario() {
   const [username, setUsername] = useState(null);
   const [id, setId] = useState(null);
+  const [image, setImage] = useState(null);
   const { getItem: getToken } = useLocalStorage("token");
   const { getItem: getUserId } = useLocalStorage("userId");
   const navigate = useNavigate();
@@ -29,6 +31,7 @@ function EditarUsuario() {
       setValue('last_name', response.data.last_name ?? '');
       setValue('phone_number', response.data.phone_number ?? '');
       setValue('email', response.data.email ?? '');
+      setImage(response.data.profile_image === '/media/images/placeholder_user.png' ? null : config.backendUrl + response.data.profile_image);
       setId(response.data.id);
     });
   }, []);
@@ -95,8 +98,12 @@ function EditarUsuario() {
             })}
           />
         </div>
+        {image && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+          <p>Imagén de perfil actual</p>
+          <img src={image} alt="Imagen de perfil actual del usuario" style={{width: '200px', marginTop: '8px', marginBottom: '8px'}} />
+        </div>}
         <div className="field">
-          <label>Imagén de perfil</label>
+          <label>Nueva imagen de perfil</label>
           <input
             type="file"
             id="profileImg"

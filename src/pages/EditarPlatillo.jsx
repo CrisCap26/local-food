@@ -4,10 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, getAllCategories, update } from '../services/productService';
 import { toast } from 'react-toastify';
+import { config } from "../config";
 
 function EditarPlatillo() {
   const [categories, setCategories] = useState([]);
   const [id, setId] = useState(null);
+  const [image, setImage] = useState(null);
   const { getItem } = useLocalStorage("token");
   const navigate = useNavigate();
   const params = useParams();
@@ -32,6 +34,7 @@ function EditarPlatillo() {
       setValue('description', response.data.description ?? '');
       setValue('price', response.data.price ?? 0);
       setValue('category', response.data.category.id ?? 0);
+      setImage(response.data.image === "/media/images/placeholder_food.jpg" ? null : config.backendUrl + response.data.image);
       setId(response.data.id);
     })
   },[]);
@@ -96,7 +99,11 @@ function EditarPlatillo() {
           );
         })}
       </select>
-      <h3>Foto del Platillo:</h3>
+      {image && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+        <p>Foto del Platillo actual:</p>
+        <img src={image} alt="Imagen de perfil actual del usuario" style={{width: '200px', marginTop: '8px', marginBottom: '8px'}} />
+      </div>}
+      <h3>Nueva foto del platillo:</h3>
       <input
         id='fotoPlat'
         className="controls"

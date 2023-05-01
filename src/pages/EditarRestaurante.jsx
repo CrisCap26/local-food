@@ -4,9 +4,11 @@ import { toast } from 'react-toastify';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { get, update } from "../services/localfoodService";
 import { useForm } from "react-hook-form";
+import { config } from "../config";
 
 function EditarRestaurante() {
   const [id, setId] = useState(null);
+  const [image, setImage] = useState(null);
   const { getItem: getToken } = useLocalStorage("token");
   const { getItem: getLocalfoodId } = useLocalStorage("localfoodId");
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ function EditarRestaurante() {
       setValue('address', response.data.address ?? '');
       setValue('phone_number', response.data.phone_number ?? '');
       setValue('schedule', response.data.schedule ?? '');
+      setImage(response.data.profile_image === "/media/images/placeholder_localfood.png" ? null : config.backendUrl + response.data.profile_image);
       setId(response.data.id);
     })
   },[])
@@ -50,6 +53,7 @@ function EditarRestaurante() {
       toast.success("Negocio actualizado correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });
+      navigate('/mi-negocio');
     });
   };
 
@@ -111,7 +115,11 @@ function EditarRestaurante() {
         <option value={true}>Sí</option>
         <option value={false}>No</option>
       </select>
-      <h3>Logotipo:</h3>
+      {image && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+        <p>Logotipo actual</p>
+        <img src={image} alt="Imagen de perfil actual del usuario" style={{width: '200px', marginBottom: '16px'}} />
+      </div>}
+      <h3>Logotipo nuevo:</h3>
       <input
         id='logoRes'
         className="controls"
