@@ -1,21 +1,3 @@
-:root{
-    --color-principal: #FF441F;
-    --color-secundario:  #231942;
-    --color-terciario: #f59275;
-    --color-fondo: #F7F5FB;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/*body {
-    width: 100%;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-}*/
-
-
 /*SECTION HEADER*/
 
 .header{

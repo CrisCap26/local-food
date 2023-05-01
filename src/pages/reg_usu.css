@@ -1,27 +1,3 @@
-:root{
-    --color-principal: #FF441F;
-    --color-secundario:  #231942;
-    --color-terciario: #f59275;
-    --color-fondo: #F7F5FB;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/*MAIN*/
-
-/*body{
-    font-family: 'Roboto', sans-serif;
-    background-color: #e5e5f7;  
-    background-image: radial-gradient(#f76d45 0.5px, #fc9c72  0.5px);
-    background-size: 10px 10px;
-    display: flex;
-    min-height: 100vh;
-}*/
-
 .user_form{
     font-family: 'Roboto', sans-serif;
     background-color: wheat;
@@ -142,7 +118,7 @@
 @media (min-width: 900px) {
     .user_form_register {
         padding: 50px 350px;
-        height: 200vh;
+        height: 100vh;
     }
     .user_form {
         padding: 50px 350px;
@@ -152,7 +128,7 @@
 @media (min-width: 1200px) {
     .user_form_register {
         padding: 50px 480px;
-        height: 200vh;
+        height: 100vh;
     }
     .user_form {
         padding: 50px 480px;
@@ -162,7 +138,7 @@
 @media (min-width: 1600px) {
     .user_form_register {
         padding: 50px 670px;
-        height: 200vh;
+        height: 100vh;
     }
     .user_form {
         padding: 50px 670px;
