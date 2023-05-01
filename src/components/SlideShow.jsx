@@ -35,33 +35,10 @@ function SlideShow({ platillos, reloadPlatillos, canEdit }) {
     }
     return config.backendUrl + platillo.image;
   }
-  /*
-    return (
-      <div className='cont-platillos'>
-        <div className='slider-container'>
-          {
-            platillos && platillos.reverse().map((platillo, i) => (
-              <div key={i} className='item'>
-                <div className='item__image-container'>
-                  <img src={getImage(platillo, i)} alt="" />
-                </div>
-                <p>{platillo.name}</p>
-                {/*<p>{platillo.description}</p>
-                <p>{platillo.price}</p>
-            <p>{platillo.category.description}</p>*/ /*
-</div>
-))
-}
-</div>
-<div className='cont-btn'>
-<Link to={'/mis-platillos'} className='btn-verMasPlat'>Ver más</Link>
-</div>
-</div>
-)*/
   return (
     <>
       {
-        platillos && platillos.reverse().map((platillo, i) => (
+        platillos && platillos.map((platillo, i) => (
           <div key={i} className="misPlatillos-card">
             <div>
               <img className="imgPlatillo" src={getImage(platillo, i)} />
