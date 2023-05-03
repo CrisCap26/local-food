@@ -42,7 +42,7 @@ function Home() {
 
         <section className="inicio_nego">
           <p className="inicio_text">
-            ¡Apoya a estos increibles negocios donde podras degustar una gran
+            ¡Apoya a estos increíbles negocios donde podrás degustar una gran
             variedad de platillos hasta la puerta de tu casa!
           </p>
           <br />
@@ -81,7 +81,7 @@ function Home() {
           <br />
           <center>
             <a href="/AcercaDeNosotros" className="inicio_reg__boton">
-              Conocer mas
+              Conocer más
             </a>
           </center>
           </div>

@@ -21,7 +21,7 @@ function AcercaDeNostros() {
         </center>
       </section>
       <section className="about_title">
-        <h1 className="about_hero__title">Unete a la familia "LocalFood"</h1>
+        <h1 className="about_hero__title">Únete a la familia "LocalFood"</h1>
       </section>
       <section className="about_logoo">
         <center>
@@ -37,11 +37,11 @@ function AcercaDeNostros() {
       </section>
       <section className="about_que_es">
         <font color="#ce0a31">
-          <h1 className="about_title__que">¿Que es LocalFood?</h1>
+          <h1 className="about_title__que">¿Qué es LocalFood?</h1>
         </font>
         <p className="about_text">
           LocalFood es una plataforma web que busca apoyar a los pequeños y
-          medianos negocios de comida a promocionar sus platillos hacia todos
+          medianos negocios de comida a promocionar sus platillos hacía todos
           los usuarios cerca de su zona que visiten la plataforma.
         </p>
         <br />

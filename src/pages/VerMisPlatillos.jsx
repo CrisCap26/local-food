@@ -35,7 +35,26 @@ function VerMisPlatillos() {
     <div className='container-platillos'>
       <h1 className="misPlatillos-titulo">Mis Platillos</h1>
       {
-        platillos.length > 0 ?
+        platillos?.length < 3 ?
+          <section className="misPlatillos oneItem">
+            {
+              platillos.map((platillo, i) => (
+                <CardMisPlatillos key={i}
+                  id={platillo.id}
+                  image={
+                    platillo.image ? config.backendUrl + platillo.image
+                      : imageDefault
+                  }
+                  name={platillo.name}
+                  precio={platillo.price}
+                  descr={platillo.description}
+                  reloadPlatillos={reloadPlatillos}
+                  canEdit={true}
+                />
+              ))
+            }
+          </section>
+          : 
           <section className="misPlatillos">
             {
               platillos.map((platillo, i) => (
@@ -54,10 +73,15 @@ function VerMisPlatillos() {
               ))
             }
           </section>
-          : <div className='msg-platillos'>
-            <h2 className='misPlatillos-titulo-2'>No tienes platillos creados, crea uno dando clic en el boton "Añadir Platillo"</h2>
-            <img src={notfood}></img>
-          </div>
+      }
+
+      {
+        platillos.length <= 0 ? 
+        <div className='msg-platillos'>
+        <h2 className='misPlatillos-titulo-2'>No tienes platillos creados, crea uno dando clic en el boton "Añadir Platillo"</h2>
+        <img src={notfood}></img>
+      </div>
+      : <></>
       }
       <div className="container-agregar">
         <button onClick={addPlatillo} className="agregarPlatillo">Añadir Platillo</button>

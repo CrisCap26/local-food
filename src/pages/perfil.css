@@ -237,6 +237,10 @@ a{
         gap: 20px;
         padding-top: 35px;
     }
+    .oneItem-sect {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 @media(min-width: 900px) {

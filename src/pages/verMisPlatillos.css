@@ -141,6 +141,9 @@
         min-width: 320px;
         max-width: 320px;
     }
+    .oneItem {
+        display: flex;
+    }
 }
 
 @media(min-width: 900px) {
@@ -158,6 +161,9 @@
     .misPlatillos-card {
         max-width: 310px;
         min-width: 310px;
+    }
+    .oneItem {
+        display: flex;
     }
 }
 @media(min-width: 1200px) {

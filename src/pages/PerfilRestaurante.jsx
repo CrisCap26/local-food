@@ -13,6 +13,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
   const navigate = useNavigate();
   const [localfood, setLocalfood] = React.useState(null);
   const [profileImage, setProfileImage] = React.useState(fotoPerfil);
+  const [platillos, setPlatillos] = React.useState(null);
   const params = useParams();
   const isCurrentOwner = localfoodOwnerId == params.localfoodId;
 
@@ -31,6 +32,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
     get(params.localfoodId).then((response) => {
       setLocalfood(response.data);
       setComentarios(response.data.comments);
+      setPlatillos(response.data.products);
       console.log(response.data)
       if (response.data.profile_image) {
         setProfileImage(config.backendUrl + response.data.profile_image)
@@ -50,6 +52,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
     }
   }
 
+  console.log(platillos)
   return (
     <>
       <section className="cover">
@@ -105,7 +108,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
             </li>
             <li>
               {" "}
-              <b>Telefono:</b> {localfood?.phone_number}
+              <b>Teléfono:</b> {localfood?.phone_number}
             </li>
             <li>
               {" "}
@@ -142,12 +145,26 @@ function PerfilRestaurante({ localfoodOwnerId }) {
           </div>
           :
           <>
-            <section className="sect-platillos">
-              <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
-            </section>
-            <div className='cont-btn'>
-              <Link to={`/mis-platillos/${localfood?.id}`} className='btn-verMasPlat'>Ver más</Link>
-            </div>
+            {
+              platillos?.length < 3 ?
+                <>
+                  <section className="sect-platillos oneItem-sect">
+                    <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+                  </section>
+                  <div className='cont-btn'>
+                    <Link to={`/mis-platillos/${localfood?.id}`} className='btn-verMasPlat'>Ver más</Link>
+                  </div>
+                </>
+                :
+                <>
+                  <section className="sect-platillos">
+                    <SlideShow platillos={localfood?.products} localfoodId={localfood?.id} reloadPlatillos={reloadPlatillos} canEdit={isCurrentOwner} />
+                  </section>
+                  <div className='cont-btn'>
+                    <Link to={`/mis-platillos/${localfood?.id}`} className='btn-verMasPlat'>Ver más</Link>
+                  </div>
+                </>
+            }
           </>
       }
 
