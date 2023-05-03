@@ -127,14 +127,19 @@
     font-weight: bold;
     font-size: 0.9rem;
     padding-left: 15px;
+    padding-top: 5px;
 }
 .info-restaurant .cat > ul li {
-    display: inline;
+    display: inline-block;
     font-size: 0.9rem;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 2px;
+    background-color: #5e5959;
+    color: white;
+    font-weight: bold;
 }
 .category__item {
-    border: 1px solid gray;
+    border: 1px solid black;
     padding: 0.25rem;
     margin-right: 0.5rem;
     border-radius: 0.5rem;
