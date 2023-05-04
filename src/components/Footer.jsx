@@ -9,7 +9,7 @@ function Footer() {
     <footer>
       <div className="contenedor">
         <br />
-        <h2 className="titulo-seccion">Contactanos</h2>
+        <h2 className="titulo-seccion">Contáctanos</h2>
         <br />
       </div>
       <div className="center box">
@@ -51,7 +51,7 @@ function Footer() {
           <div className="contenedor">
             <br />
             <p className="copy">
-              Copyright © 2022 LocalFood / Todos los derechos reservados.
+              Copyright © 2023 LocalFood / Todos los derechos reservados.
             </p>
             <br />
           </div>

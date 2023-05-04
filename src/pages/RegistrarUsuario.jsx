@@ -59,7 +59,7 @@ function RegistrarUsuario() {
       <p className="user_form__paragraph">
         ¿Ya tienes una cuenta?{" "}
         <a href="/Login" className="form__link">
-          Entra aqui
+          Entra aquí
         </a>
       </p>
       <br/>
@@ -90,7 +90,7 @@ function RegistrarUsuario() {
             />
         </div>
         <div className="field">
-          <label>Telefono</label>
+          <label>Teléfono</label>
           <input
             id="tel"
             {...register('phone_number')}

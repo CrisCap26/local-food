@@ -81,7 +81,7 @@ function RegistrarPlatillo() {
           min: 0
         })}
       />
-      <h3>Elegir categoria: </h3>
+      <h3>Elegir categoría: </h3>
       <span className="campo_requerido_res">* Este campo es requerido</span>
       <select className='controls' id="select" {...register('category', {required: true})} >
         {categories.map((category) => {

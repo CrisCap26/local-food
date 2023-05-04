@@ -44,7 +44,7 @@ const User = () => {
         <div className='container-info-user'>
           <div className='info-user'>Nombre: <p>{user?.name}</p></div>
           <div className='info-user'>Apellidos: <p>{user?.last_name}</p></div>
-          <div className='info-user'>Telefono: <p>{user?.phone_number}</p></div>
+          <div className='info-user'>Teléfono: <p>{user?.phone_number}</p></div>
           <div className='info-user'>Email: <p>{user?.email}</p></div>
         </div>
         <button className='editar-user' onClick={handleUpdate}>Editar</button>

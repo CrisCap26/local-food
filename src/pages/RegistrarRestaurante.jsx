@@ -79,7 +79,7 @@ function RegistrarRestaurante() {
         placeholder="Ingrese el Domicilio"
         {...register('address')}
       />
-      <h3>Telefono:</h3>
+      <h3>Teléfono:</h3>
       <input
         className="controls"
         type="tel"

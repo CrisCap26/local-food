@@ -96,11 +96,11 @@
     cursor: pointer;
 }
 
-@media (min-height: 534px) {
+/*@media (min-height: 534px) {
     .user_form {
         height: 100vh;
     }
-}
+}*/
 
 @media (min-width: 600px) {
     .user_form {
@@ -118,7 +118,7 @@
 @media (min-width: 900px) {
     .user_form_register {
         padding: 50px 350px;
-        height: 100vh;
+        /*height: 100vh;*/
     }
     .user_form {
         padding: 50px 350px;
@@ -128,7 +128,7 @@
 @media (min-width: 1200px) {
     .user_form_register {
         padding: 50px 480px;
-        height: 100vh;
+        /*height: 100vh;*/
     }
     .user_form {
         padding: 50px 480px;

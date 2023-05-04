@@ -78,7 +78,7 @@ function EditarUsuario() {
             />
         </div>
         <div className="field">
-          <label>Telefono</label>
+          <label>Teléfono</label>
           <input
             id="tel"
             {...register('phone_number')}
@@ -99,7 +99,7 @@ function EditarUsuario() {
           />
         </div>
         {image && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-          <p>Imagén de perfil actual</p>
+          <p>Imagen de perfil actual</p>
           <img src={image} alt="Imagen de perfil actual del usuario" style={{width: '200px', marginTop: '8px', marginBottom: '8px'}} />
         </div>}
         <div className="field">
