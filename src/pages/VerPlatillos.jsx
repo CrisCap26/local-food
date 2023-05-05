@@ -42,6 +42,7 @@ function VerPlatillos() {
                   precio={platillo.price}
                   descr={platillo.description}
                   canEdit={isCurrentOwner}
+                  categoryText={platillo.category.description}
                 />
               ))
             }
@@ -63,6 +64,7 @@ function VerPlatillos() {
                   precio={platillo.price}
                   descr={platillo.description}
                   canEdit={isCurrentOwner}
+                  categoryText={platillo.category.description}
                 />
               ))
             }
@@ -85,6 +87,7 @@ function VerPlatillos() {
                   precio={platillo.price}
                   descr={platillo.description}
                   canEdit={isCurrentOwner}
+                  categoryText={platillo.category.description}
                 />
               ))
             }

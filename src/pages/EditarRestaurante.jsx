@@ -60,7 +60,7 @@ function EditarRestaurante() {
   return (
     <form className="datos" onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
-        <h4>Editar el Restaurante</h4>
+        <h4>Editar Negocio</h4>
       </font>
       <h3>Nombre: </h3>
       <input

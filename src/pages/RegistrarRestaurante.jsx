@@ -48,7 +48,7 @@ function RegistrarRestaurante() {
   return (
     <form className='datos' onSubmit={handleSubmit(onSubmit)}>
       <font color="black">
-        <h4>Registro de Restaurante</h4>
+        <h4>Registrar Negocio</h4>
       </font>
       <h3>Nombre: </h3>
       <span className="campo_requerido_res">* Este campo es requerido</span>

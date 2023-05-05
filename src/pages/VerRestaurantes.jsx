@@ -174,7 +174,7 @@ function VerRestaurantes() {
         </>
         :
         <>
-          <h2>No se encontró ningún Restaurante</h2>
+          <h2>No se encontró ningún Negocio</h2>
           <img src={msg}></img>
         </>
         }

@@ -55,7 +55,7 @@ function Home() {
               height="90"
             />
             <Link to="/verRestaurantes" className="inicio_res__button">
-              Ver restaurantes
+              Ver negocios
             </Link>
           </div>
         </section>
@@ -111,7 +111,7 @@ function Home() {
               href="./RegistrarRestaurante"
               className="inicio_resta__button"
             >
-              Registrar restaurante
+              Registrar Negocio
             </a>
           </center>
           </div>
