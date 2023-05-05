@@ -39,8 +39,7 @@ function RegistrarUsuario() {
   };
 
   useEffect(() => {
-    setValidPasswords(password === password2);
-    console.log(password, password2)
+    setValidPasswords(password !== "" && password2 !== "" && password === password2);
   }, [password, password2]);
 
   const onCheckedChange = () => {
@@ -119,11 +118,19 @@ function RegistrarUsuario() {
             id="contra"
             {...register('password', {
               required: true,
-              minLength: 6,
-              onChange: (e) => {
-                setPassword(e.target.value);
-              },
+              validate: (pass) => {
+                if (pass.length < 6) {
+                  toast.error("La contraseña debe contener mínimo 6 caracteres", {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  });
+                  return false;
+                }
+                return true;
+              }
             })}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </div>
         {/* <p id="invalidPass" className="noCoinciden">La contraseña debe tener entre 6 y 12 caracteres</p> */}
@@ -135,11 +142,10 @@ function RegistrarUsuario() {
             id="contra2"
             {...register('password2', {
               required: true,
-              minLength: 6,
-              onChange: (e) => {
-                setPassword2(e.target.value);
-              },
             })}
+            onChange={(e) => {
+              setPassword2(e.target.value);
+            }}
           />
         </div>
           {!validPasswords &&

@@ -25,17 +25,18 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
   const { getItem: idUser } = useLocalStorage('userId');
 
   function getImageUser() {
-    get(getToken(), idUser()).then((response) => {
-      console.log(response.data.profile_image);
-      setUserImage(response.data.profile_image);
-      if (response.data.profile_image) {
-        setUserImage(config.backendUrl + response.data.profile_image);
-      } else {
-        setUserImage(iconUser);
-      }
-    });
+    if (getToken()) {
+      get(getToken(), idUser()).then((response) => {
+        console.log(response.data.profile_image);
+        setUserImage(response.data.profile_image);
+        if (response.data.profile_image) {
+          setUserImage(config.backendUrl + response.data.profile_image);
+        } else {
+          setUserImage(iconUser);
+        }
+      });
+    }
   }
-  
 
   useEffect(() => {
     setShowButtons(!(window.location.pathname === '/Login' || window.location.pathname === '/RegistrarUsuario'));
@@ -66,6 +67,7 @@ function NavBar({isLogedIn, setIsLogedIn, hasLocalfood}) {
       toast.success("Sesión cerrada correctamente", {
         position: toast.POSITION.BOTTOM_LEFT
       });
+      navigate('/');
     }).catch(() => {
       toast.error("Error al iniciar sesión", {
         position: toast.POSITION.BOTTOM_LEFT
