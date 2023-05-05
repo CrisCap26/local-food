@@ -50,6 +50,7 @@ function VerMisPlatillos() {
                   descr={platillo.description}
                   reloadPlatillos={reloadPlatillos}
                   canEdit={true}
+                  categoryText={platillo.category.description}
                 />
               ))
             }
@@ -69,6 +70,7 @@ function VerMisPlatillos() {
                   descr={platillo.description}
                   reloadPlatillos={reloadPlatillos}
                   canEdit={true}
+                  categoryText={platillo.category.description}
                 />
               ))
             }

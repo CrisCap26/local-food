@@ -33,6 +33,7 @@ function CardMisPlatillos(props) {
         <span>
           <b>Descripción: </b>{props.descr}
         </span>
+        <p className='category__item' >{props.categoryText}</p>
       </div>
       {
         props.canEdit ?

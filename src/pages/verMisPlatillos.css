@@ -48,6 +48,11 @@
 .precioPlatillo {
     font-size: 1rem;
 }
+.category__item {
+    border: 1px solid black;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+}
 .buttons {
     display: flex;
     flex-direction: row;
