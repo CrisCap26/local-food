@@ -23,6 +23,7 @@
 .bar-Resta-btn {
     background-color: #fc9c72;
     border: none;
+    cursor: pointer;
 }
 .bar-Restaurantes a {
     display: flex;
