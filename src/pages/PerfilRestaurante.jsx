@@ -52,7 +52,6 @@ function PerfilRestaurante({ localfoodOwnerId }) {
     }
   }
 
-  console.log(platillos)
   return (
     <>
       <section className="cover">

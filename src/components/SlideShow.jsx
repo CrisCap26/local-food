@@ -48,6 +48,7 @@ function SlideShow({ platillos, reloadPlatillos, canEdit }) {
                 <span>
                   <b>Descripción: </b>{platillo.description}
                 </span>
+                <p className='category__item' >{platillo.category.description}</p>
               </div>
               {
                 canEdit ?
