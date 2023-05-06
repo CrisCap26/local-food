@@ -151,6 +151,9 @@ a{
 .inicio_info{
     background-color: wheat;
 }
+.div-info {
+    display: none;
+}
 .inicio_info__title {
     padding: 14px 10px;
     font-size: 1.5rem;
@@ -185,6 +188,10 @@ a{
 .inicio_text {
     font-family: "Roboto", sans-serif;
     padding-top: 7px;
+}
+
+.cont-nego img{
+    display: none;
 }
 
 .inicio_res__info{
@@ -249,6 +256,13 @@ a{
     margin: 5px;
 }
 
+.cont-unir img {
+    display: none;
+}
+.cont-unir p {
+    display: none;
+}
+
 
 
 .inicio_reg__boton {
@@ -278,6 +292,9 @@ font-weight: bold;
     width: 100%;
     padding: 0px 13px;
     background-color: var(--color-principal);
+}
+.inicio_restaurant_container img {
+    display: none;
 }
 
 .inicio_texto{
@@ -527,6 +544,86 @@ footer{
 }
 
 @media(min-width: 926px) {
+    .inicio_info {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .div-info {
+        display: flex;
+        width: 400px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .div-info p {
+        font-size: 1.3rem;
+        margin: 3px auto;
+        line-height: 1.4;
+        background: orange;
+        border-radius: 13px;
+        border: 2px solid black;
+        margin-bottom: 8px;
+    }
+    .inicio_info__title {
+        font-size: 1.7rem;
+        background: orange;
+        border-radius: 13px;
+        border: 2px solid black;
+        margin-bottom: 8px;
+    }
+    .cont-nego img {
+        display: block;
+        border: none;
+        width: 30%;
+    }
+    .cont-nego {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 750px;
+        margin-right: 70px;
+    }
+    .cont-unir img {
+        display: block;
+        width: 50%;
+        background-color: gray;
+    }
+    .cont-unir p {
+        display: block;
+    }
+    .cont-unir {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cont-unir p {
+        font-size: 1.2rem;
+        margin: 3px auto;
+        line-height: 1.4;
+        background: #e3272f;
+        border-radius: 8px;
+        padding: 5px;
+        margin-bottom: 10px;
+        color: white;
+        font-weight: bold;
+    }
+    .inicio_restaurant_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .inicio_restaurant_container img {
+        display: block;
+        border: none;
+        width: 26%;
+        margin: 0;
+        padding: 0;
+    }
     .user__options {
         right: 4%;
     }
@@ -537,11 +634,7 @@ footer{
         height: 50vh;
     }
     .inicio_text {
-        padding: 87px;
         line-height: 1.5;
-    }
-    .inicio_info__title {
-        padding: 43px;
     }
     .inicio_info__image {
         width: 200px;
@@ -549,9 +642,6 @@ footer{
     }
     .inicio_res__info {
         width: 255px;
-    }
-    .container_negocios {
-        margin-right: 150px;
     }
     .inicio_info__reg {
         width: 325px;
@@ -581,11 +671,8 @@ footer{
     .contenedor p {
         font-size: 1.2rem;
     }
-    .inicio_nego {
-        height: 70vh;
-    }
     .inicio_regis {
-        height: 70vh;
+        height: 65vh;
     }
     .inicio_reg__res {
         margin: 60px;
