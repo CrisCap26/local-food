@@ -475,7 +475,7 @@ footer{
     }
 
     .inicio_hero h2 {
-        font-size: 1.4rem;
+        font-size: 2rem;
     }
 
     .inicio_info__title {
@@ -491,7 +491,9 @@ footer{
         width: 100%;
         display: flex;
         align-items: center;
+        justify-content: space-evenly;
         padding: 34px;
+        padding-right: 15%;
     }
 
     .inicio_text {
@@ -528,6 +530,7 @@ footer{
         height: auto;
         width: 100%;
         padding: 22px;
+        padding-left: 15%;
     }
     .inicio_reg__res {
         width: 306px;
@@ -584,7 +587,6 @@ footer{
         justify-content: center;
         align-items: center;
         width: 750px;
-        margin-right: 70px;
     }
     .cont-unir img {
         display: block;
@@ -649,6 +651,7 @@ footer{
     .inicio_restaurant {
         padding: 28px;
         height: 70vh;
+        padding-left: 17.5%;
     }
     .inicio_texto {
         font-size: 1.3rem;
@@ -677,5 +680,8 @@ footer{
     .inicio_reg__res {
         margin: 60px;
         width: 350px;
+    }
+    .inicio_hero h2 {
+        font-size: 3rem;
     }
 }

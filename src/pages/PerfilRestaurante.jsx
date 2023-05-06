@@ -74,7 +74,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       <section id="aboutme" className="aboutme">
         <header>
           <h1 className="title-underlime">
-            <span>Descripcion</span>
+            <span>Descripción</span>
           </h1>
         </header>
 
@@ -97,7 +97,7 @@ function PerfilRestaurante({ localfoodOwnerId }) {
       <section id="info" className="info">
         <header>
           <h1 className="title-underlime">
-            <span>Mas Informacion</span>
+            <span>Más Información</span>
           </h1>
         </header>
         <div className="block">
