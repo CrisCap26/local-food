@@ -61,7 +61,6 @@ function RegistrarPlatillo() {
         })}
       />
       <h3>Descripción: </h3>
-      <span className="campo_requerido_res">* Este campo es requerido</span>
       <textarea
         id='descripcionPlat'
         className="controls"
@@ -78,7 +77,8 @@ function RegistrarPlatillo() {
         type="number"
         placeholder="Ingrese el Precio"
         {...register('price', {
-          min: 0
+          min: 1,
+          required: true,
         })}
       />
       <h3>Elegir categoría: </h3>

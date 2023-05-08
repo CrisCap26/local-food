@@ -102,17 +102,23 @@ function PerfilRestaurante({ localfoodOwnerId }) {
         </header>
         <div className="block">
           <ul className="list">
-            <li>
-              <b>Domicilio: </b> {localfood?.address}
-            </li>
-            <li>
-              {" "}
-              <b>Teléfono:</b> {localfood?.phone_number}
-            </li>
-            <li>
-              {" "}
-              <b>Horario: </b> {localfood?.schedule}
-            </li>
+            {localfood?.address &&
+              <li>
+                <b>Domicilio: </b> {localfood?.address}
+              </li>
+            }
+            {localfood?.phone_number &&
+              <li>
+                {" "}
+                <b>Teléfono:</b> {localfood?.phone_number}
+              </li>
+            }
+            {localfood?.schedule &&
+              <li>
+                {" "}
+                <b>Horario: </b> {localfood?.schedule}
+              </li>
+            }
             <li>
               <b>¿Entrega a domicilio?: </b> {hasDelivery()}
             </li>

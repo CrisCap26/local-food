@@ -45,9 +45,11 @@ function SlideShow({ platillos, reloadPlatillos, canEdit }) {
               <div className="info-platillo">
                 <h3 className="nombrePlatillo">{platillo.name}</h3>
                 <span className="precioPlatillo"><b>Precio:</b> ${platillo.price}</span>
-                <span>
-                  <b>Descripción: </b>{platillo.description}
-                </span>
+                {platillo.description &&
+                  <span>
+                    <b>Descripción: </b>{platillo.description}
+                  </span>
+                }
                 <p className='category__item' >{platillo.category.description}</p>
               </div>
               {

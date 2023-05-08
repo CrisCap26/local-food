@@ -17,34 +17,34 @@ function AddComentario(props) {
 
     function getImageUser() {
         get(getItem(), idUser()).then((response) => {
-          console.log(response.data.profile_image);
-          setUserImage(response.data.profile_image);
-          if (response.data.profile_image) {
+            setUserImage(response.data.profile_image);
+            if (response.data.profile_image) {
             setUserImage(config.backendUrl + response.data.profile_image);
-          } else {
+            } else {
             setUserImage(imgUser);
-          }
+            }
         });
-      }
+    }
 
     React.useEffect(()=> {
         getImageUser();
-    },[]);  
+    },[]);
 
     const onSubmit = (e) => {
         e.preventDefault();
-        addComment(params.localfoodId, getItem(), comentario).then((response) => {
+        if (comentario.trim().length === 0) return;
+
+        addComment(params.localfoodId, getItem(), comentario.trim()).then((response) => {
             setComentario("");
             props.addComentario(response.data);
             toast.success("Comentario creado correctamente", {
                 position: toast.POSITION.BOTTOM_LEFT
             });
+        }).catch(() => {
+            toast.error("Error al crear el comentario", {
+                position: toast.POSITION.BOTTOM_LEFT
+            });
         })
-            .catch(() => {
-                toast.error("Error al crear el comentario", {
-                    position: toast.POSITION.BOTTOM_LEFT
-                });
-            })
     }
     return (
         <section className="cont-add-coment">

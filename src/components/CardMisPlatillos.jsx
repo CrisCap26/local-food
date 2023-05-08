@@ -30,9 +30,11 @@ function CardMisPlatillos(props) {
       <div className="info-platillo">
         <h3 className="nombrePlatillo">{props.name}</h3>
         <span className="precioPlatillo"><b>Precio:</b> ${props.precio}</span>
-        <span>
-          <b>Descripción: </b>{props.descr}
-        </span>
+        {props.descr &&
+          <span>
+            <b>Descripción: </b>{props.descr}
+          </span>
+        }
         <p className='category__item' >{props.categoryText}</p>
       </div>
       {
